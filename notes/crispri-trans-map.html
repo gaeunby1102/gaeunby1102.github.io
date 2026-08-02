@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Genome-scale single-cell CRISPRi map of trans regulation · Gaeun Byeon</title>
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+  <header class="masthead">
+    <div class="masthead-inner">
+      <a class="brand" href="../index.html">Gaeun Byeon</a>
+      <nav>
+        <a href="../index.html">Home</a>
+        <a href="../publications.html">Publications</a>
+        <a href="../projects.html">Projects</a>
+        <a href="../seminars.html">Seminars</a>
+        <a href="../posters.html">Posters</a>
+        <a href="../papers.html">Papers</a>
+        <a href="../notes.html" class="active">Notes</a>
+        <a href="../skills.html">Skills</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-wrap">
+    <div class="note-layout">
+      <main class="content note-main">
+        <article class="note">
+          <header class="note-header">
+            <h1>A genome-scale single-cell CRISPRi map of trans gene regulation across human pluripotent stem cell lines</h1>
+            <p class="note-meta"><em>Cell Genomics</em> · Perturbation · GRN</p>
+          </header>
+
+          <div class="summary-sheet">
+            <div class="ss-item">
+              <span class="ss-label">Background · 연구 배경</span>
+              <p>population-scale로 다양한 유전적 배경을 가진 human iPSC에서 CRISPRi와
+              scRNA-seq를 결합해, 유전자 knockdown이 유발하는 전사체적(trans) 변화를
+              대규모로 지도화하는 것을 목표로 한다.</p>
+            </div>
+            <div class="ss-item">
+              <span class="ss-label">Research Question · 연구 질문</span>
+              <p>같은 유전자 perturbation이 서로 다른 개인(세포주)에서 어떻게 평균적·분산적
+              전사 반응을 보이는지, 그리고 자연 유전적 변이가 이 perturbation 효과를 어떻게
+              조절하는지를 규명하고자 했다.</p>
+            </div>
+            <div class="ss-item">
+              <span class="ss-label">Data / Sample · 데이터</span>
+              <p>Dolcetto 라이브러리의 7,226개 표적(가이드 3개/유전자, non-targeting 40개
+              포함)을 dCas9-KRAB-MeCP2 시스템으로 knockdown. 26명 기증자 유래 34개 iPSC
+              라인에서 총 70만 개 이상의 세포 scRNA-seq를 수집·분석했다.</p>
+            </div>
+            <div class="ss-item result">
+              <span class="ss-label">Result 1</span>
+              <p>전체 표적의 약 절반에서 하나 이상의 유의한 trans 효과를 관찰했고, 표적의
+              필수성·단백질 복합체 소속성·진화적 보존성이 많은 trans 효과를 예측하여
+              <strong>단백질 복합체가 전사 반응의 nexus</strong>로 작용함을 보였다.</p>
+            </div>
+            <div class="ss-item result">
+              <span class="ss-label">Result 2</span>
+              <p>유사한 perturbation 반응은 알려진 단백질 복합체 및 세포 스트레스·플루리포텐시
+              공통 전사 모듈을 재현했고, 단일세포 자연 공발현 패턴이 perturbation 반응 유사성을
+              예측해 향후 표적 캡처 설계에 실용적 가이드를 제공한다.</p>
+            </div>
+            <div class="ss-item result">
+              <span class="ss-label">Result 3</span>
+              <p>표적 444개를 10명 기증자(각 2개 라인)에서 재검증한 결과, 2,941개 trans
+              효과에서 donor 성분이 분산을 유의하게 설명하는 <strong>유전적 조절(heritable
+              effects)</strong>을 확인했다. knockdown에 의해 유전적 발현 차이가 사라지거나
+              생기거나 유지되는 다양한 양상이 관찰되었다.</p>
+            </div>
+            <div class="ss-item result">
+              <span class="ss-label">Result 4</span>
+              <p>guide 특이성·CRISPRi 효능이 결과 변동의 주요 원인이며, 오프타깃과 pooling·수확
+              시점 선택이 실험 민감도에 큰 영향을 미친다. 대규모 인구 기반 perturbation 연구
+              설계 시 이러한 기술적·통계적 고려가 필수적이며, 데이터·코드가 공개되어 후속 연구
+              자원으로 활용될 수 있다.</p>
+            </div>
+          </div>
+
+          <p class="back"><a href="../papers.html">← Papers</a> · <a href="../notes.html">모든 노트</a></p>
+        </article>
+      </main>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="follow">
+      <a href="https://github.com/gaeunby1102" aria-label="GitHub"><svg viewBox="0 0 24 24"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.5v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7 0-.7 0-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.8-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17 4.6 18 4.9 18 4.9c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.6.8.5 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg></a>
+      <a href="mailto:gaeunbyeon1102@gmail.com" aria-label="Email"><svg viewBox="0 0 24 24"><path d="M2 4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h20a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2H2zm0 2 10 6 10-6v.01L12 12 2 6.01V6z"/></svg></a>
+      <a href="https://www.linkedin.com/in/%EA%B0%80%EC%9D%80-%EB%B3%80-621113361/" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg></a>
+    </div>
+    <p>© 2026 Gaeun Byeon</p>
+  </footer>
+</body>
+</html>

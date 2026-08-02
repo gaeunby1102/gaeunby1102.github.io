@@ -32,6 +32,10 @@ window.NOTES_DATA = [
         "url": "notes/scfm-attention-grn.html"
       },
       {
+        "label": "A genome-scale single-cell CRISPRi map of trans gene regulation across human pluripotent stem cell lines",
+        "url": "notes/crispri-trans-map.html"
+      },
+      {
         "label": "A multi-regional human brain atlas of chromatin accessibility and gene expression facilitates promoter-isoform resolution genetic fine-mapping",
         "url": "notes/a-multi-regional-human-brain-atlas-of-chromatin-accessibility-and-gene-expression-facilitates-promoter-isoform-resolution-genetic-fine-mapping.html"
       },

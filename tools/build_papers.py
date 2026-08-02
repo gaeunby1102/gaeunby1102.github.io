@@ -16,22 +16,35 @@ papers = json.load(open(DATA, encoding="utf-8"))
 tag_counts = Counter(t for p in papers for t in p.get("구분", []))
 TAGS = [t for t, _ in tag_counts.most_common()]
 
+# Papers with a detailed summary page (title -> url). Add entries here as you write summaries.
+def _norm(t): return re.sub(r"\s+", " ", t or "").strip().lower()
+SUMMARY_LINKS = {
+    _norm("A genome-scale single-cell CRISPRi map of trans gene regulation across human pluripotent stem cell lines"): "notes/crispri-trans-map.html",
+    _norm("Systematic Evaluation of Single-Cell Foundation Model Interpretability Reveals Attention Captures Co-Expression Rather Than Unique Regulatory Signal"): "notes/scfm-attention-grn.html",
+}
+
 def esc(s): return html.escape(s or "", quote=True)
 
 chips = ['<button class="chip active" data-tag="__all">All ({})</button>'.format(len(papers))]
 for t in TAGS:
     chips.append('<button class="chip" data-tag="{0}">{0} ({1})</button>'.format(esc(t), tag_counts[t]))
 
+def collapse(s): return re.sub(r"\s+", " ", s or "").strip()
+
 items = []
 for p in papers:
-    title = esc(p.get("title", "").strip())
-    journal = esc(p.get("저널", "").strip())
+    raw_title = collapse(p.get("title", ""))
+    title = esc(raw_title)
+    link = SUMMARY_LINKS.get(_norm(raw_title))
+    title_html = ('<a href="{}">{}</a> <span class="paper-badge">📄 summary</span>'.format(link, title or "(untitled)")
+                  if link else (title or "(untitled)"))
+    journal = esc(collapse(p.get("저널", "")))
     tags = p.get("구분", [])
-    summary = esc(p.get("요약", "").strip())
+    summary = esc(collapse(p.get("요약", "")))
     data = esc("|".join(tags))
     tag_html = "".join('<span class="ptag">{}</span>'.format(esc(t)) for t in tags)
     parts = ['      <li class="paper-item" data-tags="{}">'.format(data)]
-    parts.append('        <p class="paper-title">{}</p>'.format(title or "(untitled)"))
+    parts.append('        <p class="paper-title">{}</p>'.format(title_html))
     meta = []
     if journal:
         meta.append('<span class="paper-journal">{}</span>'.format(journal))
