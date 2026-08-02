@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GNN message passing · Gaeun Byeon</title>
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+  <header class="masthead">
+    <div class="masthead-inner">
+      <a class="brand" href="../index.html">Gaeun Byeon</a>
+      <nav>
+        <a href="../index.html">Home</a>
+        <a href="../publications.html">Publications</a>
+        <a href="../projects.html">Projects</a>
+        <a href="../seminars.html">Seminars</a>
+        <a href="../posters.html">Posters</a>
+        <a href="../papers.html">Papers</a>
+        <a href="../notes.html" class="active">Notes</a>
+        <a href="../skills.html">Skills</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-wrap">
+    <aside class="author">
+      <img class="avatar" src="../assets/img/profile.svg" alt="Gaeun Byeon">
+      <div class="name">Gaeun Byeon</div>
+      <p class="bio">ML &amp; Computational Biology</p>
+      <p class="affil">M.S. Student,<br>Human Genomics Lab, Korea University</p>
+      <ul class="links">
+        <li><a href="mailto:gaeunbyeon1102@gmail.com">
+          <svg class="ico" viewBox="0 0 24 24"><path d="M2 4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h20a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2H2zm0 2 10 6 10-6v.01L12 12 2 6.01V6z"/></svg>
+          Email</a></li>
+        <li><a href="https://github.com/gaeunby1102">
+          <svg class="ico" viewBox="0 0 24 24"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.5v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7 0-.7 0-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.8-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17 4.6 18 4.9 18 4.9c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.6.8.5 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg>
+          GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/%EA%B0%80%EC%9D%80-%EB%B3%80-621113361/">
+          <svg class="ico" viewBox="0 0 24 24"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>
+          LinkedIn</a></li>
+      </ul>
+    </aside>
+
+    <main class="content">
+      <article class="note">
+        <header class="note-header">
+          <h1>GNN message passing</h1>
+          <p class="note-meta"><time datetime="2026-07-20">2026.07.20</time></p>
+        </header>
+        <h2>GNN과 message passing vs Node2Vec</h2>
+        <blockquote class="lead-quote">현재 AnnFlux는 STRING graph를 <strong>Node2Vec로 압축한 frozen 임베딩</strong>으로만 활용. GEARS류 모델은 graph 위에서 <strong>GNN message passing</strong>으로 라이브 query. 이 차이가 combo 일반화 성능 gap의 본질.</blockquote>
+        <h2>1. Node2Vec vs GNN — 한 줄 요약</h2>
+        <ul>
+          <li><strong>Node2Vec</strong>: graph 데이터를 학습 <em>전</em>에 한 번 압축해 만든 <strong>고정 사전</strong> (gene → 128-dim 벡터).</li>
+          <li><strong>GNN</strong>: graph 자체를 모델의 한 layer로 두고, 매 forward pass마다 <strong>라이브로 query</strong>하는 inference 엔진.</li>
+        </ul>
+        <table>
+        <tr><th></th><th>Node2Vec</th><th>GNN</th></tr>
+        <tr><td>그래프 사용 시점</td><td>학습 <em>전</em> 1회 (random walk)</td><td>training/inference 매번</td></tr>
+        <tr><td>출력</td><td>노드당 고정 벡터</td><td>forward마다 새 임베딩</td></tr>
+        <tr><td>task awareness</td><td>✗ (perturbation 모름)</td><td>✓ (end-to-end 학습)</td></tr>
+        <tr><td>perturbation context</td><td>임베딩에 못 반영</td><td>노드 feature로 넣고 전파</td></tr>
+        <tr><td>inference cost</td><td>lookup 무료</td><td>message passing 매번</td></tr>
+        <tr><td>비유</td><td>사람별 &quot;성격 카드&quot; 정적</td><td>&quot;A가 화났다&quot; 소문이 친구→친구로 퍼짐</td></tr>
+        </table>
+        <p><strong>결정적 차이</strong>: Node2Vec은 같은 gene을 어느 상황(A가 KO됐든 안 됐든)에서나 <strong>항상 같은 벡터</strong>로 표현. GNN은 perturbation 상태에 따라 <strong>상황별로 다른 임베딩</strong>.</p>
+        <h2>2. Message passing — 동작 원리</h2>
+        <p><strong>Message passing = 그래프에서 각 노드가 자기 이웃들과 정보를 주고받아 자기 표현을 업데이트하는 과정.</strong></p>
+        <h3>구체 예시 (gene 4개)</h3>
+        <pre><code>graph:
+   A ─── B
+   │     │
+   C     D</code></pre>
+        <ul>
+          <li>A의 이웃 = {B, C}</li>
+          <li>B의 이웃 = {A, D}</li>
+          <li>C의 이웃 = {A}</li>
+          <li>D의 이웃 = {B}</li>
+        </ul>
+        <h3>초기 상태 (layer 0)</h3>
+        <p>각 노드에 feature vector 부여. perturbation task라면 &quot;이 gene이 KO됐는가?&quot; bit도 포함. A가 KO된 상황을 가정:</p>
+        <p class="mathblock">\[ \begin{aligned}
+h_A^{(0)} &amp;= [\,\text{is\_perturbed}=1,\ \ \text{gene\_A\_features},\ \ldots\,] \\
+h_B^{(0)} &amp;= [\,\text{is\_perturbed}=0,\ \ \ldots\,] \\
+h_C^{(0)} &amp;= [\,\text{is\_perturbed}=0,\ \ \ldots\,] \\
+h_D^{(0)} &amp;= [\,\text{is\_perturbed}=0,\ \ \ldots\,]
+\end{aligned} \]</p>
+        <h3>Layer 1 — A 노드 업데이트 3단계</h3>
+        <p><strong>1. SEND</strong> — 각 이웃이 A에게 메시지 보냄 (\(M\) = 작은 MLP/linear):</p>
+        <p class="mathblock">\[ m_{B \to A} \;=\; M\bigl(h_B^{(0)}\bigr), \qquad m_{C \to A} \;=\; M\bigl(h_C^{(0)}\bigr) \]</p>
+        <p><strong>2. AGGREGATE</strong> — 받은 메시지들 합치기 (sum / mean / attention):</p>
+        <p class="mathblock">\[ a_A \;=\; \operatorname{sum}\!\bigl(\{\,m_{B \to A},\ m_{C \to A}\,\}\bigr) \]</p>
+        <p><strong>3. UPDATE</strong> — A의 표현 갱신 (\(U\) = 또 다른 MLP):</p>
+        <p class="mathblock">\[ h_A^{(1)} \;=\; U\bigl(h_A^{(0)},\ a_A\bigr) \]</p>
+        <p>모든 노드가 동시에 같은 과정 수행. 결과:</p>
+        <ul>
+          <li>\(h_A^{(1)}\) = A 자신 + B, C (1-hop) 정보</li>
+          <li>\(h_B^{(1)}\) = B 자신 + A, D (1-hop) 정보 ← <strong>B는 이제 &quot;내 이웃 A가 KO됐다&quot;를 안다</strong></li>
+        </ul>
+        <h3>Layer 2 — 정보가 2-hop으로 확장</h3>
+        <p>A가 받는 메시지는 이번엔 \(h_B^{(1)}\), \(h_C^{(1)}\) (이미 1-hop 정보 포함).</p>
+        <p class="mathblock">\[ h_A^{(2)} \;=\; U\bigl(h_A^{(1)},\ \operatorname{sum}\!\bigl\{\,M(h_B^{(1)}),\ M(h_C^{(1)})\,\bigr\}\bigr) \]</p>
+        <p>→ \(h_A^{(2)}\) = A 자신 + 1-hop + 2-hop (B 거쳐 D까지)</p>
+        <p><strong>핵심</strong>: layer 수만큼 멀리 정보가 전파됨. 보통 2~4 layers면 충분 (over-smoothing 방지).</p>
+        <h2>3. perturbation context에서 message passing의 위력</h2>
+        <p>\(h_A^{(0)}\)의 첫 차원에 &quot;A is KO&quot; 비트를 넣으면:</p>
+        <ul>
+          <li>Layer 1 후 → B, C가 &quot;A가 KO됐음&quot;을 자기 임베딩에 반영</li>
+          <li>Layer 2 후 → D도 (B를 거쳐) 안다</li>
+          <li><strong>graph 위의 perturbation 신호가 흐름이 임베딩에 자동 코딩</strong></li>
+        </ul>
+        <h3>Combo (A, B) 동시 perturbation에서 더 강력</h3>
+        <ul>
+          <li>초기 feature에 A와 B 둘 다 <code>is_perturbed=1</code> 표시</li>
+          <li>message passing → 두 신호가 graph 위에서 동시에 퍼지며 <strong>공통 이웃에서 합쳐짐</strong></li>
+          <li>그 노드의 최종 임베딩이 &quot;A와 B 둘 다 perturbed인 상황 하 자기 상태&quot;를 코딩</li>
+          <li>모델은 이 임베딩을 보고 combo 효과 예측</li>
+        </ul>
+        <p>→ <strong>graph 구조 자체가 combo 일반화의 매개체</strong>. 안 본 combo (X, Y)도 X, Y의 graph 이웃들이 학습된 다른 combo와 겹치면 자연스럽게 일반화됨.</p>
+        <h2>4. AnnFlux 현재 구조 vs GEARS 비교</h2>
+        <h3>AnnFlux 현재 (Node2Vec)</h3>
+        <pre><code>STRING graph
+    │ (offline, build_string_node2vec.py)
+    ▼
+random walk → skip-gram → gene_table.npy (16202 × 128)  [frozen]
+    │
+    ▼ (training/inference 시 lookup만)
+KGObjectEncoder: slot_id → name_to_row → frozen vector
+    │
+    ▼
+proj + gate + residual + perturb_bits → slot embedding (67-dim)
+    │
+    ▼
+2 slots [gene_a, gene_b] sum → conditioning context
+    │
+    ▼
+drift network → SDE simulation</code></pre>
+        <p><strong>문제</strong>: graph 정보는 frozen 벡터에 압축되어 모델이 못 query. combo \((A, B)\)에 대해 모델은 그저 \([\,\text{N2V}(A),\ \text{N2V}(B)\,]\) 두 벡터만 받음. &quot;A와 B가 graph에서 이웃이다&quot;라는 정보 자체가 없음.</p>
+        <h3>GEARS (GNN message passing)</h3>
+        <pre><code>GO graph (BP terms + gene → term annotations)
+    │
+    ▼ (model의 일부, 매 forward pass)
+GNN layers (message passing, perturbation-conditional)
+    │ (perturbation 비트가 feature로 들어가서 신호가 graph 위에서 전파)
+    ▼
+context-aware gene embedding (combo 상황에 맞게 매번 새로 계산)
+    │
+    ▼
+fold change predictor</code></pre>
+        <p><strong>강점</strong>: 안 본 combo도 graph topology로 일반화. 학습 때 본 다른 combo의 패턴을 graph 이웃 관계를 통해 transfer.</p>
+        <h2>5. 정량 영향 (Notion Task2 결과)</h2>
+        <table>
+        <tr><th>Combo dataset</th><th>AnnFlux (Node2Vec) PCC-Δ</th><th>GEARS (GNN) PCC-Δ</th></tr>
+        <tr><td>Norman</td><td>0.54</td><td><strong>0.73</strong></td></tr>
+        <tr><td>Wessels</td><td>0.62</td><td><strong>0.77</strong></td></tr>
+        </table>
+        <p>→ gap ≈ 0.15~0.20. graph 사용 방식 차이가 본질.</p>
+        <h2>6. 향후 개선 방향</h2>
+        <ol>
+          <li><strong>GNN encoder 도입</strong> (1순위) — STRING/PCNet graph 위에서 message passing. perturbation feature를 노드에 얹어 전파.</li>
+          <li><strong>명시적 interaction module</strong> — combo (A, B)에 attention/bilinear pooling 추가.</li>
+          <li><strong>multiplex graph</strong> — STRING (PPI) + PCNet (functional consensus) + GO (semantic hierarchy)를 별도 채널로 결합.</li>
+        </ol>
+        <p>KG source 단순 교체 (STRING → PCNet)는 임베딩 quality 5~10% 개선 정도만 기대. <strong>architecture 변경 (GNN message passing)이 진짜 차이를 만든다.</strong></p>
+        <hr>
+        <hr>
+        <h2>8. static vs GNN — 두 축: ① 관계형(GNN) × ② 응답-구조 그래프</h2>
+        <blockquote class="lead-quote">§7 발견을 한 장으로: prior가 <em>안 본</em> perturbation을 돕는가 = <strong>① 관계형(이웃에서 조립)</strong> 이면서 <strong>② 그래프가 응답 유사도를 담느냐</strong>. <strong>둘 다 필요.</strong></blockquote>
+        <h3>두 방식 (object 토큰 생성)</h3>
+        <table>
+        <tr><th></th><th>static (frozen lookup)</th><th>GNN (message-passing)</th></tr>
+        <tr><td>토큰</td><td>e_A = proj(고정 벡터_A)</td><td>e_A = proj(GNN(A; <em>이웃의 학습 상태</em>, edges))</td></tr>
+        <tr><td>그래프 사용</td><td>학습 <em>전</em> 1회 (오프라인 압축)</td><td>매 forward 라이브 query</td></tr>
+        <tr><td>같은 object</td><td>항상 같은 벡터</td><td>이웃 상태 따라 갱신</td></tr>
+        <tr><td>gene</td><td>STRING node2vec lookup</td><td>STRING/GO/<strong>coexpr</strong> 위 전파</td></tr>
+        <tr><td>drug</td><td>LINCS 시그니처 lookup (=배포 prior)</td><td>Tanimoto/<strong>LINCS</strong> 위 전파</td></tr>
+        </table>
+        <h3>안 본(unseen) object에서 — 핵심</h3>
+        <ul>
+          <li><strong>static</strong>: 고정 벡터가 응답 기하와 어긋나면 <strong>틀린 좌표를 박고 모델이 못 고침</strong>(frozen) → no-KG보다 <em>해로움</em>.</li>
+          <li><strong>GNN</strong>: 안 본 object 토큰을 <strong>이웃(seen)의 </strong><em><strong>학습된</strong></em><strong> 상태에서 조립</strong> → 이웃의 응답을 물려받음 = <strong>전이.</strong> no-KG는 안 본 것에 좌표조차 없음.</li>
+          <li>→ static = &quot;고정 사전 찾기&quot;, GNN = &quot;이웃에게 물어 그 자리에서 만들기&quot;. <strong>안 본 것엔 물어볼 이웃(=응답 이웃)이 있느냐가 전부.</strong></li>
+        </ul>
+        <h3>단, GNN이면 무조건 아님 — <em>그래프가 응답을 담아야</em> (§7)</h3>
+        <pre><code>static (아무 그래프나 고정)      → 해로움 (틀린 좌표 고정)
+GNN + 구조 그래프(STRING/Tani)   → null/해로움 (이웃 ≠ 응답이웃)
+GNN + 응답 그래프(coexpr/LINCS)  → 전이 성공 ✓</code></pre>
+        <p><strong>두 조건 다 필요</strong>: ① 관계형(GNN) <strong>그리고</strong> ② 응답-구조 그래프.</p>
+        <h3>실측 (0-seen combo / held-out drug · pcc_delta Δ vs no-KG)</h3>
+        <table>
+        <tr><th>방식</th><th>gene (norman, <strong>0-seen combo</strong>)</th><th>drug (sciplex3, <strong>held-out single</strong>)</th></tr>
+        <tr><td>static (frozen)</td><td>STRING −0.066 (해로움, p&lt;1e-4)</td><td>LINCS −0.084 (해로움, p=0.09)</td></tr>
+        <tr><td>GNN · 구조</td><td>STRING-GNN null (−0.074, ns)</td><td>Tanimoto −0.066 (해로움, p=0.021)</td></tr>
+        <tr><td>GNN · 응답</td><td><strong>coexpr +0.145 (p=0.039 ★)</strong></td><td>LINCS-GNN −0.041 (ns, 미전이)</td></tr>
+        </table>
+        <ul>
+          <li><strong>⚠️ 두 열은 *다른 regime</strong><em>: gene 승리(coexpr +0.145)는 0-seen combo(양 파트너 unseen)에서였고, drug는 combosciplex 0-seen이 ~0개라 held-out single로만 테스트 가능 = gene의 </em>아직 안 한* held-out-single regime의 아날로그.</li>
+          <li><strong>drug held-out single</strong>: LINCS-GNN이 no-KG를 못 넘음(−0.041, ns) = 응답그래프 미전이. 단 <strong>응답(LINCS) &gt; 구조(Tanimoto) +0.025</strong>(ns)·LINCS만 유일하게 유의-악화 아님 → &quot;응답&gt;구조&quot; 희미한 echo.</li>
+          <li><strong>정리</strong>: held-out single은 gene·drug 둘 다 응답그래프 전이 안 됨(예상); <strong>coexpr 승리는 0-seen combo 특화</strong>, drug는 그 regime을 못 만들어 미확인. ([[#10 관계형 그래프 인코더 (STRING/GO/coexpr) — 응답-구조 그래프만 both-unseen 전이]] · Task #2가 gene held-out-single도 null임 확인 예정.)</li>
+          <li>상세: [[#10 관계형 그래프 인코더 (STRING/GO/coexpr) — 응답-구조 그래프만 both-unseen 전이]]</li>
+        </ul>
+        <hr>
+        <h2>9. Gene coexpr-GNN 구조 — message-passing으로 안 본 유전자에 전이</h2>
+        <blockquote class="lead-quote">개념도: <strong>control-coexpression 그래프</strong>(함께 변함=응답 이웃) 위에서 message passing → <strong>안 본 유전자 X의 토큰이 seen 이웃(A,B)의 </strong><em><strong>학습된</strong></em><strong> 상태에서 조립됨</strong> → drift → SDE. static lookup은 X에 좌표조차 없지만, GNN은 이웃에서 만들어낸다.</blockquote>
+        <pre><code>flowchart LR
+  subgraph G[&quot;control-coexpression graph&lt;br/&gt;(edge = genes co-vary ⇒ response-neighbors)&quot;]
+    direction TB
+    A[&quot;seen gene A · trained state&quot;]
+    B[&quot;seen gene B · trained state&quot;]
+    X[&quot;unseen gene X · no training&quot;]
+    A --&gt;|coexpr edge| X
+    B --&gt;|coexpr edge| X
+  end
+  X --&gt;|&quot;GNN message passing:&lt;br/&gt;e_X = aggregate(neighbor states)&quot;| E[&quot;object token e_X&lt;br/&gt;inherits A,B response&quot;]
+  E --&gt; P[&quot;pooler → conditioning c&quot;]
+  P --&gt; D[&quot;AdaLN-Zero force field → drift u_θ&quot;]
+  D --&gt; S[&quot;Euler-Maruyama SDE →&lt;br/&gt;predicted response of unseen X&quot;]</code></pre>
+        <ul>
+          <li><strong>핵심</strong>: 바뀜은 토큰 생성(그래프 위 전파)뿐, pooler·AdaLN·SDE는 불변.</li>
+          <li><strong>왜 coexpression 그래프여야</strong> (§7/§8): 이웃이 <em>응답</em> 이웃이어야 전파가 응답으로 이어짐 — STRING(상호작용)·GO(주석)은 이웃≠응답이웃이라 전이 실패.</li>
+          <li><strong>static vs 이 구조 비교 + 실측</strong>은 §8 및 [[#10 관계형 그래프 인코더 (STRING/GO/coexpr) — 응답-구조 그래프만 both-unseen 전이]].</li>
+        </ul>
+        <hr>
+        <h2>10. Node2Vec vs GNN 대비 (개념도)</h2>
+        <blockquote class="lead-quote">§1 표·§4 ASCII를 한 장으로: <strong>Node2Vec = 학습 전 그래프를 고정 벡터로 압축 → lookup</strong>(상황 무관, 안 본 객체엔 좌표 없음). <strong>GNN = 그래프를 모델 layer로 두고 매 forward 이웃에서 라이브 조립</strong>(상황별 갱신, 안 본 객체는 이웃에서 전이).</blockquote>
+        <pre><code>flowchart TB
+  subgraph N2V[&quot;🔒 Node2Vec (static · 현재 AnnFlux)&quot;]
+    direction TB
+    S1[&quot;STRING graph&quot;] --&gt;|&quot;offline random walk&lt;br/&gt;학습 전 1회&quot;| T[&quot;frozen gene_table&lt;br/&gt;gene → 고정 벡터&quot;]
+    T --&gt;|&quot;lookup only&quot;| E1[&quot;e_A = 고정 벡터&lt;br/&gt;상황 무관·항상 동일&quot;]
+    U1[&quot;unseen gene&quot;] -.-&gt;|&quot;좌표 없음 → mean fallback&quot;| E1
+    E1 --&gt; D1[&quot;drift → SDE&quot;]
+  end
+  subgraph GNN[&quot;🔄 GNN (relational · GEARS / coexpr)&quot;]
+    direction TB
+    S2[&quot;graph = 모델의 한 layer&quot;] --&gt;|&quot;message passing&lt;br/&gt;매 forward · 라이브&quot;| E2[&quot;e_A = aggregate(이웃의 학습 상태)&lt;br/&gt;perturbation 상황별 갱신&quot;]
+    U2[&quot;unseen gene&quot;] ==&gt;|&quot;이웃에서 조립 → 전이&quot;| E2
+    E2 --&gt; D2[&quot;drift → SDE&quot;]
+  end</code></pre>
+        <table>
+        <tr><th></th><th>Node2Vec</th><th>GNN</th></tr>
+        <tr><td>그래프 사용</td><td>학습 전 1회 (압축)</td><td>매 forward (라이브 query)</td></tr>
+        <tr><td>토큰</td><td>고정 벡터</td><td>이웃 상태로 갱신</td></tr>
+        <tr><td>안 본 객체</td><td>좌표 없음 (해로움)</td><td>이웃에서 전이 (단, <strong>응답-이웃일 때만</strong>, §7/§8)</td></tr>
+        </table>
+        <ul>
+          <li>단, GNN이면 무조건 아님 — <strong>그래프가 응답 유사도를 담아야</strong>(coexpr) 전이 성공. STRING/GO(구조/주석) 위 GNN은 null (§8·[[#10 관계형 그래프 인코더 (STRING/GO/coexpr) — 응답-구조 그래프만 both-unseen 전이]]).</li>
+        </ul>
+        <p class="back"><a href="../notes.html">← 모든 노트</a></p>
+      </article>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <div class="follow">
+      <a href="https://github.com/gaeunby1102" aria-label="GitHub"><svg viewBox="0 0 24 24"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.5v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7 0-.7 0-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.8-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17 4.6 18 4.9 18 4.9c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.6.8.5 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg></a>
+      <a href="mailto:gaeunbyeon1102@gmail.com" aria-label="Email"><svg viewBox="0 0 24 24"><path d="M2 4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h20a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2H2zm0 2 10 6 10-6v.01L12 12 2 6.01V6z"/></svg></a>
+      <a href="https://www.linkedin.com/in/%EA%B0%80%EC%9D%80-%EB%B3%80-621113361/" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg></a>
+    </div>
+    <p>© 2026 Gaeun Byeon</p>
+  </footer>
+
+  <script>
+  window.MathJax = {
+    tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] },
+    options: { skipHtmlTags: ['script','noscript','style','textarea','pre','code'] }
+  };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</body>
+</html>

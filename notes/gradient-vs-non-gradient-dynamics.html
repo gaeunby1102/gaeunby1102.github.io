@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gradient vs Non-gradient Dynamics · Gaeun Byeon</title>
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+  <header class="masthead">
+    <div class="masthead-inner">
+      <a class="brand" href="../index.html">Gaeun Byeon</a>
+      <nav>
+        <a href="../index.html">Home</a>
+        <a href="../publications.html">Publications</a>
+        <a href="../projects.html">Projects</a>
+        <a href="../seminars.html">Seminars</a>
+        <a href="../posters.html">Posters</a>
+        <a href="../papers.html">Papers</a>
+        <a href="../notes.html" class="active">Notes</a>
+        <a href="../skills.html">Skills</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-wrap">
+    <aside class="author">
+      <img class="avatar" src="../assets/img/profile.svg" alt="Gaeun Byeon">
+      <div class="name">Gaeun Byeon</div>
+      <p class="bio">ML &amp; Computational Biology</p>
+      <p class="affil">M.S. Student,<br>Human Genomics Lab, Korea University</p>
+      <ul class="links">
+        <li><a href="mailto:gaeunbyeon1102@gmail.com">
+          <svg class="ico" viewBox="0 0 24 24"><path d="M2 4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h20a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2H2zm0 2 10 6 10-6v.01L12 12 2 6.01V6z"/></svg>
+          Email</a></li>
+        <li><a href="https://github.com/gaeunby1102">
+          <svg class="ico" viewBox="0 0 24 24"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.5v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7 0-.7 0-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.8-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17 4.6 18 4.9 18 4.9c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.6.8.5 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg>
+          GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/%EA%B0%80%EC%9D%80-%EB%B3%80-621113361/">
+          <svg class="ico" viewBox="0 0 24 24"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>
+          LinkedIn</a></li>
+      </ul>
+    </aside>
+
+    <main class="content">
+      <article class="note">
+        <header class="note-header">
+          <h1>Gradient vs Non-gradient Dynamics</h1>
+          <p class="note-meta"><time datetime="2026-07-20">2026.07.20</time></p>
+        </header>
+        <h2>1. Potential function \(V(x)\)란</h2>
+        <p>스칼라 함수. 공간의 각 점 \(x \in \mathbb{R}^d\)에 <strong>숫자 하나</strong>를 매기는 mapping.</p>
+        <p class="mathblock">\[ V : \mathbb{R}^d \to \mathbb{R} \]</p>
+        <p>직관: <strong>지형도의 고도</strong>. 산골짜기 그림에서 위치 \((x, y)\)에 높이 \(V(x, y)\)가 적힘.</p>
+        <p>전형적인 예:</p>
+        <ul>
+          <li><strong>Quadratic well</strong>: \(V(x) = \tfrac{1}{2}\|x\|^2\) — 원점이 최저점인 단일 그릇</li>
+          <li><strong>Double well</strong>: \(V(x) = (x^2 - 1)^2\) — 두 개의 안정 상태 (bistable switch, e.g. EMT의 epi/mes)</li>
+          <li><strong>Multi-stable landscape</strong>: 여러 attractor (Waddington 분화 landscape의 직관적 비유)</li>
+        </ul>
+        <hr>
+        <h2>2. Gradient dynamics 정의</h2>
+        <p>drift가 어떤 \(V\)의 <strong>음의 gradient</strong>로 표현되는 SDE:</p>
+        <p class="mathblock">\[ dX_t = -\nabla V(X_t)\, dt + \sigma\, dB_t \]</p>
+        <p>직관: <strong>공이 지형 위에서 항상 더 낮은 쪽으로 굴러간다</strong>. \(-\nabla V\)는 &quot;가장 가파른 내리막 방향&quot;이고, \(\sigma\, dB_t\)는 thermal noise.</p>
+        <p>핵심: drift vector field \(f(x) = -\nabla V(x)\)가 <em>어떤</em> scalar 함수의 gradient로 <strong>쓸 수 있다</strong>는 사실이 본질. 한번 그렇게 쓸 수 있으면 아래 5개 성질이 자동으로 따라옴.</p>
+        <hr>
+        <h2>3. Gradient dynamics에서 자동으로 따라오는 5가지 성질</h2>
+        <table>
+        <tr><th>성질</th><th>수식</th><th>의미</th></tr>
+        <tr><td><strong>Curl-free</strong></td><td>\(\nabla \times f = 0\)</td><td>회전 성분 없음. polarized &quot;한쪽 방향&quot;만 가능</td></tr>
+        <tr><td><strong>Conservative</strong></td><td>\(\oint_C f \cdot d\ell = 0\)</td><td>폐곡선 적분 0 — 경로 무관, 시작-끝만 의미</td></tr>
+        <tr><td><strong>Detailed balance</strong></td><td>\(p(x \to y)\, p_{\infty}(x) = p(y \to x)\, p_{\infty}(y)\)</td><td>시간 뒤집어도 통계적으로 동일</td></tr>
+        <tr><td><strong>평형 분포 존재</strong></td><td>\(p_{\infty}(x) \propto e^{-V(x)/D}\)</td><td>Boltzmann 분포 (Gibbs measure)</td></tr>
+        <tr><td><strong>No probability current</strong></td><td>\(J = p_{\infty} f - D \nabla p_{\infty} = 0\)</td><td>평형에서 흐름이 정확히 0 — 정적</td></tr>
+        </table>
+        <p><strong>핵심 함의</strong>: 사이클이 <strong>원리적으로</strong> 안 생긴다. \(A \to B \to C \to A\)로 도는 안정적 순환 흐름은 어떤 \(V\)로도 못 만듦.</p>
+        <p>왜? — \(A \to B \to C \to A\)로 한 바퀴 돌면 시작점으로 돌아오니까 \(\Delta V = 0\)이어야 하는데, 사이클이 안정하려면 매 단계마다 \(V\)가 감소해야 하니까 모순.</p>
+        <hr>
+        <h2>4. Non-gradient (non-equilibrium) dynamics</h2>
+        <p>drift가 어떤 \(V\)의 gradient로 <strong>쓸 수 없는</strong> dynamics.</p>
+        <h2>가장 단순한 반례 — 2D 회전 vector field</h2>
+        <p class="mathblock">\[ f(x, y) = (-y,\; +x) \]</p>
+        <ul>
+          <li>원점 중심으로 <strong>시계 반대 방향</strong>으로 도는 vector field</li>
+          <li>\(\nabla \times f = \partial_x f_y - \partial_y f_x = 1 - (-1) = 2 \neq 0\) → curl 있음</li>
+        </ul>
+        <h2>&quot;\(V\)가 존재할 수 없다&quot;는 증명</h2>
+        <p>만약 \(V\)가 존재한다고 가정하면:</p>
+        <p class="mathblock">\[ \frac{\partial V}{\partial x} = -f_x = y, \qquad \frac{\partial V}{\partial y} = -f_y = -x \]</p>
+        <p>Cross-derivative를 따져보면:</p>
+        <p class="mathblock">\[ \frac{\partial^2 V}{\partial x \partial y} = \frac{\partial}{\partial y}(y) = 1, \qquad \frac{\partial^2 V}{\partial y \partial x} = \frac{\partial}{\partial x}(-x) = -1 \]</p>
+        <p>매끄러운 함수에서는 <strong>Clairaut/Schwarz 정리</strong>에 의해 두 cross-derivative가 같아야 하는데 \(1 \neq -1\). <strong>모순</strong> → 그런 \(V\)는 존재하지 않음.</p>
+        <h2>Non-gradient system의 통계적 특징</h2>
+        <ul>
+          <li><strong>Probability current</strong> \(J(x)\)가 정상상태에서도 \(\neq 0\) — 끊임없이 도는 흐름</li>
+          <li><strong>Detailed balance 깨짐</strong> — 시간을 reverse하면 다른 system (forward와 backward가 통계적으로 구별됨)</li>
+          <li><strong>Limit cycle</strong>, <strong>oscillation</strong>, <strong>irreversible loop</strong>, <strong>rotational steady-state current</strong> 가능</li>
+        </ul>
+        <hr>
+        <h2>5. 생물 시스템이 non-gradient인 이유</h2>
+        <p>생물은 <strong>ATP를 끊임없이 소비</strong>하면서 정상상태를 유지하는 <strong>non-equilibrium steady state (NESS)</strong>. 평형 system이면 죽은 거.</p>
+        <table>
+        <tr><th>시스템</th><th>회전성 / 비가역성의 모습</th></tr>
+        <tr><td><strong>Cell cycle</strong></td><td>G1 → S → G2 → M → G1, 완전한 사이클. potential well로 절대 표현 불가 (V로 만들면 G1으로 굴러내려가 멈춰야 함)</td></tr>
+        <tr><td><strong>Repressilator</strong> (Elowitz–Leibler 2000)</td><td>3개 gene이 순서대로 서로 억제, 발현이 oscillate. 회로의 Jacobian이 명시적으로 asymmetric</td></tr>
+        <tr><td><strong>Differentiation</strong></td><td>irreversible commitment. 한번 분화한 세포가 일반적으로 stem state로 안 돌아옴</td></tr>
+        <tr><td><strong>EMT</strong></td><td>epithelial → mesenchymal, partial cyclic / hysteretic — bistable + drug withdrawal로 reverse 안 됨</td></tr>
+        <tr><td><strong>Metabolic cycles</strong></td><td>TCA cycle, glycolytic oscillation — 방향성 있는 순환</td></tr>
+        <tr><td><strong>Sensory adaptation</strong></td><td>자극 → 반응 → adaptation → reset, 비가역 loop</td></tr>
+        </table>
+        <p>이걸 <strong>Brownian reference로 잡으려고 하면</strong>: 회전 흐름이 noise로 흐려져서 평균 0의 기울기로 보임 → 모델이 정적인 attractor만 학습. v2.x에서 일관되게 관찰된 &quot;shift_corr는 강한데 shift_R²는 약함&quot;의 한 가지 가능한 메커니즘.</p>
+        <hr>
+        <h2>6. mvOU의 \(A\) matrix가 이걸 어떻게 해결?</h2>
+        <p>mvOU drift \(A(x - m)\)을 두 부분으로 분해:</p>
+        <p class="mathblock">\[ A = \underbrace{\tfrac{1}{2}(A + A^\top)}_{A_{\text{sym}}} + \underbrace{\tfrac{1}{2}(A - A^\top)}_{A_{\text{anti}}} \]</p>
+        <h2>\(A_{\text{sym}}\) — gradient 부분</h2>
+        <p>\(A_{\text{sym}}\)은 symmetric이므로 어떤 quadratic potential의 Hessian으로 쓸 수 있음:</p>
+        <p class="mathblock">\[ A_{\text{sym}}(x - m) = -\nabla V(x), \qquad V(x) = -\tfrac{1}{2}(x - m)^\top A_{\text{sym}}(x - m) \]</p>
+        <ul>
+          <li>고유값이 <strong>음수</strong>면 \(m\)이 안정 attractor (수렴, well behavior)</li>
+          <li>고유값이 <strong>양수</strong>면 \(m\)이 불안정 (repeller)</li>
+          <li><strong>사이클 못 만듦</strong> — 위 §3의 모든 성질이 이 항에서만 따라옴</li>
+        </ul>
+        <h2>\(A_{\text{anti}}\) — non-gradient 부분</h2>
+        <p>\(A_{\text{anti}}\)는 anti-symmetric (\(A_{\text{anti}}^\top = -A_{\text{anti}}\)). 2D에서는 \(\begin{pmatrix} 0 &amp; -\omega \\ \omega &amp; 0 \end{pmatrix}\) 형태로 <strong>순수 회전</strong>.</p>
+        <ul>
+          <li>고유값이 <strong>purely imaginary</strong> → trajectory가 spiral / 회전</li>
+          <li><strong>사이클·oscillation·probability current 표현 가능</strong></li>
+          <li>\(A_{\text{anti}}(x - m) = \omega \cdot R_{90}(x - m)\) 꼴 — 위치 벡터를 90도 돌린 방향으로 push</li>
+        </ul>
+        <h2>합쳐서</h2>
+        <p>\(A\)가 일반적으로 <strong>symmetric + anti-symmetric</strong> 둘 다 가지면, dynamics는 &quot;well로 수렴하면서 동시에 회전&quot;하는 <strong>damped spiral / driven oscillator</strong> 형태. 정확히 cell cycle, repressilator, EMT 같은 생물 시스템의 모습.</p>
+        <hr>
+        <h2>7. 진단 지표 — anti_ratio</h2>
+        <p>논문(Zhang &amp; Stumpf 2026)의 핵심 진단 지표:</p>
+        <p class="mathblock">\[ \text{anti\_ratio} = \frac{\|A_{\text{anti}}\|_F}{\|A\|_F} \in [0, 1] \]</p>
+        <table>
+        <tr><th>값</th><th>해석</th></tr>
+        <tr><td>\(\approx 0\)</td><td>거의 symmetric → gradient dynamics에 가까움 → <strong>Brownian reference로 충분</strong></td></tr>
+        <tr><td>중간 (0.3 ~ 0.5)</td><td>비가역성 + 수렴 혼합. 생물에서 일반적</td></tr>
+        <tr><td>\(\to 1/\sqrt{2}\)</td><td>완전 anti-symmetric. 순수 회전 (limit cycle)</td></tr>
+        </table>
+        <p>⇒ anti_ratio가 크면 그 system은 <strong>Brownian reference가 부적합한 증거</strong>가 됨. mvOU reference로 바꿔야 할 신호.</p>
+        <hr>
+        <h2>8. Repressilator 실험 — 논문 Fig 4</h2>
+        <p>논문의 핵심 시각적 데모. <strong>3-gene oscillator</strong> (gene 1 → represses gene 2 → represses gene 3 → represses gene 1)에서 snapshot 데이터를 받아 MVOU-OTFM이 dynamics를 reconstruct.</p>
+        <table>
+        <tr><th>결과</th><th>의미</th></tr>
+        <tr><td>(a) 3D snapshot + trajectory</td><td>실제 oscillation 데이터</td></tr>
+        <tr><td>(b)(i) ground truth vector field \(v_{\text{true}}\)</td><td>회전성 cyclic flow</td></tr>
+        <tr><td>(b)(ii) mvOU reference로 학습한 \(v_{\text{SB}}\)</td><td>cyclic 구조 <strong>정확히 복원</strong></td></tr>
+        <tr><td>(b)(iii) Brownian reference로 학습한 \(v_{\text{SB}}\)</td><td>cyclic 구조 <strong>실패</strong></td></tr>
+        <tr><td>(c) Learned \(A\) matrix</td><td>Repressilator Jacobian과 거의 동일한 cyclic activation-inhibition 패턴 회복</td></tr>
+        <tr><td>(d) Leave-one-out interpolation error</td><td>EMD / Energy distance에서 mvOU가 SBIRR(MLP)까지 능가</td></tr>
+        </table>
+        <hr>
+        <h2>참고</h2>
+        <ul>
+          <li>Zhang &amp; Stumpf 2026, &quot;<a href="https://arxiv.org/abs/2505.16644">Learning non-equilibrium diffusions with Schrödinger bridges</a>&quot;, NeurIPS 2025 (arXiv:2505.16644)</li>
+          <li>Fang, Kruse, Lu, Wang 2019, &quot;<a href="https://arxiv.org/abs/2012.05067">Nonequilibrium physics in biology</a>&quot;, <em>Rev Mod Phys</em> — NESS in biological systems 종합 review</li>
+          <li>Gnesotto et al. 2018, &quot;B<a href="https://iopscience.iop.org/article/10.1088/1361-6633/aab3ed">roken detailed balance and non-equilibrium dynamics in living systems</a>&quot;, <em>Rep Prog Phys</em></li>
+          <li>Elowitz &amp; Leibler 2000, &quot;<a href="https://www.nature.com/articles/35002125">A synthetic oscillatory network of transcriptional regulators</a>&quot;, <em>Nature</em> — Repressilator 원전</li>
+        </ul>
+        <p class="back"><a href="../notes.html">← 모든 노트</a></p>
+      </article>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <div class="follow">
+      <a href="https://github.com/gaeunby1102" aria-label="GitHub"><svg viewBox="0 0 24 24"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.5v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7 0-.7 0-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.8-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17 4.6 18 4.9 18 4.9c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.6.8.5 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg></a>
+      <a href="mailto:gaeunbyeon1102@gmail.com" aria-label="Email"><svg viewBox="0 0 24 24"><path d="M2 4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h20a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2H2zm0 2 10 6 10-6v.01L12 12 2 6.01V6z"/></svg></a>
+      <a href="https://www.linkedin.com/in/%EA%B0%80%EC%9D%80-%EB%B3%80-621113361/" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg></a>
+    </div>
+    <p>© 2026 Gaeun Byeon</p>
+  </footer>
+
+  <script>
+  window.MathJax = {
+    tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] },
+    options: { skipHtmlTags: ['script','noscript','style','textarea','pre','code'] }
+  };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</body>
+</html>

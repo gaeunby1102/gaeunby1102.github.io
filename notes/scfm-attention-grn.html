@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>단일세포 파운데이션 모델의 Attention과 GRN · Gaeun Byeon</title>
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+  <header class="masthead">
+    <div class="masthead-inner">
+      <a class="brand" href="../index.html">Gaeun Byeon</a>
+      <nav>
+        <a href="../index.html">Home</a>
+        <a href="../publications.html">Publications</a>
+        <a href="../projects.html">Projects</a>
+        <a href="../seminars.html">Seminars</a>
+        <a href="../posters.html">Posters</a>
+        <a href="../papers.html">Papers</a>
+        <a href="../notes.html" class="active">Notes</a>
+        <a href="../skills.html">Skills</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-wrap">
+    <div class="note-layout">
+      <main class="content note-main">
+        <article class="note">
+          <header class="note-header">
+            <h1>단일세포 파운데이션 모델의 Attention은 인과적 GRN을 포착하는가?</h1>
+            <p class="note-meta"><time datetime="2026-08-02">2026.08.02</time> · Paper study</p>
+          </header>
+
+          <div class="summary-sheet">
+            <div class="ss-item">
+              <span class="ss-label">Background · 연구 배경</span>
+              <p>트랜스포머 기반의 단일세포 파운데이션 모델(Single-cell Foundation Model)은
+              세포 유형 주석과 섭동 응답 예측 등에서 뛰어난 성능을 보이며, 특히 어텐션(Attention)
+              가중치를 통해 유전자 조절 네트워크(GRN)를 해석할 수 있다는 기대를 모아왔습니다.</p>
+            </div>
+            <div class="ss-item">
+              <span class="ss-label">Research Question · 연구 질문</span>
+              <p>단일세포 모델의 어텐션 기반 엣지 점수가 단순한 상관관계나 발현 통계량을 넘어
+              실제 <strong>인과적인 유전자 조절 신호</strong>를 독자적으로 포착하고 있는지 체계적으로
+              검증하고자 했습니다.</p>
+            </div>
+            <div class="ss-item">
+              <span class="ss-label">Data / Sample · 데이터</span>
+              <p>scGPT와 Geneformer 모델을 대상으로 K562, RPE1, T 세포, iPSC 유래 뉴런 등
+              4가지 세포 유형과 CRISPRi/CRISPRa 섭동 데이터를 포함한 37가지 분석 및 153개의
+              통계 테스트를 수행했습니다.</p>
+            </div>
+            <div class="ss-item result">
+              <span class="ss-label">Result 1</span>
+              <p>어텐션 패턴이 초기 레이어에서는 단백질 상호작용을, 후기 레이어에서는 전사 조절
+              구조를 인코딩하지만, 정작 섭동 예측에서는 단순한 유전자 수준의 기준치(Trivial
+              Baseline)보다 낮은 성능을 보였습니다.</p>
+            </div>
+            <div class="ss-item result">
+              <span class="ss-label">Result 2</span>
+              <p>유전자의 분산이나 평균 발현량 같은 단순 지표가 어텐션·상관관계 기반 엣지 점수보다
+              섭동 대상을 더 정확하게 예측하며, 엣지 점수를 추가해도 예측 성능에 실질적 기여를
+              하지 못했습니다.</p>
+            </div>
+            <div class="ss-item result">
+              <span class="ss-label">Result 3</span>
+              <p>특정 "조절 헤드(Regulatory Heads)"를 제거하는 인과적 절제(Causal Ablation)
+              실험에서도 모델 동작에 유의미한 저하가 없어, 조절 신호가 어텐션 회로에 집중되어
+              있다는 기존 가설을 반박했습니다.</p>
+            </div>
+            <div class="ss-item result">
+              <span class="ss-label">Result 4</span>
+              <p>세포 상태별 층화 해석 기법인 <strong>CSSI</strong>(Cell-State Stratified
+              Interpretability)를 제안해 어텐션 신호의 희석 문제를 해결함으로써, GRN 복구 성능을
+              최대 \(1.85\)배 향상시켰습니다.</p>
+            </div>
+          </div>
+
+          <p class="back"><a href="../notes.html">← 모든 노트</a></p>
+        </article>
+      </main>
+
+      <aside class="thoughts-panel">
+        <h3>💭 Thoughts</h3>
+        <div class="chat">
+          <div class="bubble">
+            NPC 단계 주요 유전자 LoF과 mature neuron의 기능 장애 사이의 연결점을,
+            어떤 데이터로 설명할 수 있을까?
+            <span class="btime">2026.08.02</span>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="follow">
+      <a href="https://github.com/gaeunby1102" aria-label="GitHub"><svg viewBox="0 0 24 24"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.5v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7 0-.7 0-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.8-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17 4.6 18 4.9 18 4.9c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.6.8.5 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg></a>
+      <a href="mailto:gaeunbyeon1102@gmail.com" aria-label="Email"><svg viewBox="0 0 24 24"><path d="M2 4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h20a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2H2zm0 2 10 6 10-6v.01L12 12 2 6.01V6z"/></svg></a>
+      <a href="https://www.linkedin.com/in/%EA%B0%80%EC%9D%80-%EB%B3%80-621113361/" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg></a>
+    </div>
+    <p>© 2026 Gaeun Byeon</p>
+  </footer>
+
+  <script>
+  window.MathJax = {
+    tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] },
+    options: { skipHtmlTags: ['script','noscript','style','textarea','pre','code'] }
+  };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</body>
+</html>

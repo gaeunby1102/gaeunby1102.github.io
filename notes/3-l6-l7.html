@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>3주차 L6~L7 · Gaeun Byeon</title>
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+  <header class="masthead">
+    <div class="masthead-inner">
+      <a class="brand" href="../index.html">Gaeun Byeon</a>
+      <nav>
+        <a href="../index.html">Home</a>
+        <a href="../publications.html">Publications</a>
+        <a href="../projects.html">Projects</a>
+        <a href="../seminars.html">Seminars</a>
+        <a href="../posters.html">Posters</a>
+        <a href="../papers.html">Papers</a>
+        <a href="../notes.html" class="active">Notes</a>
+        <a href="../skills.html">Skills</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-wrap">
+    <aside class="author">
+      <img class="avatar" src="../assets/img/profile.svg" alt="Gaeun Byeon">
+      <div class="name">Gaeun Byeon</div>
+      <p class="bio">ML &amp; Computational Biology</p>
+      <p class="affil">M.S. Student,<br>Human Genomics Lab, Korea University</p>
+      <ul class="links">
+        <li><a href="mailto:gaeunbyeon1102@gmail.com">
+          <svg class="ico" viewBox="0 0 24 24"><path d="M2 4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h20a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2H2zm0 2 10 6 10-6v.01L12 12 2 6.01V6z"/></svg>
+          Email</a></li>
+        <li><a href="https://github.com/gaeunby1102">
+          <svg class="ico" viewBox="0 0 24 24"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.5v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7 0-.7 0-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.8-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17 4.6 18 4.9 18 4.9c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.6.8.5 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg>
+          GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/%EA%B0%80%EC%9D%80-%EB%B3%80-621113361/">
+          <svg class="ico" viewBox="0 0 24 24"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>
+          LinkedIn</a></li>
+      </ul>
+    </aside>
+
+    <main class="content">
+      <article class="note">
+        <header class="note-header">
+          <h1>3주차 L6~L7</h1>
+          <p class="note-meta"><time datetime="2025-08-16">2025.08.16</time></p>
+        </header>
+        <blockquote class="lead-quote"> Recap</blockquote>
+        <h2>L6. Training Neural Networks I</h2>
+        <ul>
+          <li>Neural Network 디자인 시 고려해야할 사항들
+          <ol>
+            <li><strong>Activation Function</strong></li>
+            <li><strong>Weight initialization</strong></li>
+            <li><strong>Preprocessing training data </strong></li>
+            <li><strong>Learning rate</strong></li>
+            <li><strong>Overfitting 방지를 위한 Regularization</strong></li>
+          </ol>        </li>
+        </ul>
+        <h3>Activation Functions</h3>
+        <ul>
+          <li>Activation Function의 역할을 다시 떠올려보자
+          <ul>
+            <li>특정 레이어의 노드가 이전 레이어의 모든 노드 값 * weight을 받아 계산될 때 non-linear한 패턴 학습을 가능하도록 하는 fun</li>
+          </ul>        </li>
+        </ul>
+        <figure><img src="../assets/img/notes/3-l6-l7/img-1.png" alt="image" loading="lazy"></figure>
+        <ul>
+          <li>상황에 따라 Activation function을 선택해보자</li>
+          <li><strong>Activation function 설정 시 고려 사항</strong></li>
+        </ul>
+        <table>
+        <tr><th>Fun.</th><th>Sigmoid</th><th>tanh</th><th>ReLU (Rectified Linear Unit)</th></tr>
+        <tr><td>+</td><td>- [0,1]의 range로 <br>확률적 해석 가능</td><td>- [-1,1] range로 Not zero-centered Output 문제 해결(0-centered)</td><td><strong>- Saturation 문제 해결</strong></td></tr>
+        <tr><td>-</td><td>- exp 연산에 시간 소요<br>- <strong>Saturation</strong><br>- <strong>Not zero-centered Output</strong></td><td><strong>- Saturation</strong></td><td>- <strong>Not zero-centered Output<br>- x=0에서 미분 불가능<br>- Dead ReLU problem</strong></td></tr>
+        <tr><td></td><td>마지막 Layer 아닌 이상<br>Sigmoid 쓰지 마라</td><td>중간 레이어에서 쓰지 마라</td><td>ReLU 사용해 최적화 시킨 후 Leaky, ELU 사용으로 성능 개선이 가능</td></tr>
+        </table>
+        <ul>
+          <li><strong>Killing gradients (Saturation)</strong>
+          <ul>
+            <li>Sigmoid Gradient graph
+            <figure><img src="../assets/img/notes/3-l6-l7/img-2.png" alt="image" loading="lazy"></figure>
+            <p>→ Backprop. 시 Upstream gradient 받아서 local grad.(dout) * w(?) 로 Downstream gradient(dx) 를 출력해야하는데 <strong>Input(x)가 커지면(abs) 왼쪽 그래프 처럼 Gradient가 0에 수렴함 (Gradient가 죽는다) </strong></p>          </li>
+            <li>tanh 의 경우도 시그모이드 확장판이어서 이러한 문제 발생
+            <ul>
+              <li>\(tanh(x)= 2σ(2x)-1\)</li>
+            </ul>          </li>
+            <li><strong>ReLU</strong>
+            <ul>
+              <li>양수 → 기울기 수렴 x 음수 → 모두 0
+              <ul>
+                <li>연산에 효율적
+                <ul>
+                  <li>Exp 없음 + 음수일 경우 미분 불필요 → Convergence도 빠르다</li>
+                </ul>              </li>
+              </ul>            </li>
+            </ul>          </li>
+          </ul>        </li>
+          <li><strong>Not zero-centered Output</strong>
+          <ul>
+            <li><strong>만약 Input data가 모두 양수로 구성된 데이터(e.g image…) 라면  Local grad.가 항상 양수가 된다</strong></li>
+          </ul>
+          <figure><img src="../assets/img/notes/3-l6-l7/img-3.png" alt="image" loading="lazy"></figure>
+          <ul>
+            <li>Local grad. = 하늘색 박스 x \(x_i\) 
+            <ul>
+              <li>하늘색 박스: (+) * (+) → (+)</li>
+              <li>\(x_i\) : 양수 가정 
+              <p>→ Backprop. 시 Downstream grad.부호 == Upstream grad. 부호</p>
+              <p>→ 다시 말해 Sigmoid 사용 시 Upstream gradient의 부호가 계속 똑같이 유지된다</p>
+              <p>→  <strong>gradient descent가 되지 않는다</strong></p>
+              <figure><img src="../assets/img/notes/3-l6-l7/img-4.png" alt="image" loading="lazy"></figure>
+              <ul>
+                <li>X → 양수 방향 y → 음수 방향일 때 비효율적 업데이트가 일어날 수 있음</li>
+              </ul>            </li>
+            </ul>
+            <p>** Batch size &gt;1 )</p>          </li>
+          </ul>        </li>
+          <li><strong>Dead ReLU problem </strong>
+          <ul>
+            <li>Weight random init. 시 음수로 되면 계속 0으로 업데이트 됨</li>
+            <li>ReLU 사용 시 initial output을 양수를 사용해야함. (평균이 양수가 되도록)</li>
+            <li>Additional
+            <figure><img src="../assets/img/notes/3-l6-l7/img-5.png" alt="image" loading="lazy"></figure>
+            <figure><img src="../assets/img/notes/3-l6-l7/img-6.png" alt="image" loading="lazy"></figure>
+            <ul>
+              <li>기본적으로 ReLU 사용해 최적화 시킨 후 Leaky, ELU 사용으로 성능 개선이 가능할 수 있다</li>
+            </ul>          </li>
+          </ul>        </li>
+        </ul>
+        <h3>Data Preprocessing</h3>
+        <ul>
+          <li>모든 Input이 양수일 경우, weight 학습이 불안정해지고, bias를 크게 줘야하는 단점들이 있다 </li>
+          <li>Basic processing
+          <figure><img src="../assets/img/notes/3-l6-l7/img-7.png" alt="image" loading="lazy"></figure>
+          <pre><code>X -= np.mean(X, axis=0) # Zero-centering
+X /= np.std(X, axis=0) # Normalization</code></pre>        </li>
+          <li>PCA &amp; Whitening
+          <figure><img src="../assets/img/notes/3-l6-l7/img-8.png" alt="image" loading="lazy"></figure>
+          <ul>
+            <li>PCA → Zero-centering + Axis aligning
+            <ul>
+              <li>decorrelation : 분산을 가장 잘 설명하는 축이 x1이 되도록
+              <figure><img src="../assets/img/notes/3-l6-l7/img-9.png" alt="image" loading="lazy"></figure>
+              <ul>
+                <li>Covariance matrix 상 대각선 축이 variance 값, 나머지 값들이 covariance</li>
+                <li>Eigenvalue decomposition</li>
+              </ul>            </li>
+            </ul>          </li>
+            <li>Whitening → 분산으로 나눠 label에 대해서만 학습 가능하도록 함</li>
+          </ul>        </li>
+        </ul>
+        <h3>Data augmentation</h3>
+        <ul>
+          <li>데이터가 많을 수록 robust하고 성능이 좋아질테니 있는 데이터를 최대한 활용하기 위해 아래와 같이 동일한 label을 가진 이미지들을 생성한다</li>
+          <li>Classifier가 invariant할 수 있는 변화들을 추가 데이터로 학습시킴
+          <figure><img src="../assets/img/notes/3-l6-l7/img-10.png" alt="image" loading="lazy"></figure>
+          <ul>
+            <li>좌우 대칭, Random crop, Scaling
+            <figure><img src="../assets/img/notes/3-l6-l7/img-11.png" alt="image" loading="lazy"></figure>          </li>
+            <li>Color jitter
+            <ul>
+              <li>Hue(색상), Saturation(채도), Lightness(명도) (RGB와 변환 가능)
+              <details><summary>Misc. 변환 수식</summary>
+                <figure><img src="../assets/img/notes/3-l6-l7/img-12.png" alt="image" loading="lazy"></figure>
+              </details>
+              <ul>
+                <li>RGB가 아닌 Saturation 값 등 조정으로 augmentation</li>
+              </ul>            </li>
+              <li>Tensorflow, pyTorch에서 다 제공한다</li>
+            </ul>          </li>
+          </ul>        </li>
+        </ul>
+        <h3>Weight initialization</h3>
+        <ol>
+          <li>tanh weight initialization</li>
+        </ol>
+        <ul>
+          <li>Small Gaussian Random
+          <ul>
+            <li>보통은 Gaussian 분포로 random 하게 구성을 하는데
+            <pre><code>W= 0.01 * np.random.randn(d_in, d_out)</code></pre>
+            <figure><img src="../assets/img/notes/3-l6-l7/img-13.png" alt="image" loading="lazy"></figure>
+            <ul>
+              <li>분포가 0으로 수렴하게 됨 </li>
+            </ul>
+            <figure><img src="../assets/img/notes/3-l6-l7/img-14.png" alt="image" loading="lazy"></figure>
+            <ul>
+              <li>-1, 1로 Saturation</li>
+            </ul>          </li>
+          </ul>
+          <p>→ 적당한 값을 계산해보자</p>        </li>
+          <li><strong>Xavier Initialization</strong>
+          <ul>
+            <li>입력과 출력에서 분산이 비슷하도록 가중치를 초기화</li>
+          </ul>
+          <pre><code>W= np.random.randn(d_in, d_out)/np.sqrt(d_in)</code></pre>
+          <ul>
+            <li>표준편차로 나눠주기
+            <figure><img src="../assets/img/notes/3-l6-l7/img-15.png" alt="image" loading="lazy"></figure>          </li>
+            <li>증명
+            <figure><img src="../assets/img/notes/3-l6-l7/img-16.png" alt="image" loading="lazy"></figure>
+            <ul>
+              <li>i.i.d assumption
+              <ul>
+                <li>W 와 x 가 독립이라는 가정 (학습 초기에는 가능할 수 있음)</li>
+                <li>W와 x의 분포가 유사하다는 가정 (정규분포)</li>
+              </ul>            </li>
+            </ul>
+            <p>⇒ \(Var[y_i]= \)</p>
+            <figure><img src="../assets/img/notes/3-l6-l7/img-17.png" alt="image" loading="lazy"></figure>
+            <figure><img src="../assets/img/notes/3-l6-l7/img-18.png" alt="image" loading="lazy"></figure>
+            <ul>
+              <li>W, x의 평균이 0이라는 가정 하에
+              <figure><img src="../assets/img/notes/3-l6-l7/img-19.png" alt="image" loading="lazy"></figure>
+              <p>→ Var(W_ij) 1/d_in 으로 할 경우 \(Var[y_i]= Var[x_j]\) 가 되니까 input의 variance와 output의 variance가 같아진다</p>
+              <p>→ 다시 말해 레이어를 반복해도 분산이 유지될 것 이다</p>            </li>
+            </ul>          </li>
+          </ul>        </li>
+        </ul>
+        <ol>
+          <li>ReLU weight initialization
+          <figure><img src="../assets/img/notes/3-l6-l7/img-20.png" alt="image" loading="lazy"></figure>
+          <p>위와 같이 유사하게 식 전개를 하면..</p>
+          <pre><code>W= np.random.randn(d_in, d_out) * np.sqrt(2/d_in)</code></pre>        </li>
+        </ol>
+        <h3>Learning Rate Schenduling</h3>
+        <ul>
+          <li>Learning Rate를 어떻게 선택할 것인가?</li>
+        </ul>
+        <ul>
+          <li>low lr → 파란색</li>
+          <li>high lr → 초록색
+          <ul>
+            <li>최적이 아닌 점에서 수렴할 가능성 있음</li>
+            <li>최악의 경우 노란색</li>
+          </ul>        </li>
+        </ul>
+        <figure><img src="../assets/img/notes/3-l6-l7/img-21.png" alt="image" loading="lazy"></figure>
+        <ul>
+          <li>Learning Rate Decay
+          <ul>
+            <li>Constant하게 하지 않고 후반으로 갈 수록 값이 작아지도록
+            <figure><img src="../assets/img/notes/3-l6-l7/img-22.png" alt="image" loading="lazy"></figure>
+            <figure><img src="../assets/img/notes/3-l6-l7/img-23.png" alt="image" loading="lazy"></figure>
+            <ul>
+              <li>Decay 예시 : 50%에서 Learning Rate 대폭 줄였을 때, loss, accuracy 오른다</li>
+              <li>학습 초기부터 learning rate을 너무 크게 주면 불안정하다</li>
+            </ul>
+            <figure><img src="../assets/img/notes/3-l6-l7/img-24.png" alt="image" loading="lazy"></figure>
+            <ul>
+              <li>이런 모델링도 가능</li>
+            </ul>          </li>
+          </ul>        </li>
+        </ul>
+        <h2>L7. Training Neural Networks II</h2>
+        <p class="back"><a href="../notes.html">← 모든 노트</a></p>
+      </article>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <div class="follow">
+      <a href="https://github.com/gaeunby1102" aria-label="GitHub"><svg viewBox="0 0 24 24"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.5v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7 0-.7 0-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.8-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17 4.6 18 4.9 18 4.9c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.6.8.5 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg></a>
+      <a href="mailto:gaeunbyeon1102@gmail.com" aria-label="Email"><svg viewBox="0 0 24 24"><path d="M2 4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h20a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2H2zm0 2 10 6 10-6v.01L12 12 2 6.01V6z"/></svg></a>
+      <a href="https://www.linkedin.com/in/%EA%B0%80%EC%9D%80-%EB%B3%80-621113361/" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg></a>
+    </div>
+    <p>© 2026 Gaeun Byeon</p>
+  </footer>
+
+  <script>
+  window.MathJax = {
+    tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] },
+    options: { skipHtmlTags: ['script','noscript','style','textarea','pre','code'] }
+  };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</body>
+</html>

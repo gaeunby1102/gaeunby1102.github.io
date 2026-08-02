@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Whisper → Notion 미팅노트 기록 시스템 · Gaeun Byeon</title>
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+  <header class="masthead">
+    <div class="masthead-inner">
+      <a class="brand" href="../index.html">Gaeun Byeon</a>
+      <nav>
+        <a href="../index.html">Home</a>
+        <a href="../publications.html">Publications</a>
+        <a href="../projects.html">Projects</a>
+        <a href="../seminars.html">Seminars</a>
+        <a href="../posters.html">Posters</a>
+        <a href="../papers.html">Papers</a>
+        <a href="../notes.html" class="active">Notes</a>
+        <a href="../skills.html">Skills</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-wrap">
+    <aside class="author">
+      <img class="avatar" src="../assets/img/profile.svg" alt="Gaeun Byeon">
+      <div class="name">Gaeun Byeon</div>
+      <p class="bio">ML &amp; Computational Biology</p>
+      <p class="affil">M.S. Student,<br>Human Genomics Lab, Korea University</p>
+      <ul class="links">
+        <li><a href="mailto:gaeunbyeon1102@gmail.com">
+          <svg class="ico" viewBox="0 0 24 24"><path d="M2 4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h20a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2H2zm0 2 10 6 10-6v.01L12 12 2 6.01V6z"/></svg>
+          Email</a></li>
+        <li><a href="https://github.com/gaeunby1102">
+          <svg class="ico" viewBox="0 0 24 24"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.5v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7 0-.7 0-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.8-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17 4.6 18 4.9 18 4.9c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.6.8.5 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg>
+          GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/%EA%B0%80%EC%9D%80-%EB%B3%80-621113361/">
+          <svg class="ico" viewBox="0 0 24 24"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>
+          LinkedIn</a></li>
+      </ul>
+    </aside>
+
+    <main class="content">
+      <article class="note">
+        <header class="note-header">
+          <h1>Whisper → Notion 미팅노트 기록 시스템</h1>
+          <p class="note-meta"><time datetime="2026-08-02">2026.08.02</time></p>
+        </header>
+        <h2>개요</h2>
+        <pre><code>1. 음성 → 텍스트 변환 (Whisper)
+2. 슬라이드/변환된 스크립트 참고하여 요약 (Claude Sonnet)
+3. 노션 데이터베이스에 기록
+4. 드롭박스 MD 파일 저장 (원문)
+5. 이메일 발송</code></pre>
+        <h2>required</h2>
+        <ul>
+          <li>패키지
+          <pre><code>brew install ffmpeg
+brew install poppler
+pip3 install openai-whisper
+pip3 install notion-client
+pip3 install anthropic
+pip3 install python-pptx
+pip3 install dropbox</code></pre>        </li>
+          <li>스크립트
+        </li>
+          <li>API 키 발급
+          <ul>
+            <li>Notion API
+            <ul>
+              <li>Integration 생성 후 ntn_*으로 시작하는 토큰 복사하고 (<a href="https://www.notion.so/my-integrations">https://www.notion.so/my-integrations</a>)</li>
+              <li>기록할 노션 페이지/데이터베이스에서 Connections → Integration 추가</li>
+            </ul>          </li>
+            <li>Claude API
+            <ul>
+              <li>sk로 시작하는 API key 복사 (<a href="https://console.anthropic.com/">https://console.anthropic.com</a>)</li>
+            </ul>          </li>
+            <li>Dropbox API
+            <ul>
+              <li>Create app → Scoped access → Full Dropbox</li>
+              <li>Permissions 탭에서 아래 권한 주기 (꼭 submit 누른 후 토큰 생성해야함)
+              <ul>
+                <li>files.content.write/read</li>
+                <li>sharing.write/read</li>
+              </ul>            </li>
+              <li>Settings 탭에서 토큰 발급</li>
+              <li>위의 토큰 발급은 short term으로 4시간 후 갱신이 필요함</li>
+              <li>아래 스크립트 사용</li>
+            </ul>          </li>
+          </ul>        </li>
+          <li>Gmail
+          <ul>
+            <li><a href="https://myaccount.google.com/security">https://myaccount.google.com/security</a> 에서 2단계 인증 (OTP) 활성화 후 </li>
+            <li>앱 비밀번호 검색 → 16자리 비밀번호 (영어) 복사</li>
+          </ul>        </li>
+          <li>Database ID
+          <ul>
+            <li>현재는 데이터베이스에 매주 페이지 생성을 위해 데이터베이스 ID를 받음
+            <ul>
+              <li>노션 데이터베이스 URL에서 추출하도록 스크립트 작성됨.</li>
+              <li>매주차 발표자/일자 찾아서 해당 페이지에 추가</li>
+            </ul>          </li>
+          </ul>        </li>
+        </ul>
+        <ul>
+          <li>config.json 만들기
+          <pre><code>{
+    &quot;notion_api_key&quot;: &quot;ntn_...&quot;,
+    &quot;claude_api_key&quot;: &quot;sk-ant-...&quot;,
+    &quot;dropbox_token&quot;: &quot;sl....&quot;,
+    &quot;database_id&quot;: &quot;xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx&quot;,
+    &quot;gmail_address&quot;: &quot;your@gmail.com&quot;,
+    &quot;gmail_app_password&quot;: &quot;xxxx xxxx xxxx xxxx&quot;,
+    &quot;email_to&quot;: [&quot;&quot;],
+    &quot;email_cc&quot;: [],
+}</code></pre>        </li>
+        </ul>
+        <h2>whisper 모델</h2>
+        <ul>
+          <li>tiny, base, small, medium, large가 있어서 파라미터로 넣어줄 수 있음.</li>
+        </ul>
+        <h2>How to run</h2>
+        <pre><code>python3 ~/whisper_to_notion.py &quot;영상파일.mp4&quot; [모델명]</code></pre>
+        <ul>
+          <li><u><strong>따라서 드롭박스에 슬라이드/녹화본 파일 올릴 때, 형식을 맞추어야함. (날짜/이름 명시)</strong></u></li>
+          <li>생성 후 개인 워크스페이스 → 랩미팅 페이지로 옮기기</li>
+        </ul>
+        <h2>Cache 관리</h2>
+        <ul>
+          <li>변환 결과는 <code>~/.whisper_cache</code>  에 저장되는데, 같은 파일+ 같은 모델 (medium 등) 조합이 재변환 안되도록 되어 있음.</li>
+          <li>스크립트 수정 등을 한 경우, rm 으로 캐시 초기화후 실행 필요함.</li>
+        </ul>
+        <p class="back"><a href="../notes.html">← 모든 노트</a></p>
+      </article>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <div class="follow">
+      <a href="https://github.com/gaeunby1102" aria-label="GitHub"><svg viewBox="0 0 24 24"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.5v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7 0-.7 0-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.8-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17 4.6 18 4.9 18 4.9c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.6.8.5 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg></a>
+      <a href="mailto:gaeunbyeon1102@gmail.com" aria-label="Email"><svg viewBox="0 0 24 24"><path d="M2 4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h20a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2H2zm0 2 10 6 10-6v.01L12 12 2 6.01V6z"/></svg></a>
+      <a href="https://www.linkedin.com/in/%EA%B0%80%EC%9D%80-%EB%B3%80-621113361/" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg></a>
+    </div>
+    <p>© 2026 Gaeun Byeon</p>
+  </footer>
+
+  <script>
+  window.MathJax = {
+    tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] },
+    options: { skipHtmlTags: ['script','noscript','style','textarea','pre','code'] }
+  };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</body>
+</html>

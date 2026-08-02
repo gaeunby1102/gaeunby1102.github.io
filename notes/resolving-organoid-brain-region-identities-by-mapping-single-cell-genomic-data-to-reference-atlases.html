@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Resolving organoid brain region identities by mapping single-cell genomic data to reference atlases · Gaeun Byeon</title>
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+  <header class="masthead">
+    <div class="masthead-inner">
+      <a class="brand" href="../index.html">Gaeun Byeon</a>
+      <nav>
+        <a href="../index.html">Home</a>
+        <a href="../publications.html">Publications</a>
+        <a href="../projects.html">Projects</a>
+        <a href="../seminars.html">Seminars</a>
+        <a href="../posters.html">Posters</a>
+        <a href="../papers.html">Papers</a>
+        <a href="../notes.html" class="active">Notes</a>
+        <a href="../skills.html">Skills</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-wrap">
+    <aside class="author">
+      <img class="avatar" src="../assets/img/profile.svg" alt="Gaeun Byeon">
+      <div class="name">Gaeun Byeon</div>
+      <p class="bio">ML &amp; Computational Biology</p>
+      <p class="affil">M.S. Student,<br>Human Genomics Lab, Korea University</p>
+      <ul class="links">
+        <li><a href="mailto:gaeunbyeon1102@gmail.com">
+          <svg class="ico" viewBox="0 0 24 24"><path d="M2 4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h20a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2H2zm0 2 10 6 10-6v.01L12 12 2 6.01V6z"/></svg>
+          Email</a></li>
+        <li><a href="https://github.com/gaeunby1102">
+          <svg class="ico" viewBox="0 0 24 24"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.5v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7 0-.7 0-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.8-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17 4.6 18 4.9 18 4.9c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.6.8.5 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg>
+          GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/%EA%B0%80%EC%9D%80-%EB%B3%80-621113361/">
+          <svg class="ico" viewBox="0 0 24 24"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>
+          LinkedIn</a></li>
+      </ul>
+    </aside>
+
+    <main class="content">
+      <article class="note">
+        <header class="note-header">
+          <h1>Resolving organoid brain region identities by mapping single-cell genomic data to reference atlases</h1>
+          <p class="note-meta"><time datetime="2024-11-08">2024.11.08</time></p>
+        </header>
+        <h2><strong>Prof. Dr. Barbara Treutlein</strong></h2>
+        <h2>Voxhunt</h2>
+        <ul>
+          <li>a set of computational tools to <strong>assess brain organic patterning, developmental state, and cell identity</strong> through comparisons to spatial and single-cell transcriptome reference datasets.</li>
+        </ul>
+        <h2>1. Introduction</h2>
+        <ul>
+          <li>There are 2 strategies for producing brain organoid
+          <ul>
+            <li><strong>Self- patterning strategy</strong>: Guiding PSCs to form a layer of neuroepithelial stem cells which can differentiate into neurons</li>
+            <li><strong>Direct strategy</strong> : Using Signaling molecules or directive cues to control patterning of the neuroepithelium (Batch에 따른 difference 보정하기 위해)</li>
+          </ul>        </li>
+          <li>Despite incredible progress in human brain organoid engineering, it is not yet possible to create a stereotypic organoid containing <strong>multiple brain structures</strong> to study neuronal migration or enable formation of inter-region neuronal connections</li>
+          <li>scRNA-seq has emerged to deconstruct organoid cell composition and reconstruct differentiation trajectories
+          <ul>
+            <li>direct comparison btw engineered in vitro cortical structures(organoid) and primary in vivo counter parts(human brain?) has revealed remarkable similarity in gene expession profiles</li>
+            <li>But it still remains a major challenge to interpret the gene expression and regulatory patterns in organoid sc data</li>
+          </ul>
+          <p>⇒ Here, we introduce Voxhunt to assess brain organoid patterning, developmental state, and cell identity comparing with annotated reference datasets(Figure1)</p>
+          <figure><img src="../assets/img/notes/resolving-organoid-brain-region-identities-by-mapping-single-cell-genomic-data-to-reference-atlases/img-1.png" alt="Figure 1" loading="lazy"><figcaption>Figure 1</figcaption></figure>        </li>
+          <li>scRNA-seq has emerged to deconstruct organoid cell composition and reconstruct differentiation trajectories</li>
+          <li>Figure 1. Voxhunt
+          <ul>
+            <li>in situ hybridization data(Allen Mouse Brain Atlas)의 voxels로 mapping해서 organoid의 regional composition을 파악한다
+            <p>(voxels: 3D positions rendered from spatial transcript patterns)</p>          </li>
+            <li>human microdissected brain structures(BrainSpan) 로부터 얻은 bulk-RNAseq or Developing mouse brain scRNA-seq data과 비교를 수행할 수 있는 interface를 제공</li>
+            <li>Voxhunt can help deconvolute organoid bulk RNA data and can assess 다른 condition에서의 regional composition 차이</li>
+          </ul>
+          <p>→ Spatial, Single cell, Bulk data를 사용하여 Organoid regional composition을 확인할 수 있는 Voxhunt</p>        </li>
+        </ul>
+        <h2>2. Result</h2>
+        <h3>Spatiotemporal voxel maps of the developing mouse brain</h3>
+        <ul>
+          <li>사용한 reference data set
+          <p>: in situ hibridization data of the mouse brain in 8 different developmental stages(Figure 2A) from the Allen Developing Mouse Brain Atlas</p>
+          <ul>
+            <li>4D reference atlas of mamalian brain</li>
+            <li>다른 experiment에 따른 embryonic day 11.5(E11.5) ~ postnatal day 56까지의 diffrerent timepoint에 대한 gene expression</li>
+            <li>each voxels(80~200µm) is annotated with a brain structure(derived from a hierarchical structure ontology)</li>
+          </ul>        </li>
+          <li>preprocessing in situ hybridization(ISH) data
+          <ul>
+            <li>ISH: 특정 유전자의 조직내 발현과 위치를 시각화
+            <p>→ 여러 experiment에서 얻은 gene들에 대한 ISH 데이터를 요약해 분석 진행(각 voxel에서 <strong>유전자 발현을 단일 벡터로 요약)</strong></p>          </li>
+            <li>발달 단계에 따라 변하는 뇌의 구조와 크기에 영향을 받지 않고 유사한 크기를 유지하며 비교하기 위해 additional layer(ontological level에 따른 structural annotation) 추가 → 발달 단계와 공간 위치에 따라 세밀하게 annotation하여 일관된 비교를 가능하게 함</li>
+          </ul>        </li>
+        </ul>
+        <h3>Brain structure marker identification</h3>
+        <ul>
+          <li>annotated된 brain structure에 대해 DE analysis를 수행하고</li>
+          <li>the single-feature area under the receiver operating characteristic curve(AUROC) 를 사용
+          <ul>
+            <li><strong>the single-feature AUROC</strong>: a metric for selecting structure-specific genes with spatially confined expression
+            <ul>
+              <li>여러 특성 중 하나의 특성이 두 그룹을 얼마나 잘 구분하는지</li>
+              <li>특정 유전자의 발현 수준이 두개의 뇌 구조를 얼마나 잘 구분하는지</li>
+              <li>높은 AUROC값 → 그 유전자가 두 그룹을 잘 구분하고 있음</li>
+            </ul>          </li>
+          </ul>        </li>
+          <li>이 결과로 stage, structure에 맞는 feature selection을 할 수 있고, marker gene으로 사용할 수 있다</li>
+        </ul>
+        <figure><img src="../assets/img/notes/resolving-organoid-brain-region-identities-by-mapping-single-cell-genomic-data-to-reference-atlases/img-2.png" alt="image" loading="lazy"></figure>
+        <h3>Voxhunt accurately maps reference populations</h3>
+        <ul>
+          <li>single cell data로 mapping(split-pool barcoding developing mouse brain, Rosenberg et al., 2018)</li>
+          <li>voxelized structures에 mouse-mouse annotated cell population mapping됨(Figure S2A)</li>
+          <li>Accuracy: structure에 정확하게 assign된 Cell 비율</li>
+          <li>Contrast: 할당된 구조와의 유사도를 두번째로 유사한 구조의 유사도로 나눈 비율 → 높은 점수일수록 두번째 구조보다 더 유사하다
+          <p>→ 다른 condition에서의 Feature selection을 통한 Accuracy와 Contrast 확인하고 downsampling된 scRNA-seq data를 통한 structure assignment의 안정성을 확인</p>
+          <p>→ feature 수가 많을 수록 정확도 높아졌다</p>
+          <p>→ Pallium과 같은 region에서는 Contrast가 너무 높거나 낮은 feature 수에서 감소하는 경향을 보임</p>
+          <p>→ Rostral midbrain과 같은 특정 region에서 Accuracy가 UMI count에 영향을 받았다</p>
+          <p>⇒ Accuracy와 Contrast를 높게 할 수 있는 optimal parameter를 설정했다 그리고 Bulk RNA-seq of Developing Human Brain Atlas(Thompson et al,2014;Kanton et al., 2019)와 scRNA-seq data of primary human brain tissue(Fan et al., 2018)을 사용해보았을 때 clear similarity pattern을 확인할 수 있었다</p>        </li>
+        </ul>
+        <h3>Organoid region composition annotation</h3>
+        <ul>
+          <li>서로 다른 protocol로 만들어진 organoid로부터 unsupervised annotation이 잘 되는지 확인</li>
+          <li>3 brain-structure-specific organoid protocols(thalamus, cortex, ventral telencephalon)  + 1 cerebral(unpatterned) scRNA-seq data수집
+          <ul>
+            <li>from Birey et al., 2017; Xiang et al., 2018</li>
+          </ul>        </li>
+        </ul>
+        <figure><img src="../assets/img/notes/resolving-organoid-brain-region-identities-by-mapping-single-cell-genomic-data-to-reference-atlases/img-3.png" alt="Figure 3A. UMAP of published sc transcriptome data from different organoid protocols" loading="lazy"><figcaption>Figure 3A. UMAP of published sc transcriptome data from different organoid protocols</figcaption></figure>
+        <ul>
+          <li>Datas include heterogeneous progenitor and neuronal cells</li>
+          <li>네개의 스터디가 다양한 cell population을 보이고 있음</li>
+        </ul>
+        <figure><img src="../assets/img/notes/resolving-organoid-brain-region-identities-by-mapping-single-cell-genomic-data-to-reference-atlases/img-4.png" alt="image" loading="lazy"></figure>
+        <ul>
+          <li>Canonical marker gene으로 structure-specific organoid의 Neuronal cells에 대한 patterning 진행</li>
+          <li>특히 Cerebral organoid에서  telencephalon, diencephalon와 같은 다양한 뇌 영역으로부터 유래한 neuronal cell이 나타났고 이는 이 논문에서 이전 연구의 annotation과 일치한다
+          <figure><img src="../assets/img/notes/resolving-organoid-brain-region-identities-by-mapping-single-cell-genomic-data-to-reference-atlases/img-5.png" alt="image" loading="lazy"></figure>        </li>
+          <li>Telencephalon, diencephalon, midbrain, hindbrain에서 time에 따라 일관되게 나타나는 Annotation이 정확한지 확인하기 위해 각 Neuronal cluster에서 얻은 sc data를 mammalian(포유류) 뇌의  in situ expression pattern과 비교
+          <p>→ Cortical 또는 Cerebral organoid에서 Cortical neuron으로 annotation된 Cell들이 다른 structure보다 pallium(Cerebral cortex)과 강한 correlation을 갖는걸 알 수 있었다</p>
+          <p>→ Cerebral organoid에서 생성된 midbrion neuron(Cluster6)의 경우 일관된 correlation이 보이지 않았지만, 각 Cluster별 평균 correlation이 midbrain이 가장 높아 Midbrain excitatory neuron으로 annotation</p>        </li>
+        </ul>
+        <h3>Spatial projection of organoid cell transcriptomes</h3>
+        <ul>
+          <li>각 Cluster에 해당하는 developmental stage 확인을 위해 E11.5~E18.5에 해당하는 Fetal developmental stage에 걸친 structure와 cluster 내의 각 Cell의 correlation을 확인함
+          <figure><img src="../assets/img/notes/resolving-organoid-brain-region-identities-by-mapping-single-cell-genomic-data-to-reference-atlases/img-6.png" alt="image" loading="lazy"></figure>
+          <figure><img src="../assets/img/notes/resolving-organoid-brain-region-identities-by-mapping-single-cell-genomic-data-to-reference-atlases/img-7.png" alt="image" loading="lazy"></figure>
+          <ul>
+            <li>Thalamic neuron clusters를 제외하고 대부분이 E13.5에 가장 큰 평균 correlation을 가졌다.( Thalamic은 E11.5)
+            <figure><img src="../assets/img/notes/resolving-organoid-brain-region-identities-by-mapping-single-cell-genomic-data-to-reference-atlases/img-8.png" alt="image" loading="lazy"></figure>          </li>
+            <li>Cortical neuron의 경우 organoid origin에 따른 age와 유사했다</li>
+            <li>각 oragnoid cluster에 대한 각 voxel에서의 correlation을 sagittal view or 2dim-coronal로 visualization했다</li>
+          </ul>
+          <figure><img src="../assets/img/notes/resolving-organoid-brain-region-identities-by-mapping-single-cell-genomic-data-to-reference-atlases/img-9.png" alt="Sagittal projection" loading="lazy"><figcaption>Sagittal projection</figcaption></figure>
+          <figure><img src="../assets/img/notes/resolving-organoid-brain-region-identities-by-mapping-single-cell-genomic-data-to-reference-atlases/img-10.png" alt="two-dimensional coronal sections" loading="lazy"><figcaption>two-dimensional coronal sections</figcaption></figure>
+          <details><summary>Description</summary>
+            <figure><img src="../assets/img/notes/resolving-organoid-brain-region-identities-by-mapping-single-cell-genomic-data-to-reference-atlases/img-11.png" alt="image" loading="lazy"></figure>
+          </details>
+          <ul>
+            <li>개별 organoid의 Cell-type composition을 평가하기 위해 brain spatial location에 organoid 각 Cell을  뿌려봄(based on maximum similarity to loci within the voxel maps)</li>
+          </ul>
+          <figure><img src="../assets/img/notes/resolving-organoid-brain-region-identities-by-mapping-single-cell-genomic-data-to-reference-atlases/img-12.png" alt="image" loading="lazy"></figure>
+          <p>→ voxel maps에서 가장 유사성이 높은 loci를 base로 하여 Individual organoid의 cell-type composition을 평가하기 위해 각 cell을 spatial location에 projection </p>
+          <p>→ These analyses reveal the spatial location within the brain tissue where each cluster or cell has maximal correlation, which can be used to assess the specificity of the regional neuronal population and help annotate previously unknown cell populations</p>        </li>
+        </ul>
+        <h3>Complementary reference datasets as high-dimensional search spaces</h3>
+        <ul>
+          <li>ISH data로 structural annotation한 것이 다른 reference dataset에도 확장이 될 수 있는지 확인해보기 위해서 time course bulk RNA-seq data(from human brain(BrainSpan))과 developing mouse brain sc atlas(La Manno et al.,2020)을 사용해봄
+          <p>→ sc Atlas사용해봤을 때 ISH 단일로 사용했을 때 파악하지 못했던 early mammalian brain development에 대한 Functional annotation을 수행할 수 있었음</p>
+          <ul>
+            <li>We found that organoid-derived cortical neurons showed the highest similarity to excitatory neurons, while ventral neurons mapped to inhibitory(GABA-ergic) neurons</li>
+          </ul>        </li>
+          <li>이전에 Unknown하던 cluster에 대한 annotation을 한 몇개의 예시들 더 있음(Supple data로 넣은듯)</li>
+        </ul>
+        <h3>Assessing region specificity across organoid protocols</h3>
+        <ul>
+          <li>다른 protocol로 만든 organoid들의 cell identity를 평가하기 위해 Voxhunt를 사용해봄
+          <ul>
+            <li>사용한 organoid
+            <ul>
+              <li>Bhaduri et al., 2020; Birey et al., 2017; Giandomenico et al., 2019; Kanton et al., 2019; Pellegrini et al., 2020; Pollen et al., 2019; Velasco et al., 2019; Xiang et al., 2018</li>
+            </ul>          </li>
+          </ul>        </li>
+        </ul>
+        <p>→ 결과적으로 spatial하게 유사하게 mapping되는 걸 확인할 수 있었고 original annotation과 유사하게 region identitiy도 할당됨.</p>
+        <h3>Annotating organoid cell identity at substructure resolution</h3>
+        <figure><img src="../assets/img/notes/resolving-organoid-brain-region-identities-by-mapping-single-cell-genomic-data-to-reference-atlases/img-13.png" alt="Fig5A,B" loading="lazy"><figcaption>Fig5A,B</figcaption></figure>
+        <ul>
+          <li>ABA (Allen Brain Atlas)에서 제공하는 Structural layer(ontology) 정보를 넘어 더 세밀한 수준에서 organoids의 Cell type을 더 resolution 높게 annotation하려고 시도</li>
+          <li>the <strong>dorsal pallium</strong> and the <strong>subpallium</strong>(상위 structure)를 골라서 voxel에 대한 unbiased clustering을 진행(Fig 5A,B)</li>
+          <li>canonical marker gene expression을 기반으로 
+          <ul>
+            <li>NPC(Neural Progenitor cells), IP(Immediate progenitor), Neuronal layers in Dorsal Pallium을 구분하고</li>
+            <li>Caudal ganglionic eminences(LGE,MGE,CGE) in Subpallium</li>
+          </ul>
+          <p>을 구분</p>        </li>
+          <li>이러한 custom annotation을 sc data (mice(Loo et al., 2019; Mayer et al., 2018))과 비교해보았을 때 매칭되는걸 확인할 수 있었다</li>
+          <li>또한 예상한 것과 같이 Anatomic position과 morphology도 보였다(Fig 5C,5D)
+          <figure><img src="../assets/img/notes/resolving-organoid-brain-region-identities-by-mapping-single-cell-genomic-data-to-reference-atlases/img-14.png" alt="image" loading="lazy"></figure>        </li>
+          <li>We found that organoid cells <strong>from the cortical trajectory</strong> clearly mapped onto the annotated <strong>pallial zones</strong> (Figure 5E).
+          <figure><img src="../assets/img/notes/resolving-organoid-brain-region-identities-by-mapping-single-cell-genomic-data-to-reference-atlases/img-15.png" alt="Fig 5E" loading="lazy"><figcaption>Fig 5E</figcaption></figure>
+          <ul>
+            <li>Cortical lineage 그림 설명 필요</li>
+          </ul>        </li>
+          <li>Moreover, <strong>ventral neuron clusters</strong> from cerebral organoids could be clearly annotated as LGE-, MGE-, or CGE-like interneurons based on their similarities to the substructures (Figure 5F).
+          <figure><img src="../assets/img/notes/resolving-organoid-brain-region-identities-by-mapping-single-cell-genomic-data-to-reference-atlases/img-16.png" alt="image" loading="lazy"></figure>
+          <p>→ 그래서 이 새로운 annotated subpallial structure를 이용하여 3가지의 protocol(Birey et al., 2017; Kanton et al., 2019; Xiang et al., 2017)로 만들어진 organoid들의 Inhibitory neurons들을 파악하고 heterogenetiy를 비교하는데 사용했다((Figures S6G–S6M)에 결과 있음)</p>        </li>
+          <li>We note that these results may be confounded by maturation differences, and further analysis would benefit from availability of time-course data from human samples.</li>
+        </ul>
+        <h3>Spatial mapping of chromatin accessibility data</h3>
+        <ul>
+          <li>scATAC-seq data에서도 비슷한 분석이 가능한지 살펴봤다 
+          <ul>
+            <li>동일한 cell suspension(microdissected regions from 2 to 4 month cerebral organoids (Kanton et al., 2019))으로 진행한 scATAC-seq과 scRNA-seq pair 사용
+            <figure><img src="../assets/img/notes/resolving-organoid-brain-region-identities-by-mapping-single-cell-genomic-data-to-reference-atlases/img-17.png" alt="Fig.6A" loading="lazy"><figcaption>Fig.6A</figcaption></figure>          </li>
+            <li>in situ hybridization atlas의 각 gene들의 TSS(Transcription start site)에서의 Accessibility score를 측정
+            <figure><img src="../assets/img/notes/resolving-organoid-brain-region-identities-by-mapping-single-cell-genomic-data-to-reference-atlases/img-18.png" alt="Fig.6B" loading="lazy"><figcaption>Fig.6B</figcaption></figure>          </li>
+            <li>그러고 나서 TSS access와 expression의 Spatial 상에서 annotated된 structure 간의  correlation을 계산했다
+            <figure><img src="../assets/img/notes/resolving-organoid-brain-region-identities-by-mapping-single-cell-genomic-data-to-reference-atlases/img-19.png" alt="image" loading="lazy"></figure>          </li>
+            <li>correlation을 3D voxel map에 나타내보았을 때“both transcriptomes and chromatin accessibility scores of neuronal cells from the microdissected region have the highest correlation with the developing cortex (Figure 6E).”
+            <figure><img src="../assets/img/notes/resolving-organoid-brain-region-identities-by-mapping-single-cell-genomic-data-to-reference-atlases/img-20.png" alt="image" loading="lazy"></figure>          </li>
+          </ul>        </li>
+        </ul>
+        <h3>Assessing organoid patterning using multiplexed transcriptomics and reference mapping</h3>
+        <ul>
+          <li>Reference-mapping organoid transcriptomes가 어떻게 culture condition manipulations output을 평가하는데 사용될 수 있을까?
+          <ul>
+            <li>proof-of-principle experiment in which we incubated developing organoids with several different <strong>patterning molecules</strong> 
+            <ul>
+              <li>R-spondin 2 (RSPO2), R-spondin 3 (RSPO3), </li>
+              <li>sonic hedgehog (SHH)</li>
+              <li>an activator of the Wnt pathway (CHIR99021)</li>
+              <li>two small molecules for dual SMAD inhibition (SB431542 and dorsomorphin)</li>
+              <li>low, high 로 처리되었으면 Control 있음</li>
+            </ul>
+            <figure><img src="../assets/img/notes/resolving-organoid-brain-region-identities-by-mapping-single-cell-genomic-data-to-reference-atlases/img-21.png" alt="Fig.7A" loading="lazy"><figcaption>Fig.7A</figcaption></figure>
+            <figure><img src="../assets/img/notes/resolving-organoid-brain-region-identities-by-mapping-single-cell-genomic-data-to-reference-atlases/img-22.png" alt="Fig.7C" loading="lazy"><figcaption>Fig.7C</figcaption></figure>          </li>
+          </ul>        </li>
+          <li>PCA를 해보았을 때, 이러한 morphogen treatment에 의한 transcriptome heterogeneity를 유도했음을 알 수 있고, 유사한 condition에서 생성된 organoid끼리 가까이 있는 것을 확인할 수 있음
+          <figure><img src="../assets/img/notes/resolving-organoid-brain-region-identities-by-mapping-single-cell-genomic-data-to-reference-atlases/img-23.png" alt="image" loading="lazy"></figure>        </li>
+          <li>다음으로 ABA developing moouse brain ref.(E11.5)에 매핑해서 각 bulk transcriptome을 각 voxel에 대한 correlation을 확인해보았고, condition 간 차이를 확인함
+          <figure><img src="../assets/img/notes/resolving-organoid-brain-region-identities-by-mapping-single-cell-genomic-data-to-reference-atlases/img-24.png" alt="image" loading="lazy"></figure>
+          <figure><img src="../assets/img/notes/resolving-organoid-brain-region-identities-by-mapping-single-cell-genomic-data-to-reference-atlases/img-25.png" alt=" Heatmap showing the expression of differentially expressed genes between control and R-spondin conditions" loading="lazy"><figcaption> Heatmap showing the expression of differentially expressed genes between control and R-spondin conditions</figcaption></figure>
+          <ul>
+            <li>특히 RSPO2/3 patterning molecule의 경우 Telencephalon과 Diencephalon 경계부위와 관련된 구조(ChP)에서 확인됨</li>
+            <li>ChP 형성과 관련된 TTR, CLU, HTR2C가 DEG로 관측됨 근데 RSPO2/3가 ChP 형성을 어떻게 유도하는지는 명확하지 않으며, 관련 수용체(LGRs)는 ABA에서 탐지되지 않음</li>
+          </ul>
+          <figure><img src="../assets/img/notes/resolving-organoid-brain-region-identities-by-mapping-single-cell-genomic-data-to-reference-atlases/img-26.png" alt="image" loading="lazy"></figure>        </li>
+        </ul>
+        <h2>3. Discussion</h2>
+        <h3>Limitations of study</h3>
+        <ul>
+          <li>Whole brain에 대한 single cell 수준의 spatial reference가 부족</li>
+        </ul>
+        <p class="back"><a href="../notes.html">← 모든 노트</a></p>
+      </article>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <div class="follow">
+      <a href="https://github.com/gaeunby1102" aria-label="GitHub"><svg viewBox="0 0 24 24"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.5v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7 0-.7 0-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.8-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17 4.6 18 4.9 18 4.9c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.6.8.5 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg></a>
+      <a href="mailto:gaeunbyeon1102@gmail.com" aria-label="Email"><svg viewBox="0 0 24 24"><path d="M2 4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h20a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2H2zm0 2 10 6 10-6v.01L12 12 2 6.01V6z"/></svg></a>
+      <a href="https://www.linkedin.com/in/%EA%B0%80%EC%9D%80-%EB%B3%80-621113361/" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg></a>
+    </div>
+    <p>© 2026 Gaeun Byeon</p>
+  </footer>
+
+  <script>
+  window.MathJax = {
+    tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] },
+    options: { skipHtmlTags: ['script','noscript','style','textarea','pre','code'] }
+  };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</body>
+</html>

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Biological sequence analysis 10th · Gaeun Byeon</title>
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+  <header class="masthead">
+    <div class="masthead-inner">
+      <a class="brand" href="../index.html">Gaeun Byeon</a>
+      <nav>
+        <a href="../index.html">Home</a>
+        <a href="../publications.html">Publications</a>
+        <a href="../projects.html">Projects</a>
+        <a href="../seminars.html">Seminars</a>
+        <a href="../posters.html">Posters</a>
+        <a href="../papers.html">Papers</a>
+        <a href="../notes.html" class="active">Notes</a>
+        <a href="../skills.html">Skills</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-wrap">
+    <aside class="author">
+      <img class="avatar" src="../assets/img/profile.svg" alt="Gaeun Byeon">
+      <div class="name">Gaeun Byeon</div>
+      <p class="bio">ML &amp; Computational Biology</p>
+      <p class="affil">M.S. Student,<br>Human Genomics Lab, Korea University</p>
+      <ul class="links">
+        <li><a href="mailto:gaeunbyeon1102@gmail.com">
+          <svg class="ico" viewBox="0 0 24 24"><path d="M2 4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h20a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2H2zm0 2 10 6 10-6v.01L12 12 2 6.01V6z"/></svg>
+          Email</a></li>
+        <li><a href="https://github.com/gaeunby1102">
+          <svg class="ico" viewBox="0 0 24 24"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.5v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7 0-.7 0-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.8-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17 4.6 18 4.9 18 4.9c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.6.8.5 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg>
+          GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/%EA%B0%80%EC%9D%80-%EB%B3%80-621113361/">
+          <svg class="ico" viewBox="0 0 24 24"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>
+          LinkedIn</a></li>
+      </ul>
+    </aside>
+
+    <main class="content">
+      <article class="note">
+        <header class="note-header">
+          <h1>Biological sequence analysis 10th</h1>
+          <p class="note-meta"><time datetime="2026-08-02">2026.08.02</time></p>
+        </header>
+        <h2>Ch.3 Markov chains and hidden Markov models</h2>
+        <ul>
+          <li>The main aim of the chapter
+          <ul>
+            <li>this chapter to questions about a single sequence →<strong> Hidden Markov model(HMM)</strong></li>
+            <li>2 Main consideration
+            <ul>
+              <li>Does this sequence belong to a particular family?</li>
+              <li>assuming they are in same family, what can we say about its internal structure? 
+              <p>→ trying to identify alpha helix or beta sheet regions in a protein seq.</p>            </li>
+            </ul>
+            <blockquote class="lead-quote">💡 Example: CpG islands</blockquote>          </li>
+          </ul>
+          <h3>Markov chains</h3>
+          <p>We therefore want a model that generates sequences <strong>in which the probability of a symbol depends on the previous symbol.</strong></p>
+          <ul>
+            <li>Description
+            <ul>
+              <li>Markov chain graphically as a collection of ‘states’ 
+              <p>(each of which corresponds to a particular residue, with arrows between the states)</p>
+              <figure><img src="../assets/img/notes/biological-sequence-analysis-10th/img-1.png" alt="A Markov chain for DNA" loading="lazy"><figcaption>A Markov chain for DNA</figcaption></figure>
+              <ul>
+                <li>A prob. parameter is associated with each arrow in the figure
+                <ul>
+                  <li>determines <strong>the prob. of a certain residue following another residue</strong>
+                  <p>(= 1 state following another state)</p>
+                  <p>⇒ “transition probabilities” </p>                </li>
+                </ul>
+                <p>⇒ According to this, <strong>the prob. of the sequence would be</strong></p>
+                <figure><img src="../assets/img/notes/biological-sequence-analysis-10th/img-2.png" alt="image" loading="lazy"></figure>              </li>
+              </ul>            </li>
+            </ul>          </li>
+          </ul>        </li>
+        </ul>
+        <h2>Exercise</h2>
+        <p><input type="checkbox" disabled checked> 증명해보기</p>
+        <figure><img src="../assets/img/notes/biological-sequence-analysis-10th/img-3.png" alt="image" loading="lazy"></figure>
+        <h3>Example. CpG island</h3>
+        <figure><img src="../assets/img/notes/biological-sequence-analysis-10th/img-4.png" alt="image" loading="lazy"></figure>
+        <figure><img src="../assets/img/notes/biological-sequence-analysis-10th/img-5.png" alt="image" loading="lazy"></figure>
+        <figure><img src="../assets/img/notes/biological-sequence-analysis-10th/img-6.png" alt="image" loading="lazy"></figure>
+        <figure><img src="../assets/img/notes/biological-sequence-analysis-10th/img-7.png" alt="image" loading="lazy"></figure>
+        <figure><img src="../assets/img/notes/biological-sequence-analysis-10th/img-8.png" alt="image" loading="lazy"></figure>
+        <h2>Ch.4 Pairwise alignment using HMMs</h2>
+        <h3>1. Pair HMMs</h3>
+        <p><strong>probability</strong></p>
+        <ul>
+          <li>Emission → symbols from the states
+          <ul>
+            <li>M → emission probability distribution for emitting an aligned pair a:b ⇒ \(p_ab\)</li>
+            <li>X → emission probability distribution for emitting symbol a against a gap ⇒ \(q_a\)</li>
+            <li>Y → emission probability distribution for emitting symbol a against a gap ⇒ \(q_b\)
+            <figure><img src="../assets/img/notes/biological-sequence-analysis-10th/img-9.png" alt="image" loading="lazy"></figure>          </li>
+          </ul>        </li>
+        </ul>
+        <ul>
+          <li>Transition → between states
+          <p>(⭐️ 하나의 state에서 나오는 모든 transition prob.의 합은 1)</p>
+          <ul>
+            <li>ẟ(delta) → M에서 (X,Y)로 이동하는 transition probabilty
+            <p>⇒ Probability for 1st gap</p>          </li>
+            <li>𝜺(epsilon) → insert state(X,Y)에 머무는 transition probability
+            <p>⇒ Probability for extending gap</p>          </li>
+          </ul>        </li>
+        </ul>
+        <ul>
+          <li>Begin/End state
+          <ul>
+            <li>Begin state는 M state 와 동일 (M에서 시작한다라고 생각해도 무방)</li>
+            <li>End state로 향하는 transition prob.는 M,X,Y 모두 동일하다고 가정 → 𝜏(tau)</li>
+          </ul>
+          <figure><img src="../assets/img/notes/biological-sequence-analysis-10th/img-10.png" alt="image" loading="lazy"></figure>        </li>
+        </ul>
+        <h3>Algorithm: Viterbi algorithm for pair HMMs</h3>
+        <ul>
+          <li>\(v^⋅(i, j)\) : probability values</li>
+          <li>\(V^⋅ (i, j)\) : Log - odds scores</li>
+        </ul>
+        <figure><img src="../assets/img/notes/biological-sequence-analysis-10th/img-11.png" alt="image" loading="lazy"></figure>
+        <ul>
+          <li>Pointer와 Trace back은 기존 alignment algorithm과 동일</li>
+        </ul>
+        <h3>2. The full probability of x and y, summing over all paths</h3>
+        <figure><img src="../assets/img/notes/biological-sequence-analysis-10th/img-12.png" alt="image" loading="lazy"></figure>
+        <h3>Algorithm: Forward calculation for pair HMMs</h3>
+        <figure><img src="../assets/img/notes/biological-sequence-analysis-10th/img-13.png" alt="image" loading="lazy"></figure>
+        <ul>
+          <li>\(f^k(i,j)\) : combined probability of all alignments up to (i,j)</li>
+          <li>\(P(x,y)\) =\( f^E(n,m)\) → the full probability</li>
+        </ul>
+        <p><strong>⇒  Posterior distribution ⇒ P(𝜋|x,y)</strong></p>
+        <figure><img src="../assets/img/notes/biological-sequence-analysis-10th/img-14.png" alt="image" loading="lazy"></figure>
+        <ul>
+          <li>The probability that the optimal scoring alignment is ‘correct’</li>
+        </ul>
+        <h3>4.4 The posterior probability that \(x_i\) is aligned to \(y_j\)</h3>
+        <p>→ to calculate the local accuracy of an alignment</p>
+        <ul>
+          <li>\(x_i \)◇ \(y_j\) = \(x_i \) is aligned to \(y_j\)</li>
+        </ul>
+        <figure><img src="../assets/img/notes/biological-sequence-analysis-10th/img-15.png" alt="image" loading="lazy"></figure>
+        <h3>Algorithm: Backward calculation for pair HMMs</h3>
+        <figure><img src="../assets/img/notes/biological-sequence-analysis-10th/img-16.png" alt="image" loading="lazy"></figure>
+        <figure><img src="../assets/img/notes/biological-sequence-analysis-10th/img-17.png" alt="image" loading="lazy"></figure>
+        <ul>
+          <li>The overall accuracy of 𝜋
+          <figure><img src="../assets/img/notes/biological-sequence-analysis-10th/img-18.png" alt="image" loading="lazy"></figure>        </li>
+          <li>Dynamic programming using score values given by the posterior probabilities of pair matches, without gap costs
+          <figure><img src="../assets/img/notes/biological-sequence-analysis-10th/img-19.png" alt="Recursion equations" loading="lazy"><figcaption>Recursion equations</figcaption></figure>        </li>
+        </ul>
+        <h2>Pair HMM Algorithm</h2>
+        <p>pairwise alignment를 위해 Hidden Markov model 이용</p>
+        <ul>
+          <li>Viterbi Algorithm</li>
+          <li>Posterior Algorithm</li>
+        </ul>
+        <h2>Parameter 설정</h2>
+        <h2>Argument</h2>
+        <ul>
+          <li>file 형식의 2개 sequence ⇒ f_path1 f_path2</li>
+          <li>algorithm mode ⇒ Viterbi -v or Posterior</li>
+        </ul>
+        <h2>Structure</h2>
+        <ol>
+          <li>def 로 viterbi algorithm , posterior(forward,backward, decoding) algorithm
+          <ol>
+            <li>Initialization, Recursion, Trace-back</li>
+          </ol>        </li>
+          <li>argument mode에 따라 if -v → Viterbi, if -p ⇒ posteior</li>
+          <li>최종 출력 = alignment, probability of alignment</li>
+        </ol>
+        <p class="back"><a href="../notes.html">← 모든 노트</a></p>
+      </article>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <div class="follow">
+      <a href="https://github.com/gaeunby1102" aria-label="GitHub"><svg viewBox="0 0 24 24"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.5v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7 0-.7 0-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.8-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17 4.6 18 4.9 18 4.9c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.6.8.5 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg></a>
+      <a href="mailto:gaeunbyeon1102@gmail.com" aria-label="Email"><svg viewBox="0 0 24 24"><path d="M2 4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h20a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2H2zm0 2 10 6 10-6v.01L12 12 2 6.01V6z"/></svg></a>
+      <a href="https://www.linkedin.com/in/%EA%B0%80%EC%9D%80-%EB%B3%80-621113361/" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg></a>
+    </div>
+    <p>© 2026 Gaeun Byeon</p>
+  </footer>
+
+  <script>
+  window.MathJax = {
+    tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] },
+    options: { skipHtmlTags: ['script','noscript','style','textarea','pre','code'] }
+  };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</body>
+</html>

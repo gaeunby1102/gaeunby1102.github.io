@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>1주차 L1~L3 · Gaeun Byeon</title>
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+  <header class="masthead">
+    <div class="masthead-inner">
+      <a class="brand" href="../index.html">Gaeun Byeon</a>
+      <nav>
+        <a href="../index.html">Home</a>
+        <a href="../publications.html">Publications</a>
+        <a href="../projects.html">Projects</a>
+        <a href="../seminars.html">Seminars</a>
+        <a href="../posters.html">Posters</a>
+        <a href="../papers.html">Papers</a>
+        <a href="../notes.html" class="active">Notes</a>
+        <a href="../skills.html">Skills</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-wrap">
+    <aside class="author">
+      <img class="avatar" src="../assets/img/profile.svg" alt="Gaeun Byeon">
+      <div class="name">Gaeun Byeon</div>
+      <p class="bio">ML &amp; Computational Biology</p>
+      <p class="affil">M.S. Student,<br>Human Genomics Lab, Korea University</p>
+      <ul class="links">
+        <li><a href="mailto:gaeunbyeon1102@gmail.com">
+          <svg class="ico" viewBox="0 0 24 24"><path d="M2 4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h20a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2H2zm0 2 10 6 10-6v.01L12 12 2 6.01V6z"/></svg>
+          Email</a></li>
+        <li><a href="https://github.com/gaeunby1102">
+          <svg class="ico" viewBox="0 0 24 24"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.5v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7 0-.7 0-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.8-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17 4.6 18 4.9 18 4.9c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.6.8.5 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg>
+          GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/%EA%B0%80%EC%9D%80-%EB%B3%80-621113361/">
+          <svg class="ico" viewBox="0 0 24 24"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>
+          LinkedIn</a></li>
+      </ul>
+    </aside>
+
+    <main class="content">
+      <article class="note">
+        <header class="note-header">
+          <h1>1주차 L1~L3</h1>
+          <p class="note-meta"><time datetime="2025-07-12">2025.07.12</time></p>
+        </header>
+        <h2><strong>Lecture 1. </strong>Introduction to Computer Vision</h2>
+        <ul>
+          <li>Visual understanding
+          <ul>
+            <li>사람의 직관적인 인식(Intuition)을 컴퓨터로 구현하고자 하는것 → Function으로 만들기</li>
+            <li>Video는 이미지 프레임들이 sequence, image는 RGB code의 coord구성이 sequence</li>
+            <li>하지만 단순 video contents 인식이 아니라 contents 내의 의도, 문맥, 의미를 파악할 수 있어야함.
+            <ul>
+              <li>solution? ex. multimodal…</li>
+            </ul>          </li>
+            <li>Related works(Object recognition)
+            <figure><img src="../assets/img/notes/1-l1-l3/img-1.png" alt="image" loading="lazy"></figure>          </li>
+          </ul>        </li>
+          <li>Application
+          <ul>
+            <li>Object recognition(Image classification)</li>
+            <li>Action recognition</li>
+            <li>Spatial&amp; Temporal localization</li>
+            <li>Segmentation
+            <ul>
+              <li>Sementic: 단순 Object 영역 구분</li>
+              <li>Instance segmentation: 영역 구분 + 같은 카테고리 내에서도 개별 object 구분</li>
+            </ul>          </li>
+            <li>Multimodal learning
+            <ul>
+              <li>Image captioning: 이미지를 텍스트로</li>
+              <li>Style transfer: 생성형</li>
+            </ul>          </li>
+          </ul>        </li>
+        </ul>
+        <h2>Lecture 2. First Approaches for Image Classification</h2>
+        <h2><u>Image Classification</u></h2>
+        <ul>
+          <li>Single vs multi classification</li>
+          <li>image classification에서의 챌린지
+          <ul>
+            <li>scale, viewpoint, illumination이 다른 경우를 고려할 수 있어야한다 그리고 deformation(형태), occlusion(부분적으로만 볼 때 기존의 Context를 활용하거나 해서 object를 추측할 수 있어야한다), intraclass variation(class 정의의 범위?)</li>
+          </ul>        </li>
+          <li>기존의 접근법
+          <ul>
+            <li>이미지에서 edge/corner를 추출한 시도들..</li>
+          </ul>
+          <p>→ data-driven approach로의 전환 with 머신러닝 classification</p>        </li>
+        </ul>
+        <h2><u>Nearest Neighbor Classifier</u></h2>
+        <ul>
+          <li>query data로 부터 가까운 k개의 neighbor를 지정해서 이 그룹의 label로 majority voting</li>
+          <li>이미지 간 유사성에 대한 정의
+          <ul>
+            <li>Similarity function이 있으면 된다</li>
+            <li>how?
+            <ul>
+              <li>resizing해서 2D matrix 벡터 크기 일정하게 맞춘 후</li>
+              <li>RGB int(0,255)로 채워진  matrix의 simiarity 측정
+              <ul>
+                <li>Similarity(distance)
+                <ul>
+                  <li>L1 distance (sum,absolute difference,Manhattan distance)
+                  <figure><img src="../assets/img/notes/1-l1-l3/img-2.png" alt="image" loading="lazy"></figure>
+                  <pre><code>def predict(self, test_image):
+	min_dist= sys.maxint
+	for i in range(self.images.shape[0]):
+		dist= np.sum(np.abs(self.images[i,:]-test_image))
+		if dist&lt; min_dist:
+			min_dist= dist
+			min_index= i
+	return self.labels[min_index]</code></pre>                </li>
+                  <li>L2 (squared,Euclidean distance)
+                  <figure><img src="../assets/img/notes/1-l1-l3/img-3.png" alt="image" loading="lazy"></figure>
+                  <pre><code>def predict(self, test_image):
+	min_dist= sys.maxint
+	for i in range(self.images.shape[0]):
+		dist = np.sqrt(np.sum((self.images[i, :] - test_image) ** 2))
+		if dist&lt; min_dist:
+			min_dist= dist
+			min_index= i
+	return self.labels[min_index]</code></pre>                </li>
+                  <li>L1 vs L2 → decision boundary에 차이가 발생하나 큰 차이 없다고 함</li>
+                </ul>              </li>
+              </ul>            </li>
+            </ul>          </li>
+          </ul>        </li>
+          <li>Time complexity?
+          <ul>
+            <li>training/prediction을 위한 time complexity가 어떻게 되나?</li>
+            <li>training: O(1)</li>
+            <li>prediction: O(n)</li>
+          </ul>
+          <p>→ 효율적이지 않다</p>        </li>
+          <li>kNN
+          <ul>
+            <li>k값이 낮을 때 → 예측 범위가 늘어난다 하지만 오차를 고려해 generalize하기에 좋다</li>
+          </ul>        </li>
+          <li>hyperparameter 선택
+          <ul>
+            <li>내 데이터에서는 k값이 어느정도가 적절한가?</li>
+            <li>distance는 어떻게 측정할 것인가?</li>
+            <li>training을 하며 가장 성능이 좋은 hyperparameter를 선택한다</li>
+          </ul>        </li>
+          <li>kNN의 한계
+          <ul>
+            <li>1)</li>
+          </ul>
+          <figure><img src="../assets/img/notes/1-l1-l3/img-4.png" alt="image" loading="lazy"></figure>
+          <ul>
+            <li>실제로는 오른쪽(한 픽셀씩 밀림)이 실제 이미지와 가장 유사하지만 L2 사용 시 왼쪽(마스킹)이 더 유사하다고 판단될 수 있음.</li>
+          </ul>
+          <ul>
+            <li>2) Curse of dimensionality
+            <ul>
+              <li>데이터 차원이 커질수록 지수만큼 비례하게 학습 데이터가 필요하다</li>
+            </ul>          </li>
+          </ul>        </li>
+        </ul>
+        <h2><u>Linear Classifier</u></h2>
+        <ul>
+          <li>Parametric approach
+          <ul>
+            <li>y= f(x) (where x= image, y= label)인 function을 만든다
+            <ul>
+              <li>여기서 f(x)의 계수들이 parameter</li>
+            </ul>          </li>
+          </ul>        </li>
+          <li>Linear model
+          <ul>
+            <li>픽셀 들의 Weighted sum </li>
+            <li>f(x,W)= Wx+b
+            <ul>
+              <li>W의 크기 = label * input vector size → 각 픽셀이 n개의 label에 미치는 영향을 미치는지 표현</li>
+              <li>b의 크기 = label *1 → 클래스(lable)별 기본 값 (e.g 학습 데이터 내 레이블 분포 정도?, 그래서 input x 자체와는 관련 없음)</li>
+            </ul>          </li>
+          </ul>
+          <figure><img src="../assets/img/notes/1-l1-l3/img-5.png" alt="image" loading="lazy"></figure>
+          <ul>
+            <li>ambiguous한 데이터에 있어서는 threshold를 사용하기도 한다</li>
+          </ul>
+          <figure><img src="../assets/img/notes/1-l1-l3/img-6.png" alt="image" loading="lazy"></figure>
+          <ul>
+            <li>Weight 값들로부터 RGB (0,255) scale로 맞춰서 학습한 패턴을 시각화한 결과</li>
+          </ul>
+          <p>→ NN과 Linear classifier의 공통점?</p>        </li>
+        </ul>
+        <h2>Lecture 3. Loss Function &amp; Optimization</h2>
+        <h2>Loss function</h2>
+        <ul>
+          <li>y= Wx+b 에서, score의 의미는 무엇인가? 어떻게 해석할 것인가?
+          <ul>
+            <li>gap을 모델링한다 (e.g \(s= s_1- s_2\)) → gap이 커질 수록 특정 class일 확률이 최대화되도록하는 함수를 만든다</li>
+            <li>Sigmoid function
+            <figure><img src="../assets/img/notes/1-l1-l3/img-7.png" alt="image" loading="lazy"></figure>
+            <ul>
+              <li>Input(s) 커질 수록 ~1</li>
+            </ul>
+            <figure><img src="../assets/img/notes/1-l1-l3/img-8.png" alt="image" loading="lazy"></figure>
+            <ul>
+              <li>class 확률에 대한 수식 표현</li>
+              <li>0≤ 각 확률 ≤1</li>
+            </ul>
+            <p>→ \(p(y=c_1|x)+ p(y=c_2|x)=1\)</p>          </li>
+          </ul>
+          <p>→ if n&gt;2?</p>
+          <ul>
+            <li>그래서 Softmax classifier의 output을 어떻게 받아들일 것인가
+            <ul>
+              <li>확률이 아닌 confidence 개념으로 봐야한다</li>
+              <li>threshold에 활용한다</li>
+            </ul>          </li>
+          </ul>        </li>
+        </ul>
+        <h3><u>How to find the weights?</u></h3>
+        <ul>
+          <li>sheme
+          <ul>
+            <li>모델의 형태를 정한다(e.g linear classifier ….)</li>
+            <li>randomly initializing the Ws</li>
+            <li>training data(x)를 주고 \(\hat{y}\) (예측치) 계산 - y → loss 계산 → Loss function사용</li>
+            <li>Updating W → Optimization</li>
+          </ul>        </li>
+        </ul>
+        <h3><u>Loss functions</u></h3>
+        <ul>
+          <li>현재 상태의 모델이 예측에 얼마나 우수한지 수치화
+          <ul>
+            <li>\(L(\hat{y}, y)\)</li>
+          </ul>        </li>
+          <li><strong>Binary Classification)</strong>
+          <ul>
+            <li>0 or 1 또는 -1 or +1 setting에서,</li>
+            <li>Margin-based loss: \(\hat{y}y\) (다른 예측일 경우 -, 같으면 +, abs는 confidence)</li>
+          </ul>
+          <figure><img src="../assets/img/notes/1-l1-l3/img-9.png" alt="image" loading="lazy"></figure>
+          <ul>
+            <li>왼쪽(incorrect)로 페널티가 더 헤비하도록 모델링하면</li>
+          </ul>
+          <figure><img src="../assets/img/notes/1-l1-l3/img-10.png" alt="image" loading="lazy"></figure>
+          <ul>
+            <li>이렇게 구성할 수 있으나, x=0에서 미분 가능하지 않음</li>
+          </ul>
+          <p>→ Margin-based loss</p>
+          <ol>
+            <li>Log loss
+            <figure><img src="../assets/img/notes/1-l1-l3/img-11.png" alt="image" loading="lazy"></figure>          </li>
+            <li>Exponential loss (더 aggressive하다)
+            <figure><img src="../assets/img/notes/1-l1-l3/img-12.png" alt="image" loading="lazy"></figure>
+            <ul>
+              <li>데이터가 noisy할 때 불안정한 학습이 있을 수 있음.</li>
+            </ul>          </li>
+            <li>Hinge loss( linear)
+            <figure><img src="../assets/img/notes/1-l1-l3/img-13.png" alt="image" loading="lazy"></figure>
+            <ul>
+              <li>SVM에서 많이 사용 ∵ <em>미분이 불필요해서 더 effiecient하다?</em></li>
+              <li>Margin loss vs 0 loss
+              <ul>
+                <li>0-loss의 경우 정답과 오답 구분점에서 미분이 되지 않기 때문에 치명적이지만 Margin의 경우 임의의 포인트이기 때문에 보다 더 유연하다고 볼 수 있다?</li>
+              </ul>            </li>
+            </ul>          </li>
+          </ol>        </li>
+          <li><strong>Probabilistic classification)</strong>
+          <ul>
+            <li>\(y\)= one hot vector (e.g [ 0,0,0,0,1,0,0])</li>
+          </ul>
+          <p>→ </p>
+          <ol>
+            <li>Cross-entropy</li>
+          </ol>
+          <figure><img src="../assets/img/notes/1-l1-l3/img-14.png" alt="image" loading="lazy"></figure>
+          <ul>
+            <li>where K= index of class i= index of image</li>
+            <li>y_ik=1이 되는 i번째 클래스에 대한 특정 k의 인덱스 → \(T_i\)</li>
+            <li>-log(\(\hat{y}\)\(T_i\))(실제 정답인 인덱스에서 해당 클래스에 대한 예측값의 -log, 두 확률분포의 비교값)의 평균 → log-loss 구현
+            <ul>
+              <li>1일수록 loss 감소</li>
+            </ul>          </li>
+          </ul>
+          <figure><img src="../assets/img/notes/1-l1-l3/img-15.png" alt="image" loading="lazy"></figure>
+          <ol>
+            <li>KL(Kullback-Leibler) divergence</li>
+          </ol>
+          <figure><img src="../assets/img/notes/1-l1-l3/img-16.png" alt="image" loading="lazy"></figure>
+          <figure><img src="../assets/img/notes/1-l1-l3/img-17.png" alt="image" loading="lazy"></figure>
+          <ul>
+            <li>왜 distance가 아니라 divergence?
+            <ul>
+              <li>P||Q 일 때와 Q||P일 때의 값이 동일하지 않음에 따라 distance의 개념이 성립하지 않음, 그래서 triangle inequality를 성립하지 않을 수 있음</li>
+            </ul>          </li>
+          </ul>        </li>
+        </ul>
+        <h2>Optimization</h2>
+        <ul>
+          <li>Loss function을 최소화하는 지점을 찾자</li>
+          <li>가장 단순한 구조에서는 기울기가 0인 지점이 Global optimum일 것
+          <pre><code>theta = rand(vector)
+while true:
+	theta_Grad = evaluate_gradient(J, data, theta) #J= cost func, alpha= size of movement
+	theta= theta -alpah * theta_grad
+	if (norm(theta_grad) &lt;= beta) break</code></pre>        </li>
+        </ul>
+        <p>→ Potential Problem</p>
+        <figure><img src="../assets/img/notes/1-l1-l3/img-18.png" alt="image" loading="lazy"></figure>
+        <ul>
+          <li>minibatch subset을 가지고 학습을 했기 때문에, 일부 noisy한 패턴이 보일 수 있음</li>
+        </ul>
+        <h2>Cross validation</h2>
+        <ul>
+          <li>generalization에 대한 평가</li>
+          <li>test dataset은 절대 training되면 안된다~</li>
+          <li>2개의 필요한 test dataset
+          <ul>
+            <li>최종 성능 평가용</li>
+            <li>validation set → hyper-parameter 조정용 → validation score가 가장 우수한 것으로 모델 최종 선택</li>
+          </ul>        </li>
+          <li>k-fold
+          <ul>
+            <li>k개로 데이터셋 나누고 k-1/k 학습 + 1/k로 test → 평균</li>
+          </ul>        </li>
+        </ul>
+        <blockquote class="lead-quote"> 꼭 기억해야할 것들</blockquote>
+        <p class="back"><a href="../notes.html">← 모든 노트</a></p>
+      </article>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <div class="follow">
+      <a href="https://github.com/gaeunby1102" aria-label="GitHub"><svg viewBox="0 0 24 24"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.5v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7 0-.7 0-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.8-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17 4.6 18 4.9 18 4.9c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.6.8.5 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg></a>
+      <a href="mailto:gaeunbyeon1102@gmail.com" aria-label="Email"><svg viewBox="0 0 24 24"><path d="M2 4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h20a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2H2zm0 2 10 6 10-6v.01L12 12 2 6.01V6z"/></svg></a>
+      <a href="https://www.linkedin.com/in/%EA%B0%80%EC%9D%80-%EB%B3%80-621113361/" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg></a>
+    </div>
+    <p>© 2026 Gaeun Byeon</p>
+  </footer>
+
+  <script>
+  window.MathJax = {
+    tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] },
+    options: { skipHtmlTags: ['script','noscript','style','textarea','pre','code'] }
+  };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</body>
+</html>

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PSI 분석 파이프라인 · Gaeun Byeon</title>
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+  <header class="masthead">
+    <div class="masthead-inner">
+      <a class="brand" href="../index.html">Gaeun Byeon</a>
+      <nav>
+        <a href="../index.html">Home</a>
+        <a href="../publications.html">Publications</a>
+        <a href="../projects.html">Projects</a>
+        <a href="../seminars.html">Seminars</a>
+        <a href="../posters.html">Posters</a>
+        <a href="../papers.html">Papers</a>
+        <a href="../notes.html" class="active">Notes</a>
+        <a href="../skills.html">Skills</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-wrap">
+    <aside class="author">
+      <img class="avatar" src="../assets/img/profile.svg" alt="Gaeun Byeon">
+      <div class="name">Gaeun Byeon</div>
+      <p class="bio">ML &amp; Computational Biology</p>
+      <p class="affil">M.S. Student,<br>Human Genomics Lab, Korea University</p>
+      <ul class="links">
+        <li><a href="mailto:gaeunbyeon1102@gmail.com">
+          <svg class="ico" viewBox="0 0 24 24"><path d="M2 4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h20a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2H2zm0 2 10 6 10-6v.01L12 12 2 6.01V6z"/></svg>
+          Email</a></li>
+        <li><a href="https://github.com/gaeunby1102">
+          <svg class="ico" viewBox="0 0 24 24"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.5v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7 0-.7 0-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.8-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17 4.6 18 4.9 18 4.9c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.6.8.5 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg>
+          GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/%EA%B0%80%EC%9D%80-%EB%B3%80-621113361/">
+          <svg class="ico" viewBox="0 0 24 24"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>
+          LinkedIn</a></li>
+      </ul>
+    </aside>
+
+    <main class="content">
+      <article class="note">
+        <header class="note-header">
+          <h1>PSI 분석 파이프라인</h1>
+          <p class="note-meta"><time datetime="2026-02-11">2026.02.11</time></p>
+        </header>
+        <h2>1. 프로젝트 개요</h2>
+        <p>Visium HD 공간 전사체(Spatial Transcriptomics) 데이터에서 <strong>대체 스플라이싱(Alternative Splicing)</strong> 패턴을 분석하는 프로젝트이다.</p>
+        <p>핵심 지표는 <strong>PSI (Percent Spliced In)</strong> 으로, 하나의 유전자에서 여러 transcript(isoform) 중 특정 isoform이 차지하는 비율을 의미한다.</p>
+        <pre><code>PSI = (특정 transcript의 count) / (같은 유전자의 모든 transcript count 합)</code></pre>
+        <p>예시: Plp1 유전자에서 barcode X에 transcript A가 3개, transcript B가 1개 검출되었다면</p>
+        <ul>
+          <li>PSI(A) = 3/4 = 0.75</li>
+          <li>PSI(B) = 1/4 = 0.25</li>
+        </ul>
+        <hr>
+        <h2>2. 데이터 구조</h2>
+        <h3>2.1 Visium HD 해상도 체계</h3>
+        <p>Visium HD는 여러 해상도의 barcode를 제공한다:</p>
+        <pre><code>2µm bin:  가장 작은 단위 (개별 spot)
+8µm bin:  4×4 = 16개의 2µm bin을 하나로 묶은 것
+16µm bin: 2×2 = 4개의 8µm bin을 하나로 묶은 것</code></pre>
+        <p>바코드 형식:</p>
+        <pre><code>2µm:  s_002um_{row:05d}_{col:05d}-1    예) s_002um_00396_00857-1
+8µm:  s_008um_{row:05d}_{col:05d}-1    예) s_008um_00099_00214-1</code></pre>
+        <h3>2.2 입력 데이터</h3>
+        <table>
+        <tr><th>데이터</th><th>파일</th><th>설명</th></tr>
+        <tr><td>IsoQuant 출력</td><td><code>OUT.transcript_grouped_tag_CB_counts.linear.tsv</code></td><td>transcript별 barcode별 read count (2µm 해상도, 전체 뇌)</td></tr>
+        <tr><td>GTF 어노테이션</td><td><code>gencode.vM23.annotation.gtf</code></td><td>transcript → gene 매핑 정보</td></tr>
+        <tr><td>AnnData</td><td><code>adata_cortex_8um.h5ad</code></td><td>8µm 해상도의 cortex 영역 subset (17,880 spots × 32,285 genes)</td></tr>
+        </table>
+        <blockquote class="lead-quote">💡 <strong>핵심 포인트:</strong>
+          <ul>
+            <li><strong>IsoQuant 출력</strong>: 전체 뇌(whole brain)의 2µm 해상도 데이터</li>
+            <li><strong>AnnData</strong>: cortex 영역만 잘라낸(subset) 8µm 해상도 데이터</li>
+            <li>즉, 해상도도 다르고 공간 범위도 다름</li>
+          </ul>
+        </blockquote>
+        <hr>
+        <h2>3. 분석 단계별 상세 설명</h2>
+        <h3>Step 1: PSI 계산 (<code>calculate_</code><a href="http://psi.py/"><code>psi.py</code></a>)</h3>
+        <p><strong>목적</strong>: IsoQuant의 raw count → barcode별 유전자별 PSI 계산</p>
+        <pre><code>입력:  IsoQuant transcript count (16µm, 전체 뇌)
+출력:  psi_per_barcode.tsv.gz (16µm, 전체 뇌)</code></pre>
+        <details><summary>처리 과정</summary>
+          <ol>
+            <li><strong>GTF 파싱</strong>: transcript_id → (gene_id, gene_name) 매핑 테이블 구축
+            <p>예: ENSMUST00000033800.12 → (ENSMUSG00000031425.15, Plp1)</p>          </li>
+            <li><strong>Count 데이터 로드</strong>: IsoQuant 출력을 chunk 단위로 읽음
+            <p>컬럼: <code>transcript_id</code>, <code>barcode</code>, <code>count</code> / NA barcode 제거, GTF에 없는 transcript 제거</p>          </li>
+            <li><strong>Gene total 계산</strong>: 각 (gene, barcode) 조합에서 모든 transcript의 count 합산</li>
+            <li><strong>PSI 계산</strong>:</li>
+          </ol>
+        </details>
+        <pre><code>PSI(gene G, transcript T, barcode B) = count(G, T, B) / gene_total(G, B)</code></pre>
+        <ol>
+          <li><strong>필터링</strong>: barcode당 유전자별 <strong>2개 이상의 transcript</strong>가 검출된 경우만 유지</li>
+        </ol>
+        <blockquote class="lead-quote">⚠️ transcript가 1개뿐이면 PSI는 항상 1.0으로, 스플라이싱 다양성 정보가 없음.</blockquote>
+        <p>출력 파일 구조:</p>
+        <pre><code>gene_id                  gene_name  transcript_id            barcode                count  gene_total  psi
+ENSMUSG00000031425.15    Plp1       ENSMUST00000033800.12    s_016um_00024_01758-1  1.0    4.0         0.2500
+ENSMUSG00000031425.15    Plp1       ENSMUST00000113085.1     s_016um_00024_01758-1  3.0    4.0         0.7500</code></pre>
+        <hr>
+        <h3>Step 2: 2µm → 16µm 매핑 및 AnnData 통합 (<code>integrate_psi_to_16</code><a href="http://8um.py/"><code>um.py</code></a>)</h3>
+        <p><strong>목적</strong>: 2µm PSI 데이터를 8µm AnnData에 통합</p>
+        <pre><code>입력:  psi_per_barcode.tsv.gz (2µm, 전체 뇌) + adata_cortex_8um.h5ad (8µm, cortex)
+출력:  adata_cortex_8um_with_psi.h5ad (8µm, cortex, PSI 포함)</code></pre>
+        <p>Part A: 2µm → 16µm 바코드 매핑</p>
+        <p>Part A-3: 16µm 해상도에서 PSI 재계산</p>
+        <p>같은 16µm bin에 속하는 여러 2µm bin의 count를 <strong>합산</strong>한 뒤 PSI를 다시 계산한다.</p>
+        <pre><code>예시: 16µm bin B 안에 2µm bin b1, b2, b3이 있고,
+      유전자 G의 transcript T1, T2에 대해:
+
+      2µm level:
+        (G, T1, b1): count=2    (G, T2, b1): count=1
+        (G, T1, b2): count=0    (G, T2, b2): count=3
+        (G, T1, b3): count=1    (G, T2, b3): count=0
+
+      16µm 합산:
+        (G, T1, B): count = 2+0+1 = 3
+        (G, T2, B): count = 1+3+0 = 4
+        gene_total = 3+4 = 7
+
+      16µm PSI:
+        PSI(G, T1, B) = 3/7 = 0.429
+        PSI(G, T2, B) = 4/7 = 0.571</code></pre>
+        <blockquote class="lead-quote">💡 단순 PSI 평균이 아닌 <strong>count 합산 후 재계산</strong>을 사용하는 이유:
+          <ul>
+            <li>count가 높은 spot의 PSI가 더 신뢰성이 높음</li>
+            <li>count=1인 spot의 PSI(0 또는 1)가 결과를 왜곡하는 것을 방지</li>
+            <li>통계적으로 올바른 weighted aggregation</li>
+          </ul>
+        </blockquote>
+        <p>필터도 다시 적용: 16µm bin에서도 유전자당 2개 이상 transcript가 검출된 경우만 유지</p>
+        <p>Part B: AnnData 통합</p>
+        <ol>
+          <li><strong>AnnData 로드</strong>: cortex 16µm subset (17,880 spots)</li>
+          <li><strong>바코드 매칭</strong>: PSI의 16µm 바코드와 AnnData의 바코드를 비교하여 overlap 확인</li>
+          <li><strong>대표 transcript 선별</strong>: 유전자별 가장 많은 barcode에서 검출된 상위 2개 transcript 선택</li>
+          <li><strong>PSI wide matrix 구축</strong>: (barcode × feature) 형태로 변환</li>
+          <li><strong>AnnData에 저장</strong>:
+          <ul>
+            <li><code>obsm[&quot;X_psi&quot;]</code>: 전체 PSI matrix (17,880 × 8,218)</li>
+            <li><code>obs[&quot;psi_{GeneName}&quot;]</code>: 상위 20개 유전자의 major isoform PSI</li>
+          </ul>        </li>
+        </ol>
+        <hr>
+        <h2>4. 매핑 검증 결과</h2>
+        <h3>4.1 Overlap 분석</h3>
+        <table>
+        <tr><th>항목</th><th>값</th></tr>
+        <tr><td>AnnData 8µm 바코드</td><td>17,880</td></tr>
+        <tr><td>PSI→16µm 변환 바코드</td><td>91,683</td></tr>
+        <tr><td>Overlap</td><td>3,343 (18.7%)</td></tr>
+        <tr><td>AnnData에만 있는 바코드</td><td>14,537 (81.3%)</td></tr>
+        </table>
+        <h3>4.3 Overlap이 18.7%인 이유</h3>
+        <hr>
+        <h2>6. Isoform(Transcript) 상세 통계</h2>
+        <h3>6.1 전체 요약</h3>
+        <table>
+        <tr><th>항목</th><th>값</th></tr>
+        <tr><td>Alternative splicing이 관찰된 유전자 수</td><td>4,109</td></tr>
+        <tr><td>전체 isoform(transcript) 수</td><td>11,263</td></tr>
+        <tr><td>유전자당 평균 isoform 수</td><td>2.7개</td></tr>
+        <tr><td>유전자당 중앙값</td><td>2개</td></tr>
+        <tr><td>최대 isoform 수</td><td>15개 (Ccl27a)</td></tr>
+        </table>
+        <h3>6.2 유전자별 isoform 수 분포</h3>
+        <table>
+        <tr><th>isoform 수</th><th>유전자 개수</th><th>비율</th></tr>
+        <tr><td>2개</td><td>2,504</td><td>60.9%</td></tr>
+        <tr><td>3개</td><td>800</td><td>19.5%</td></tr>
+        <tr><td>4개</td><td>453</td><td>11.0%</td></tr>
+        <tr><td>5개</td><td>195</td><td>4.7%</td></tr>
+        <tr><td>6개</td><td>88</td><td>2.1%</td></tr>
+        <tr><td>7개</td><td>36</td><td>0.9%</td></tr>
+        <tr><td>8개</td><td>22</td><td>0.5%</td></tr>
+        <tr><td>9개</td><td>6</td><td>0.1%</td></tr>
+        <tr><td>10개 이상</td><td>5</td><td>0.1%</td></tr>
+        </table>
+        <p>대부분의 유전자(61%)는 2개 isoform만 검출되었으며, 5개 이상인 유전자는 350개(8.5%)이다.</p>
+        <h3>6.3 isoform이 가장 많은 유전자 Top 10</h3>
+        <table>
+        <tr><th>순위</th><th>유전자</th><th>Gene ID</th><th>isoform 수</th></tr>
+        <tr><td>1</td><td>Ccl27a</td><td>ENSMUSG00000073888.13</td><td>15</td></tr>
+        <tr><td>2</td><td>Gas5</td><td>ENSMUSG00000053332.13</td><td>12</td></tr>
+        <tr><td>3</td><td>Ttc3</td><td>ENSMUSG00000040785.19</td><td>11</td></tr>
+        <tr><td>4</td><td>Mff</td><td>ENSMUSG00000026150.14</td><td>10</td></tr>
+        <tr><td>5</td><td>Atp5j</td><td>ENSMUSG00000022890.13</td><td>10</td></tr>
+        <tr><td>6</td><td>Ndrg2</td><td>ENSMUSG00000004558.15</td><td>9</td></tr>
+        <tr><td>7</td><td>Aldoa</td><td>ENSMUSG00000030695.16</td><td>9</td></tr>
+        <tr><td>8</td><td>Fxyd1</td><td>ENSMUSG00000036570.14</td><td>9</td></tr>
+        <tr><td>9</td><td>Aup1</td><td>ENSMUSG00000068328.9</td><td>9</td></tr>
+        <tr><td>10</td><td>Nnat</td><td>ENSMUSG00000067786.16</td><td>9</td></tr>
+        </table>
+        <h3>6.4 참고: AnnData에 저장된 isoform 수</h3>
+        <p><code>integrate_psi_to_</code><a href="http://8um.py/"><code>8um.py</code></a>에서는 유전자별 <strong>상위 2개 transcript</strong>만 선별하여 PSI matrix를 구축했다.</p>
+        <pre><code>전체 isoform:           11,263개 (4,109 genes)
+AnnData X_psi features:  8,218개 (4,109 genes × top 2)
+obs 개별 컬럼:           20개 (top 20 유전자의 major isoform PSI만)</code></pre>
+        <hr>
+        <p class="back"><a href="../notes.html">← 모든 노트</a></p>
+      </article>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <div class="follow">
+      <a href="https://github.com/gaeunby1102" aria-label="GitHub"><svg viewBox="0 0 24 24"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.5v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7 0-.7 0-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.8-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17 4.6 18 4.9 18 4.9c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.6.8.5 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg></a>
+      <a href="mailto:gaeunbyeon1102@gmail.com" aria-label="Email"><svg viewBox="0 0 24 24"><path d="M2 4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h20a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2H2zm0 2 10 6 10-6v.01L12 12 2 6.01V6z"/></svg></a>
+      <a href="https://www.linkedin.com/in/%EA%B0%80%EC%9D%80-%EB%B3%80-621113361/" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg></a>
+    </div>
+    <p>© 2026 Gaeun Byeon</p>
+  </footer>
+
+  <script>
+  window.MathJax = {
+    tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] },
+    options: { skipHtmlTags: ['script','noscript','style','textarea','pre','code'] }
+  };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</body>
+</html>
