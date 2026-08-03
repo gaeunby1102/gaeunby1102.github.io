@@ -70,7 +70,7 @@ def build_starred(n=6):
     rows.sort(key=lambda r: r.get("ts", ""), reverse=True)
     seen, picked = set(), []
     for r in rows:
-        title = clean_title(r.get("basename", ""))
+        title = (r.get("title") or clean_title(r.get("basename", ""))).strip()
         if not is_readable(title):
             continue
         key = title.lower()
