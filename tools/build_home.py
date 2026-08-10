@@ -55,7 +55,7 @@ def is_readable(title):
     # keep entries that look like real paper titles (words + spaces), skip DOI/code filenames
     return (' ' in title) and (len(title) >= 25) and re.search(r'[A-Za-z]{4,}', title)
 
-def build_starred(n=6):
+def build_starred(n=0):   # n=0 -> show all ingested papers (scrollable)
     if not os.path.exists(JSONL):
         print("jsonl not found, skipping starred"); return
     rows = []
@@ -79,7 +79,7 @@ def build_starred(n=6):
         seen.add(key)
         tag = r.get("tag") or WIKI_TAG.get(r.get("wiki", ""), r.get("wiki", "").replace("-Wiki", ""))
         picked.append((title, tag, r.get("url", "")))
-        if len(picked) >= n:
+        if n and len(picked) >= n:
             break
     lis = []
     for title, tag, url in picked:

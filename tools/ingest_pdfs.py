@@ -60,6 +60,48 @@ def arxiv_title(arxiv_id):
         pass
     return ""
 
+DOI_RE = re.compile(r'\b(10\.\d{4,9}/[^\s"<>]+)')
+ARXIV_IN_TEXT = re.compile(r'arXiv:\s*(\d{4}\.\d{4,5})', re.I)
+
+def pdf_text(pdf, pages=1):
+    try:
+        return subprocess.run(["pdftotext", "-f", "1", "-l", str(pages), pdf, "-"],
+                              capture_output=True, text=True, timeout=40).stdout
+    except Exception:
+        return ""
+
+def crossref_doi(title):
+    try:
+        q = urllib.parse.quote(title[:200])
+        with urllib.request.urlopen("https://api.crossref.org/works?rows=1&query.bibliographic=" + q, timeout=20) as r:
+            items = json.load(r).get("message", {}).get("items", [])
+        if items:
+            return items[0].get("DOI", "")
+    except Exception:
+        pass
+    return ""
+
+def resolve_url(pdf, basename, title):
+    base = re.sub(r'\.pdf$', '', basename, flags=re.I).strip()
+    m = ARXIV_RE.match(base)                      # arXiv id filename
+    if m:
+        return "https://arxiv.org/abs/" + m.group(1)
+    if re.match(r's\d{4,5}-\d', base):            # Nature family filename = DOI suffix
+        return "https://doi.org/10.1038/" + base
+    if base.lower().startswith("science."):       # Science filename = DOI suffix
+        return "https://doi.org/10.1126/" + base.split()[0]
+    txt = pdf_text(pdf, 1)
+    ma = ARXIV_IN_TEXT.search(txt)                # arXiv id printed in the PDF
+    if ma:
+        return "https://arxiv.org/abs/" + ma.group(1)
+    md = DOI_RE.search(txt)                        # DOI on page 1
+    if md:
+        return "https://doi.org/" + md.group(1).rstrip('.,;)')
+    doi = crossref_doi(title)                      # look up by title
+    if doi:
+        return "https://doi.org/" + doi
+    return "https://scholar.google.com/scholar?q=" + urllib.parse.quote(title)
+
 def from_pdf(pdf):
     try:
         txt = subprocess.run(["pdftotext", "-f", "1", "-l", "1", pdf, "-"],

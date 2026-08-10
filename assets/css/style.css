@@ -249,7 +249,11 @@ blockquote {
 .graph-panel { flex: 0 0 420px; position: sticky; top: 5rem; }
 .starred-panel h2, .graph-panel h2 { font-size: 1rem; margin: 0 0 0.15rem; }
 .starred-sub { color: var(--muted); font-size: 0.78rem; margin: 0 0 0.8rem; }
-.starred-list { list-style: none; padding: 0; margin: 0; }
+.starred-list { list-style: none; padding: 0 0.5rem 0 0; margin: 0; max-height: calc(100vh - 11rem); overflow-y: auto; overscroll-behavior: contain; }
+.starred-list::-webkit-scrollbar { width: 6px; }
+.starred-list::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+.starred-list .ptitle a { color: var(--fg); }
+.starred-list .ptitle a:hover { color: var(--accent); }
 .starred-list li { padding: 0.55rem 0; border-bottom: 1px solid var(--border); }
 .starred-list .ptitle { display: block; color: var(--fg); font-size: 0.82rem; line-height: 1.35; }
 .starred-list .ptag { display: inline-block; margin-top: 0.25rem; color: var(--accent); font-size: 0.7rem; font-weight: 600; }
