@@ -29,7 +29,7 @@
       <img class="avatar" src="../assets/img/profile.svg" alt="Gaeun Byeon">
       <div class="name">Gaeun Byeon</div>
       <p class="bio">ML &amp; Computational Biology</p>
-      <p class="affil">M.S. Student,<br>Human Genomics Lab, Korea University</p>
+      <p class="affil">Human Genomics Lab,<br>Korea University</p>
       <ul class="links">
         <li><a href="mailto:gaeunbyeon1102@gmail.com">
           <svg class="ico" viewBox="0 0 24 24"><path d="M2 4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h20a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2H2zm0 2 10 6 10-6v.01L12 12 2 6.01V6z"/></svg>
@@ -325,7 +325,20 @@ while true:
             <li>k개로 데이터셋 나누고 k-1/k 학습 + 1/k로 test → 평균</li>
           </ul>        </li>
         </ul>
-        <blockquote class="lead-quote"> 꼭 기억해야할 것들</blockquote>
+        <blockquote class="lead-quote">꼭 기억해야할 것들
+          <ul>
+            <li>Softmax = linear classifier에서, score들을 해석할 수 있도록 0~1 사이의 값으로 변환시키는 함수
+            <figure><img src="../assets/img/notes/1-l1-l3/img-19.png" alt="image" loading="lazy"></figure>          </li>
+            <li>Loss function: 예측값과 실제 값의 차를 quant하기 위한 function</li>
+            <li>Gradient descent: minima 도달을 위해 loss function의 기울기가 하강되면서 미분 값이 0이되는 최소지점 도달을 위해 사용</li>
+            <li>Full gradient의 문제점?
+            <ul>
+              <li>Convex한 상황에서 Global minima를 찾는 문제</li>
+              <li>미분을 해서 기울기를 찾는데, 함수 자체가 미분 불가능한 점이 있는 경우에 문제가 됨</li>
+              <li>시간/메모리의 문제</li>
+            </ul>          </li>
+          </ul>
+        </blockquote>
         <p class="back"><a href="../notes.html">← 모든 노트</a></p>
       </article>
     </main>

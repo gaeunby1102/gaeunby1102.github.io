@@ -29,7 +29,7 @@
       <img class="avatar" src="../assets/img/profile.svg" alt="Gaeun Byeon">
       <div class="name">Gaeun Byeon</div>
       <p class="bio">ML &amp; Computational Biology</p>
-      <p class="affil">M.S. Student,<br>Human Genomics Lab, Korea University</p>
+      <p class="affil">Human Genomics Lab,<br>Korea University</p>
       <ul class="links">
         <li><a href="mailto:gaeunbyeon1102@gmail.com">
           <svg class="ico" viewBox="0 0 24 24"><path d="M2 4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h20a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2H2zm0 2 10 6 10-6v.01L12 12 2 6.01V6z"/></svg>
@@ -49,7 +49,27 @@
           <h1>3주차 L6~L7</h1>
           <p class="note-meta"><time datetime="2025-08-16">2025.08.16</time></p>
         </header>
-        <blockquote class="lead-quote"> Recap</blockquote>
+        <blockquote class="lead-quote">Recap
+          <ul>
+            <li>CNN 레이어를 정의하는 4가지 하이퍼 파라미터(구성요소)
+            <ul>
+              <li>Padding</li>
+              <li>Stride</li>
+              <li>Filter 크기</li>
+              <li>Filter 개수</li>
+            </ul>          </li>
+            <li>CNN이 Fully-connecte layer에 비해 학습해야하는 파라미터 수가 훨씬 적어도 잘 기능할 수 있는 이유?
+            <ul>
+              <li>Spatial locality, positional imbalance가 있다는 가정이 성립할 경우</li>
+            </ul>          </li>
+            <li>Pooling layer?
+            <ul>
+              <li>학습하는 파라미터 없이 정해진 연산을 수행하는 레이어</li>
+              <li>사용 이유: Spatial resolution을 줄이기 위해서</li>
+              <li>채널은 Pooling layer에 들어가지 않음</li>
+            </ul>          </li>
+          </ul>
+        </blockquote>
         <h2>L6. Training Neural Networks I</h2>
         <ul>
           <li>Neural Network 디자인 시 고려해야할 사항들

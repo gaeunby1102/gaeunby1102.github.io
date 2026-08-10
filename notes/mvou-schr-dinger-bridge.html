@@ -29,7 +29,7 @@
       <img class="avatar" src="../assets/img/profile.svg" alt="Gaeun Byeon">
       <div class="name">Gaeun Byeon</div>
       <p class="bio">ML &amp; Computational Biology</p>
-      <p class="affil">M.S. Student,<br>Human Genomics Lab, Korea University</p>
+      <p class="affil">Human Genomics Lab,<br>Korea University</p>
       <ul class="links">
         <li><a href="mailto:gaeunbyeon1102@gmail.com">
           <svg class="ico" viewBox="0 0 24 24"><path d="M2 4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h20a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2H2zm0 2 10 6 10-6v.01L12 12 2 6.01V6z"/></svg>
@@ -49,6 +49,13 @@
           <h1>mvOU Schrödinger bridge</h1>
           <p class="note-meta"><time datetime="2026-07-20">2026.07.20</time></p>
         </header>
+        <h2>2.1 Schrodinger bridge</h2>
+        <figure><img src="../assets/img/notes/mvou-schr-dinger-bridge/img-1.png" alt="image" loading="lazy"></figure>
+        <h2>2.2 FP-ODE</h2>
+        <figure><img src="../assets/img/notes/mvou-schr-dinger-bridge/img-2.png" alt="image" loading="lazy"></figure>
+        <ul>
+          <li>Score로 ODE만으로 SDE의 확률 분포를 구사</li>
+        </ul>
         <p>Reference process (latent space에서 노이즈 있는 dynamics):</p>
         <p class="mathblock">\[ dX_t = A(X_t - m)\,dt + \sigma\,dB_t \]</p>
         <ul>
@@ -61,7 +68,21 @@
         <p>Forward marginal과 bridge marginal을 만드는 핵심 두 개:</p>
         <p class="mathblock">\[ \exp(A\tau),\qquad \Sigma(\tau) := \int_0^\tau e^{As}\,\sigma^2 I\,e^{A^\top s}\,ds \]</p>
         <p>구현: \(A = V \cdot \mathrm{diag}(\lambda) \cdot V^{-1}\) eigendecomp으로 분해. \(\mathrm{Re}(\lambda) \le 0\)이라 안정 (Cook2020 fit 전부 통과).</p>
-        <blockquote class="lead-quote">✏️ forward marginal → \(x_0\)만 알고 시간 t 후 어디 있을지 → 시간이 갈수록 분포가 퍼지면서 gaussian이 넓어짐</blockquote>
+        <blockquote class="lead-quote">✏️ forward marginal → \(x_0\)만 알고 시간 t 후 어디 있을지 → 시간이 갈수록 분포가 퍼지면서 gaussian이 넓어짐
+          <p>Bridge marginal → \(x_0\) 와 \(x_t\) 를 둘다 알고 중간 시점 t의 분포 </p>
+          <pre><code> Brownian (v2.3):                 mvOU (v3):
+      x_T                              x_T
+       ●                                ●
+       │                              ↗
+       │  z (sample)                z
+       │  ↓                       ↘
+       │                            ↖
+       ●                              ●
+      x_0                              x_0
+
+  평균 path: 직선                평균 path: A의 회전 방향으로 curve
+  Σ_b: isotropic (구형)            Σ_b: 회전축 방향으로 anisotropic (타원)</code></pre>
+        </blockquote>
         <h2>Bridge marginal</h2>
         <p>\(X(0) = x_0\), \(X(T) = x_T\)로 conditioning하면, 중간 시점 \(z \sim \mathcal{N}(\mu_b(t), \Sigma_b(t))\):</p>
         <p class="mathblock">\[ \mu_b(t) = e^{At}\,x_0 + \Sigma(t)\,e^{A^\top(T-t)}\,\Sigma(T)^{-1}\bigl(x_T - e^{AT}x_0\bigr) \]</p>

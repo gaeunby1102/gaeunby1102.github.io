@@ -29,7 +29,7 @@
       <img class="avatar" src="../assets/img/profile.svg" alt="Gaeun Byeon">
       <div class="name">Gaeun Byeon</div>
       <p class="bio">ML &amp; Computational Biology</p>
-      <p class="affil">M.S. Student,<br>Human Genomics Lab, Korea University</p>
+      <p class="affil">Human Genomics Lab,<br>Korea University</p>
       <ul class="links">
         <li><a href="mailto:gaeunbyeon1102@gmail.com">
           <svg class="ico" viewBox="0 0 24 24"><path d="M2 4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h20a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2H2zm0 2 10 6 10-6v.01L12 12 2 6.01V6z"/></svg>
@@ -50,7 +50,7 @@
           <p class="note-meta"><time datetime="2026-07-20">2026.07.20</time></p>
         </header>
         <h2>GNN과 message passing vs Node2Vec</h2>
-        <blockquote class="lead-quote">현재 AnnFlux는 STRING graph를 <strong>Node2Vec로 압축한 frozen 임베딩</strong>으로만 활용. GEARS류 모델은 graph 위에서 <strong>GNN message passing</strong>으로 라이브 query. 이 차이가 combo 일반화 성능 gap의 본질.</blockquote>
+        <blockquote class="lead-quote">현재 우리 모델은 STRING graph를 <strong>Node2Vec로 압축한 frozen 임베딩</strong>으로만 활용. GEARS류 모델은 graph 위에서 <strong>GNN message passing</strong>으로 라이브 query. 이 차이가 combo 일반화 성능 gap의 본질.</blockquote>
         <h2>1. Node2Vec vs GNN — 한 줄 요약</h2>
         <ul>
           <li><strong>Node2Vec</strong>: graph 데이터를 학습 <em>전</em>에 한 번 압축해 만든 <strong>고정 사전</strong> (gene → 128-dim 벡터).</li>
@@ -119,8 +119,8 @@ h_D^{(0)} &amp;= [\,\text{is\_perturbed}=0,\ \ \ldots\,]
           <li>모델은 이 임베딩을 보고 combo 효과 예측</li>
         </ul>
         <p>→ <strong>graph 구조 자체가 combo 일반화의 매개체</strong>. 안 본 combo (X, Y)도 X, Y의 graph 이웃들이 학습된 다른 combo와 겹치면 자연스럽게 일반화됨.</p>
-        <h2>4. AnnFlux 현재 구조 vs GEARS 비교</h2>
-        <h3>AnnFlux 현재 (Node2Vec)</h3>
+        <h2>4. 우리 모델 현재 구조 vs GEARS 비교</h2>
+        <h3>우리 모델 현재 (Node2Vec)</h3>
         <pre><code>STRING graph
     │ (offline, build_string_node2vec.py)
     ▼
@@ -152,7 +152,7 @@ fold change predictor</code></pre>
         <p><strong>강점</strong>: 안 본 combo도 graph topology로 일반화. 학습 때 본 다른 combo의 패턴을 graph 이웃 관계를 통해 transfer.</p>
         <h2>5. 정량 영향 (Notion Task2 결과)</h2>
         <table>
-        <tr><th>Combo dataset</th><th>AnnFlux (Node2Vec) PCC-Δ</th><th>GEARS (GNN) PCC-Δ</th></tr>
+        <tr><th>Combo dataset</th><th>우리 모델 (Node2Vec) PCC-Δ</th><th>GEARS (GNN) PCC-Δ</th></tr>
         <tr><td>Norman</td><td>0.54</td><td><strong>0.73</strong></td></tr>
         <tr><td>Wessels</td><td>0.62</td><td><strong>0.77</strong></td></tr>
         </table>
@@ -226,7 +226,7 @@ GNN + 응답 그래프(coexpr/LINCS)  → 전이 성공 ✓</code></pre>
         <h2>10. Node2Vec vs GNN 대비 (개념도)</h2>
         <blockquote class="lead-quote">§1 표·§4 ASCII를 한 장으로: <strong>Node2Vec = 학습 전 그래프를 고정 벡터로 압축 → lookup</strong>(상황 무관, 안 본 객체엔 좌표 없음). <strong>GNN = 그래프를 모델 layer로 두고 매 forward 이웃에서 라이브 조립</strong>(상황별 갱신, 안 본 객체는 이웃에서 전이).</blockquote>
         <pre><code>flowchart TB
-  subgraph N2V[&quot;🔒 Node2Vec (static · 현재 AnnFlux)&quot;]
+  subgraph N2V[&quot;🔒 Node2Vec (static · 현재 우리 모델)&quot;]
     direction TB
     S1[&quot;STRING graph&quot;] --&gt;|&quot;offline random walk&lt;br/&gt;학습 전 1회&quot;| T[&quot;frozen gene_table&lt;br/&gt;gene → 고정 벡터&quot;]
     T --&gt;|&quot;lookup only&quot;| E1[&quot;e_A = 고정 벡터&lt;br/&gt;상황 무관·항상 동일&quot;]

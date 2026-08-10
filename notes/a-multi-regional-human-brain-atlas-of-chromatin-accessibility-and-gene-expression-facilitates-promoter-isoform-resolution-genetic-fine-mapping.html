@@ -29,7 +29,7 @@
       <img class="avatar" src="../assets/img/profile.svg" alt="Gaeun Byeon">
       <div class="name">Gaeun Byeon</div>
       <p class="bio">ML &amp; Computational Biology</p>
-      <p class="affil">M.S. Student,<br>Human Genomics Lab, Korea University</p>
+      <p class="affil">Human Genomics Lab,<br>Korea University</p>
       <ul class="links">
         <li><a href="mailto:gaeunbyeon1102@gmail.com">
           <svg class="ico" viewBox="0 0 24 24"><path d="M2 4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h20a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2H2zm0 2 10 6 10-6v.01L12 12 2 6.01V6z"/></svg>
@@ -49,7 +49,9 @@
           <h1>A multi-regional human brain atlas of chromatin accessibility and gene expression facilitates promoter-isoform resolution genetic fine-mapping</h1>
           <p class="note-meta"><time datetime="2025-02-16">2025.02.16</time></p>
         </header>
-        <blockquote class="lead-quote">💡 <strong>Main point </strong></blockquote>
+        <blockquote class="lead-quote">💡 <strong>Main point </strong>
+          <p><strong>유전자-조절요소 연결 분석(Enhancer-Promoter, E-P links)에 대한 연구</strong></p>
+        </blockquote>
         <ul>
           <li>published: 8 November, 2024</li>
           <li>Journal: Nature communication</li>
@@ -163,7 +165,13 @@
                 <li>이런 비 5′ 프로모터가 더 많이 활성화되는 경우, 실제로 <strong>해당 유전자의 주요 전사 시작점이 5′ 프로모터가 아닐 수 있음</strong></li>
                 <li><strong>Basal Ganglia(기저핵)에서는 특정 유전자의 비 5′ 프로모터가 더 많이 사용되지만, Cortex(대뇌피질)에서는 5′ 프로모터가 주요할 수도 있음 (regional identity에 대한 영향으로 이어질 수 있다?)</strong></li>
               </ul>
-              <blockquote class="lead-quote">💡 ex. <strong>DCLK1 (Doublecortin-like kinase 1)</strong></blockquote>
+              <blockquote class="lead-quote">💡 ex. <strong>DCLK1 (Doublecortin-like kinase 1)</strong>
+                <ul>
+                  <li><strong>5′ 프로모터 아이소폼은 Forebrain(전뇌)에서 더 활발히 발현</strong></li>
+                  <li><strong>비 5′ 프로모터 아이소폼은 Basal Ganglia(기저핵)에서 더 강하게 발현</strong>됨</li>
+                  <li>region에 따라 promoter-isoform의 발현 비율이 다르고, 역으로 이걸 통해 regional identity를 구분할 수 있다</li>
+                </ul>
+              </blockquote>
               <ul>
                 <li>이를 검증하기 위해 <strong>ATAC-Seq, H3K4me3, H3K27ac ChIP-Seq</strong> 같은 독립적인 <strong>후성유전체(epigenomic) 데이터</strong>를 활용해봤을 때 비 5′ 주요 프로모터가 5′ 프로모터보다 더 강력한 epigenomic modifications을 가지더라</li>
               </ul>            </li>
@@ -196,7 +204,16 @@
         </ul>
         <figure><img src="../assets/img/notes/a-multi-regional-human-brain-atlas-of-chromatin-accessibility-and-gene-expression-facilitates-promoter-isoform-resolution-genetic-fine-mapping/img-10.png" alt="image" loading="lazy"></figure>
         <p>→ supporting for using promoter-isoform rather than gene expression to explore transcriptome differences across brain regions.</p>
-        <blockquote class="lead-quote">💡 ex. DCLK1 gene</blockquote>
+        <blockquote class="lead-quote">💡 ex. DCLK1 gene
+          <ul>
+            <li>2개의 promoter isoform을 가지는데</li>
+            <li>Synapse development에서 각기 다른 function을 한다. </li>
+            <li>긴 isoform은 Forebrain에서 발현이 많이 되고, Basal Ganglia에서 가장 적게 발현된다.</li>
+            <li>하지만 짧은 isoform의 경우 정반대.</li>
+            <li>이 결과와 동일하게, 짧은 isoform의 promoter OCR이 Basal Ganglia에서 더 큰 chr. accessibility를 가졌다
+            <figure><img src="../assets/img/notes/a-multi-regional-human-brain-atlas-of-chromatin-accessibility-and-gene-expression-facilitates-promoter-isoform-resolution-genetic-fine-mapping/img-11.png" alt="image" loading="lazy"></figure>          </li>
+          </ul>
+        </blockquote>
         <h2>Results5: Brain region-specific enhancer-promoter links at promoter-isoform resolution</h2>
         <ul>
           <li>E-P interaction에 대한 확인</li>
@@ -217,8 +234,8 @@
           </ul>        </li>
           <li>E-P link 수준에서의 brain specificity를 알아보고자 link strength(ABC score)의 pairwise correlation을 해보았을 때 <strong>같은 계통(broad하게 유사한 뇌영역)의 뇌 영역들은 유사한 E-P 링크 패턴을 가짐</strong></li>
         </ul>
-        <figure><img src="../assets/img/notes/a-multi-regional-human-brain-atlas-of-chromatin-accessibility-and-gene-expression-facilitates-promoter-isoform-resolution-genetic-fine-mapping/img-11.png" alt="image" loading="lazy"></figure>
         <figure><img src="../assets/img/notes/a-multi-regional-human-brain-atlas-of-chromatin-accessibility-and-gene-expression-facilitates-promoter-isoform-resolution-genetic-fine-mapping/img-12.png" alt="image" loading="lazy"></figure>
+        <figure><img src="../assets/img/notes/a-multi-regional-human-brain-atlas-of-chromatin-accessibility-and-gene-expression-facilitates-promoter-isoform-resolution-genetic-fine-mapping/img-13.png" alt="image" loading="lazy"></figure>
         <ul>
           <li>Basal gangliadptj 41.3%의 유니크한 link 들이 보였고 이러한 결과가 Fig.1d에서 Basal ganglia의 크로마틴 접근성에 대한 variation을 설명할 수 있다?</li>
           <li>대부분의 신경정신질환 관련 유전적 변이(variant)는 비코딩(non-coding) 영역에 위치하는데  따라서 <strong>이 변이들은 enhancer나 promoter 같은 유전자 조절 요소를 교란</strong>하여 영향을 미칠 가능성이 높음
@@ -230,7 +247,7 @@
             <li><strong>ABC(Enhancer-Promoter) 모델로 연결되지 않은 기타 조절 요소(non-ABC elements)도 포함</strong></li>
           </ul>        </li>
           <li>특히, <strong>ABC 모델로 예측된 enhancer는 다른 원거리 OCR보다 질병 유전성(heritability)이 더 높음</strong> → 즉, enhancer가 질병과 더 밀접한 역할을 할 가능성이 높음.
-          <figure><img src="../assets/img/notes/a-multi-regional-human-brain-atlas-of-chromatin-accessibility-and-gene-expression-facilitates-promoter-isoform-resolution-genetic-fine-mapping/img-13.png" alt="image" loading="lazy"></figure>        </li>
+          <figure><img src="../assets/img/notes/a-multi-regional-human-brain-atlas-of-chromatin-accessibility-and-gene-expression-facilitates-promoter-isoform-resolution-genetic-fine-mapping/img-14.png" alt="image" loading="lazy"></figure>        </li>
         </ul>
         <h2>Results6: Fine-mapping of SCZ risk variants</h2>
         <ul>
@@ -244,15 +261,31 @@
           </ul>        </li>
           <li>Validation을 위해서 PoPS(Polygenic priority socre)를 사용해서 ~~~</li>
         </ul>
-        <figure><img src="../assets/img/notes/a-multi-regional-human-brain-atlas-of-chromatin-accessibility-and-gene-expression-facilitates-promoter-isoform-resolution-genetic-fine-mapping/img-14.png" alt="image" loading="lazy"></figure>
+        <figure><img src="../assets/img/notes/a-multi-regional-human-brain-atlas-of-chromatin-accessibility-and-gene-expression-facilitates-promoter-isoform-resolution-genetic-fine-mapping/img-15.png" alt="image" loading="lazy"></figure>
         <ul>
           <li>대부분의 gene이 non-5’ specific E-Plink로만 구분이 가능하다 그리고 이 유전자들이 5’ promoter보다 높은 PoPS 를 보였다
-          <figure><img src="../assets/img/notes/a-multi-regional-human-brain-atlas-of-chromatin-accessibility-and-gene-expression-facilitates-promoter-isoform-resolution-genetic-fine-mapping/img-15.png" alt="image" loading="lazy"></figure>        </li>
+          <figure><img src="../assets/img/notes/a-multi-regional-human-brain-atlas-of-chromatin-accessibility-and-gene-expression-facilitates-promoter-isoform-resolution-genetic-fine-mapping/img-16.png" alt="image" loading="lazy"></figure>        </li>
         </ul>
-        <figure><img src="../assets/img/notes/a-multi-regional-human-brain-atlas-of-chromatin-accessibility-and-gene-expression-facilitates-promoter-isoform-resolution-genetic-fine-mapping/img-16.png" alt="image" loading="lazy"></figure>
+        <figure><img src="../assets/img/notes/a-multi-regional-human-brain-atlas-of-chromatin-accessibility-and-gene-expression-facilitates-promoter-isoform-resolution-genetic-fine-mapping/img-17.png" alt="image" loading="lazy"></figure>
         <p>→ 이러한 결과가 emphasizing the critical role of promoter-isoform specificity in E-P interactions</p>
-        <blockquote class="lead-quote">💡 ex. ABHD2 유전자로 ABC non-5’promoter isoform에 대한 이야기</blockquote>
-        <blockquote class="lead-quote">💡 ex. CALN1의 BasGanglia에서의 region-specificity</blockquote>
+        <blockquote class="lead-quote">💡 ex. ABHD2 유전자로 ABC non-5’promoter isoform에 대한 이야기
+          <ul>
+            <li>SNP rs7178152와 fine-mapped되어있는데, non-5’ promoterisoform E-Plink를 가지고 있다
+            <figure><img src="../assets/img/notes/a-multi-regional-human-brain-atlas-of-chromatin-accessibility-and-gene-expression-facilitates-promoter-isoform-resolution-genetic-fine-mapping/img-18.png" alt="image" loading="lazy"></figure>
+            <ul>
+              <li>이 유전자는 NTT release에 관여하는데, 가까이 있는 FANCI(0.62)보다 높은 PoPS (0.87)을 가진다</li>
+            </ul>          </li>
+          </ul>
+        </blockquote>
+        <blockquote class="lead-quote">💡 ex. CALN1의 BasGanglia에서의 region-specificity
+          <ul>
+            <li>CALN1이 여러 Region에서 모두 발현하지만, BasGan specific E-P link를 통해서 rs2944829라는 SCZ risk SNP가 BasGan specific한 OCR과 E-Plink로 연결되어 CALN1과 연결된다.
+            <ul>
+              <li>Brain region specific enhancer라는 뜻</li>
+            </ul>          </li>
+          </ul>
+          <figure><img src="../assets/img/notes/a-multi-regional-human-brain-atlas-of-chromatin-accessibility-and-gene-expression-facilitates-promoter-isoform-resolution-genetic-fine-mapping/img-19.png" alt="image" loading="lazy"></figure>
+        </blockquote>
         <p class="back"><a href="../notes.html">← 모든 노트</a></p>
       </article>
     </main>

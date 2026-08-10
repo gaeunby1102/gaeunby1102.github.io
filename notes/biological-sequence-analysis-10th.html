@@ -29,7 +29,7 @@
       <img class="avatar" src="../assets/img/profile.svg" alt="Gaeun Byeon">
       <div class="name">Gaeun Byeon</div>
       <p class="bio">ML &amp; Computational Biology</p>
-      <p class="affil">M.S. Student,<br>Human Genomics Lab, Korea University</p>
+      <p class="affil">Human Genomics Lab,<br>Korea University</p>
       <ul class="links">
         <li><a href="mailto:gaeunbyeon1102@gmail.com">
           <svg class="ico" viewBox="0 0 24 24"><path d="M2 4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h20a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2H2zm0 2 10 6 10-6v.01L12 12 2 6.01V6z"/></svg>
@@ -60,7 +60,17 @@
               <li>assuming they are in same family, what can we say about its internal structure? 
               <p>→ trying to identify alpha helix or beta sheet regions in a protein seq.</p>            </li>
             </ul>
-            <blockquote class="lead-quote">💡 Example: CpG islands</blockquote>          </li>
+            <blockquote class="lead-quote">💡 Example: CpG islands
+              <ul>
+                <li>general sequence에서 C-G base pair은 C가 methylation 되어 있음
+                <p>→ High chance of this methyl-C mutating into a T</p>              </li>
+                <li>The methylation process is suppressed in short stretches of the genome such as promoters or start regions → could see many more CpG di nts
+                <p>⇒ ‘CpG island’</p>              </li>
+              </ul>
+              <p><strong>⇒ given seq.에서 어떻게 CpG 를 구분할 것인가?</strong></p>
+              <p><strong>⇒ 어떻게 어떤 short stretch 가 CpG island 인지 구분할 것인가?</strong></p>
+              <p><strong>⇒ Markov chains</strong></p>
+            </blockquote>          </li>
           </ul>
           <h3>Markov chains</h3>
           <p>We therefore want a model that generates sequences <strong>in which the probability of a symbol depends on the previous symbol.</strong></p>
