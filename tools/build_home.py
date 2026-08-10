@@ -78,13 +78,16 @@ def build_starred(n=6):
             continue
         seen.add(key)
         tag = r.get("tag") or WIKI_TAG.get(r.get("wiki", ""), r.get("wiki", "").replace("-Wiki", ""))
-        picked.append((title, tag))
+        picked.append((title, tag, r.get("url", "")))
         if len(picked) >= n:
             break
     lis = []
-    for title, tag in picked:
+    for title, tag, url in picked:
+        t = html.escape(title)
+        title_html = ('<a href="{}" target="_blank" rel="noopener">{}</a>'.format(html.escape(url), t)
+                      if url else t)
         lis.append('        <li><span class="ptitle">{}</span>'
-                   '<span class="ptag">{}</span></li>'.format(html.escape(title), html.escape(tag)))
+                   '<span class="ptag">{}</span></li>'.format(title_html, html.escape(tag)))
     block = "<!--STARRED_START-->\n" + "\n".join(lis) + "\n        <!--STARRED_END-->"
     src = open(INDEX_HTML, encoding="utf-8").read()
     src = re.sub(r'<!--STARRED_START-->.*?<!--STARRED_END-->', block, src, flags=re.S)
