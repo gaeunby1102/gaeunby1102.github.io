@@ -77,7 +77,7 @@ def build_starred(n=6):
         if key in seen:
             continue
         seen.add(key)
-        tag = WIKI_TAG.get(r.get("wiki", ""), r.get("wiki", "").replace("-Wiki", ""))
+        tag = r.get("tag") or WIKI_TAG.get(r.get("wiki", ""), r.get("wiki", "").replace("-Wiki", ""))
         picked.append((title, tag))
         if len(picked) >= n:
             break
