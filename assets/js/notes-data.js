@@ -4,6 +4,14 @@ window.NOTES_DATA = [
     "url": "notes.html",
     "notes": [
       {
+        "label": "E/I balance (excitation-inhibition)",
+        "url": "notes/e-i-balance-excitation-inhibition.html"
+      },
+      {
+        "label": "NMDA, AMPA receptors (glutamate receptors)",
+        "url": "notes/nmda-ampa-receptors-glutamate-receptors.html"
+      },
+      {
         "label": "Resource",
         "url": "notes/resource.html"
       },
@@ -20,6 +28,20 @@ window.NOTES_DATA = [
       {
         "label": "Kidney 기본 개념",
         "url": "notes/kidney.html"
+      },
+      {
+        "label": "Cytokine Signaling",
+        "url": "notes/cytokine-signaling.html"
+      }
+    ]
+  },
+  {
+    "category": "Concepts",
+    "url": "notes.html",
+    "notes": [
+      {
+        "label": "Concepts",
+        "url": "notes/concepts.html"
       }
     ]
   },

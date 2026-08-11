@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NMDA, AMPA receptors (glutamate receptors) · Gaeun Byeon</title>
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+  <header class="masthead">
+    <div class="masthead-inner">
+      <a class="brand" href="../index.html">Gaeun Byeon</a>
+      <nav>
+        <a href="../index.html">Home</a>
+        <a href="../publications.html">Publications</a>
+        <a href="../projects.html">Projects</a>
+        <a href="../seminars.html">Seminars</a>
+        <a href="../posters.html">Posters</a>
+        <a href="../papers.html">Papers</a>
+        <a href="../notes.html" class="active">Notes</a>
+        <a href="../skills.html">Skills</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-wrap">
+    <aside class="author">
+      <img class="avatar" src="../assets/img/profile.jpg" alt="Gaeun Byeon">
+      <div class="name">Gaeun Byeon</div>
+      <p class="bio">ML &amp; Computational Biology</p>
+      <p class="affil">M.S. Student,<br>Human Genomics Lab, Korea University</p>
+      <ul class="links">
+        <li><a href="mailto:gaeunbyeon1102@gmail.com">Email</a></li>
+        <li><a href="https://github.com/gaeunby1102">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/%EA%B0%80%EC%9D%80-%EB%B3%80-621113361/">LinkedIn</a></li>
+      </ul>
+    </aside>
+
+    <main class="content">
+      <article class="note">
+        <header class="note-header">
+          <h1>NMDA, AMPA receptors (glutamate receptors)</h1>
+          <p class="note-meta"><time datetime="2026-07-05">2026.07.05</time></p>
+        </header>
+        <p>많은 cytokine의 뉴런 효과가 <strong>glutamate 수용체(AMPA, NMDA)</strong> 로 수렴하기 때문에, 이 기초를 알면 여러 논문이 연결됩니다. 둘 다 흥분성(glutamatergic) 시냅스의 이온채널입니다.</p>
+        <h2>AMPA receptor (AMPAR)</h2>
+        <ul>
+          <li>빠른 흥분성 전달 담당. 서브유닛 GluA1–GluA4.</li>
+          <li>GluA2가 있으면 Ca2+ 투과 안 됨 / GluA2가 없으면 Ca2+ 투과됨 (CP-AMPAR).</li>
+          <li>시냅스 강도 = 막에 삽입된 AMPAR 수 → 넣고 빼는 <strong>trafficking</strong>이 핵심.</li>
+          <li>cytokine 연결: TNF가 표면 GluA1을 올림 (<a href="https://doi.org/10.1126/science.1067859">Beattie 2002</a>, <a href="https://doi.org/10.1038/nature04671">Stellwagen 2006</a> synaptic scaling); 염증이 척수 GluA1/CP-AMPAR 삽입 (<a href="https://doi.org/10.1016/j.expneurol.2017.04.004">Wigerblad 2017</a>).</li>
+        </ul>
+        <h2>NMDA receptor (NMDAR)</h2>
+        <ul>
+          <li>전압+리간드 동시 필요(coincidence detector), Ca2+ 투과 → 가소성·흥분독성. 의무 서브유닛 GluN1 + GluN2A/2B (= NR2A/NR2B).</li>
+          <li><strong>GluN2B(NR2B)</strong>: 느린 소멸, 시냅스외(extrasynaptic) 풍부 → 과다하면 흥분독성. 발달중 NR2B→NR2A 전환이 성숙 지표.</li>
+          <li>cytokine 연결: IL-1β → Src → NR2B 인산화 → Ca2+ 증가 (<a href="https://doi.org/10.1523/JNEUROSCI.23-25-08692.2003">Viviani 2003</a>); CXCL12 → CXCR4 → NR2B 억제 (<a href="https://doi.org/10.1038/cddis.2010.10">Nicolai 2010</a>, 직접) vs fractalkine → CX3CR1(microglia) → NR2B→NR2A 전환 지연 (Paolicelli, 경계).</li>
+        </ul>
+        <h2>왜 중요한가</h2>
+        <p>동일한 종점(NR2B / AMPAR trafficking)을 cytokine이 <strong>직접(뉴런 수용체)</strong> 또는 <strong>경계(glia 경유)</strong> 로 건드릴 수 있음 → 종점이 같다고 작용 세포가 같은 게 아님 (Direct vs boundary cases).</p>
+        <p><strong>관련:</strong> Chemokine neuromodulation · TNF / TNFR &amp; synaptic scaling · E/I balance</p>
+        <p class="back"><a href="../notes.html">← 모든 노트</a></p>
+      </article>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <div class="follow">
+      <a href="https://github.com/gaeunby1102" aria-label="GitHub">GitHub</a>
+      <a href="mailto:gaeunbyeon1102@gmail.com" aria-label="Email">Email</a>
+      <a href="https://www.linkedin.com/in/%EA%B0%80%EC%9D%80-%EB%B3%80-621113361/" aria-label="LinkedIn">LinkedIn</a>
+    </div>
+    <p>© 2026 Gaeun Byeon</p>
+  </footer>
+
+  <script>
+  window.MathJax = {
+    tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] },
+    options: { skipHtmlTags: ['script','noscript','style','textarea','pre','code'] }
+  };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</body>
+</html>

@@ -70,6 +70,16 @@ def pdf_text(pdf, pages=1):
     except Exception:
         return ""
 
+def crossref_title(doi):
+    try:
+        with urllib.request.urlopen("https://api.crossref.org/works/" + urllib.parse.quote(doi), timeout=20) as r:
+            titles = json.load(r).get("message", {}).get("title", [])
+        if titles:
+            return re.sub(r'\s+', ' ', titles[0]).strip()
+    except Exception:
+        pass
+    return ""
+
 def crossref_doi(title):
     try:
         q = urllib.parse.quote(title[:200])
@@ -122,6 +132,16 @@ def from_pdf(pdf):
 
 def extract_title(pdf, basename):
     base = re.sub(r'\.pdf$', '', basename, flags=re.I).strip()
+    # journal filenames that encode a DOI -> fetch the real title from Crossref
+    doi = None
+    if re.match(r's\d{4,5}-\d', base):
+        doi = "10.1038/" + base
+    elif base.lower().startswith("science."):
+        doi = "10.1126/" + base.split()[0]
+    if doi:
+        t = crossref_title(doi)
+        if t:
+            return t
     fname = re.sub(r'\s+', ' ', base.replace('_', ' ')).strip()
     if looks_like_title(fname):
         return fname
@@ -165,9 +185,7 @@ def main():
             path = os.path.join(PDFS, fn)
             title = extract_title(path, fn)
             tag = classify(title)
-            am = ARXIV_RE.match(re.sub(r'\.pdf$', '', fn, flags=re.I).strip())
-            url = ("https://arxiv.org/abs/" + am.group(1)) if am else \
-                  ("https://scholar.google.com/scholar?q=" + urllib.parse.quote(title))
+            url = resolve_url(path, fn, title)
             ts = datetime.datetime.fromtimestamp(os.path.getmtime(path)).astimezone().strftime("%Y-%m-%dT%H:%M:%S%z")
             new.append({"ts": ts, "wiki": "", "tag": tag, "basename": fn, "path": path,
                         "title": title, "url": url})

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>E/I balance (excitation-inhibition) · Gaeun Byeon</title>
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+  <header class="masthead">
+    <div class="masthead-inner">
+      <a class="brand" href="../index.html">Gaeun Byeon</a>
+      <nav>
+        <a href="../index.html">Home</a>
+        <a href="../publications.html">Publications</a>
+        <a href="../projects.html">Projects</a>
+        <a href="../seminars.html">Seminars</a>
+        <a href="../posters.html">Posters</a>
+        <a href="../papers.html">Papers</a>
+        <a href="../notes.html" class="active">Notes</a>
+        <a href="../skills.html">Skills</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-wrap">
+    <aside class="author">
+      <img class="avatar" src="../assets/img/profile.jpg" alt="Gaeun Byeon">
+      <div class="name">Gaeun Byeon</div>
+      <p class="bio">ML &amp; Computational Biology</p>
+      <p class="affil">M.S. Student,<br>Human Genomics Lab, Korea University</p>
+      <ul class="links">
+        <li><a href="mailto:gaeunbyeon1102@gmail.com">Email</a></li>
+        <li><a href="https://github.com/gaeunby1102">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/%EA%B0%80%EC%9D%80-%EB%B3%80-621113361/">LinkedIn</a></li>
+      </ul>
+    </aside>
+
+    <main class="content">
+      <article class="note">
+        <header class="note-header">
+          <h1>E/I balance (excitation-inhibition)</h1>
+          <p class="note-meta"><time datetime="2026-07-05">2026.07.05</time></p>
+        </header>
+        <h2>E/I 다이어그램</h2>
+        <pre><code>graph LR
+  IL17[&quot;IL-17 (IL-17RA)&quot;] --&gt;|흥분 up| E[&quot;glutamatergic 뉴런 (E)&quot;]
+  IFNg[&quot;IFN-gamma (IFNGR1/STAT1)&quot;] --&gt;|소실시 억제 down| I[&quot;GABAergic 뉴런 (I)&quot;]
+  IL4[&quot;IL-4 / IL-13 (IL-4Ra)&quot;] --&gt;|억제 up| I
+  E --&gt; Imb[&quot;E/I 불균형 = 억제 부족 / 과흥분&quot;]
+  I --&gt; Imb
+  Imb --&gt; Beh[&quot;사회성·불안·자폐유사 행동&quot;]</code></pre>
+        <p>회로가 정상 작동하려면 <strong>흥분(E, glutamatergic)</strong> 과 <strong>억제(I, GABAergic)</strong> 입력이 적절한 비율로 유지돼야 합니다. 이 균형이 깨지는 것(특히 <strong>억제 부족</strong>)이 자폐·불안·조현병 회로의 반복되는 병변입니다.</p>
+        <h2>cytokine이 E/I를 건드리는 두 방향</h2>
+        <pre><code>     E 시스템                     I 시스템
+(glutamatergic)               (GABAergic)
+     oladueum                     naieum
+ IL-17 -&gt; IL-17RA            IFN-g -&gt; IFNGR/STAT1 (소실시 억제 down)
+ (피질/편도체 흥분 up)        IL-4/IL-13 -&gt; IL-4Ra (억제 up)
+         \                         /
+       결과: 억제 부족 / 과흥분  -&gt;  E/I 붕괴</code></pre>
+        <ul>
+          <li><strong>IL-17 -&gt; 흥분성 뉴런</strong>: S1DZ 과활성 (<a href="https://doi.org/10.1038/s41586-019-1843-6">Reed 2020</a>, <a href="https://doi.org/10.1038/nature23909">Shin Yim 2017</a>), 편도체 흥분 up (<a href="https://doi.org/10.1016/j.cell.2025.03.005">Lee B 2025</a>).</li>
+          <li><strong>IFN-g -&gt; 억제성 뉴런</strong>: tonic GABA current up (<a href="https://doi.org/10.1038/nature18626">Filiano 2016</a>); 소실 -&gt; 억제 down -&gt; 과연결·사회성 결함, diazepam이 rescue.</li>
+          <li><strong>IL-4/IL-13 -&gt; 억제 촉진</strong>: GABA 전류 up (<a href="https://doi.org/10.3390/brainsci6020018">Mori 2016</a>); interneuron IL-4Ra cKO시 억제성 시냅스 down·사회성 down (<a href="https://doi.org/10.1126/science.adi1025">Barron 2024</a>, <a href="https://doi.org/10.1016/j.neuron.2021.10.022">Herz 2021</a>).</li>
+        </ul>
+        <h2>핵심 해석</h2>
+        <p>같은 종점(억제 부족)을 IL-17은 E를 올려서, IFN-g/IL-4는 I를 낮춰서 도달 → <strong>cytokine 정체가 표적 세포·방향을 예측</strong> (Excitatory vs inhibitory targeting). PV interneuron 손실·mIPSC down이 자주 나오는 지표.</p>
+        <p><strong>관련:</strong> Excitatory vs inhibitory targeting · Receptor anatomy · Interferon signaling (CNS) · IL-4 / IL-13 / STAT6</p>
+        <p class="back"><a href="../notes.html">← 모든 노트</a></p>
+      </article>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <div class="follow">
+      <a href="https://github.com/gaeunby1102" aria-label="GitHub">GitHub</a>
+      <a href="mailto:gaeunbyeon1102@gmail.com" aria-label="Email">Email</a>
+      <a href="https://www.linkedin.com/in/%EA%B0%80%EC%9D%80-%EB%B3%80-621113361/" aria-label="LinkedIn">LinkedIn</a>
+    </div>
+    <p>© 2026 Gaeun Byeon</p>
+  </footer>
+
+  <script>
+  window.MathJax = {
+    tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] },
+    options: { skipHtmlTags: ['script','noscript','style','textarea','pre','code'] }
+  };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</body>
+</html>
