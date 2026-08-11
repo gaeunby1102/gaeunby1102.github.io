@@ -168,6 +168,8 @@ blockquote {
 .note figure img { border: 1px solid var(--border); border-radius: 8px; }
 .note figcaption { color: var(--muted); font-size: 0.85rem; margin-top: 0.4rem; }
 .note .lead-quote { border-left: 3px solid var(--accent); background: var(--card); padding: 0.8rem 1rem; border-radius: 0 8px 8px 0; color: var(--fg); }
+.note .subpage { margin-top: 2.2rem; padding-top: 1.2rem; border-top: 2px solid var(--border); }
+.note .subpage > h2:first-child { margin-top: 0.2rem; font-size: 1.4rem; color: var(--accent); }
 
 /* Readable paper-summary sheet */
 .summary-sheet { display: flex; flex-direction: column; gap: 0.9rem; margin: 1.5rem 0; }

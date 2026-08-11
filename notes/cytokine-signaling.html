@@ -45,14 +45,308 @@
         </header>
         <p>cytokine·chemokine 종류별로, 수용체 결합 이후 세포 안에서 신호가 어떻게 전달되는지.</p>
         <h3>🟡 IL 계열 직접 신호 경로</h3>
-
-
+        <section class="subpage">
+          <h2>IL-17 receptor signaling</h2>
+          <p>IL-17 신호가 어떻게 배선·전달되는가 — 위키의 모든 뉴런 IL-17 주장의 기계론적 backbone. 가설에 중요한 두 가지: <strong>세포가 어느 수용체 서브유닛을 짝짓는가</strong>(어느 IL-17을 읽는지, 그 읽음이 염증성인지 neuromodulatory한지를 결정)와 <strong>Act1 adaptor의 이중 출력</strong>(전사 + 전사후, 후자는 <em>느린</em> neuromodulation의 후보 기질).</p>
+          <h2>수용체 쌍 (조합론)</h2>
+          <p>6개 리간드(IL-17A–F)와 5개 수용체(IL-17RA–RE), 모두 세포질 <strong>SEFIR</strong> 도메인 공유(Huangfu 2023). </p>
+          <p><strong>IL-17RA가 공통 서브유닛</strong>으로 가변 짝:</p>
+          <ul>
+            <li><strong>RA/RC</strong> → IL-17A/F (canonical 말초 면역)</li>
+            <li><strong>RA/RB</strong> → IL-17E (IL-25) — type-2 / neuro 경향 축</li>
+            <li><strong>RA/RE</strong> → IL-17C</li>
+            <li><strong>RD</strong> → 리간드 쌍 미해결</li>
+          </ul>
+          <p>가설(Receptor anatomy)은 <strong>뉴런이 말초 RA/RC와 다른 non-canonical RA/RB 또는 RA/RE 쌍을 써서</strong>, 같은 리간드 family를 염증성이 아니라 neuromodulatory 출력으로 보낸다는 것. 직접 뉴런 사례에서 파트너 서브유닛은 <strong>아직 미해결</strong>: <a href="https://doi.org/10.1038/s41586-019-1843-6">Reed 2020</a>은 S1DZ 뉴런에서 RB-vs-RE를 미결로 남기고, <a href="https://doi.org/10.1038/nature23909">Shin Yim 2017</a>·<a href="https://doi.org/10.1038/s41590-020-0776-4">Alves de Lima 2020</a>은 피질 뉴런의 IL-17RA를 확립하되 파트너는 못 박지 못함.</p>
+          <p><a href="https://doi.org/10.64898/2026.04.13.718218">Cho 2026</a>이 지도를 진화적으로 개정: 수용체 tree가 리간드 tree를 <em>반영하지 않음</em>; IL-17REL은 likely <strong>decoy</strong>이며 <strong>설치류에서 pseudogenized</strong>(murine model 주의); <strong>IL-17E:IL-17RB</strong>가 가장 강한 positive selection을 보이고 신경발달 유전자와 coevolve — RA/RB 뉴런 축의 직접 근거. → Evolutionary constraint.</p>
+          <h2>Act1 (CIKS): 두 arm</h2>
+          <p>IL-17R adaptor <strong>Act1</strong>이 수용체를 두 출력에 연결(Herjan 2018, Huangfu 2023):</p>
+          <ol>
+            <li><strong>전사 arm.</strong> SEFIR–SEFIR 모집 → TRAF6/K63-ubiquitination → <strong>NF-κB + JNK/p38/ERK MAPK</strong>; 원위 IL-17RA CBAD 도메인 → C/EBPβ.</li>
+            <li><strong>전사후 / mRNA 안정화 arm.</strong> Act1은 (SEFIR 통해) 직접 <strong>RNA-binding protein</strong>으로, 표적 3′UTR의 stem-loop에 결합해 3개 RNP(Act1-SF2-IKKi, Act1-Dcp1-TBK1, Act1-HuR-Arid5a)를 조립. RNA-binding-dead 변이는 NF-κB는 유지하되 mRNA 안정화는 상실 — 두 arm을 깔끔히 분리.</li>
+          </ol>
+          <p><strong>두 번째 arm이 뉴런에 중요한 이유:</strong> 뉴런이 IL-17을 <em>느린</em> 입력으로 읽는다면(Set-point modulation), Act1 매개 mRNA 안정화는 급성 NF-κB 전사와 구별되는, 지속적 전사후 뉴런 유전자 프로그램 재편 기전을 제공.</p>
+          <p>뉴런 IL-17의 별도 하류 결과로 태아 피질의 <strong>ISR/PERK → eIF2α-P</strong> 번역 정지 경로가 있음(<a href="https://doi.org/10.1038/s41593-020-00762-9">Kalish 2021</a>).</p>
+          <p><strong>관련 문서:</strong> Receptor anatomy · Excitatory vs inhibitory targeting · Maternal immune activation · Evidence tiers</p>
+        </section>
+        <section class="subpage">
+          <h2>IL-6 trans-signaling</h2>
+          <p><strong>gp130-high이지만 막 IL-6R-low</strong>인 뉴런이 그럼에도 IL-6를 읽는 기전. 어느 서브유닛을 발현하느냐(receptor wiring)가 cytokine을 <em>어떻게</em> 받는지를 결정하는 가장 선명한 사례 — 축소판 Receptor anatomy 논변.</p>
+          <h2>배선</h2>
+          <p>IL-6는 먼저 막 <strong>IL-6R</strong>(리간드 결합 사슬)에 결합; 그 복합체가 보편적 신호 전달체 <strong>gp130</strong>을 이량체화해 <strong>JAK/STAT3</strong>와 Ras-MAPK를 점화(<a href="https://doi.org/10.7150/ijbs.4989">Rose-John 2012</a>). 막 IL-6R은 제한적(간세포, 일부 백혈구)이라, 대부분의 세포 — &quot;많거나 모든 신경세포&quot; 포함 — 는 <strong>soluble IL-6R(sIL-6R)이 있을 때만</strong> IL-6에 반응. sIL-6R(주로 <strong>ADAM17</strong> shedding)은 IL-6/sIL-6R 복합체를 형성해 gp130+ 세포면 어디든 결합. 이것이 <strong>trans-signaling</strong>.</p>
+          <ul>
+            <li><strong>Classic</strong>(막 IL-6R) 신호 ≈ 재생/항염증.</li>
+            <li><strong>Trans-signaling</strong>(sIL-6R) ≈ 친염증.</li>
+            <li>ADAM17이 스위치; 혈장 sIL-6R/sgp130 buffer가 휴지기 trans-signaling을 억제.</li>
+          </ul>
+          <h2>뉴런이 이렇게 IL-6를 읽는다는 증거</h2>
+          <p><a href="https://doi.org/10.1186/1742-2094-8-54">Burton 2011</a>: flow cytometry로 Neuro.2A 뉴런은 <strong>~90% gp130+이나 IL-6R+는 ~3%뿐</strong>(microglia는 둘 다 보유). sIL-6R 전처리 시 IL-6가 STAT3 인산화를 구동, trans-signaling decoy <strong>sgp130</strong>이 차단. ICV sgp130은 LPS sickness 회복을 가속 — IL-6는 sickness를 유발하기보다 <em>유지</em>.</p>
+          <p><strong>왜 T1이 아니라 boundary인가:</strong> sgp130은 <strong>세포형 비특이적</strong>(뉴런·microglia 모두에 작용), 뉴런 데이터는 세포주, readout은 뉴런-내재적 전기생리가 아니라 IL-6 <em>생산</em>, 그리고 뉴런 한정 수용체 제거가 없음. 즉 Burton은 Direct vs boundary cases 기준을 넘지 못한 채 <em>배선</em> 주장(뉴런이 기계를 가짐)을 뒷받침.</p>
+          <p>T1에 도달하는 <strong>말초</strong> IL-6 사례와 대조: <a href="https://doi.org/10.1186/1744-8069-7-73">Quarta 2011</a>은 Nav1.8+ nociceptor에서 <strong>gp130</strong>을 선택적으로 제거해, single-fiber 전기생리로 민감화의 cell-autonomous 상실을 보임.</p>
+          <h2>도구</h2>
+          <p>Hyper-IL-6(작용제 융합), <strong>sgp130Fc</strong>(선택적 trans-signaling decoy), L-gp130(구성적). 바이러스 IL-6(HHV8)는 천연 gp130-직접 유사물.</p>
+          <p><strong>관련 문서:</strong> <a href="/p/78fc0c435111830093d8817e99ebaa42">Cytokine receptor signaling pathways</a> · Receptor anatomy · Set-point modulation</p>
+        </section>
+        <section class="subpage">
+          <h2>IL-4 / IL-13 / STAT6</h2>
+          <p>IL-4와 IL-13은 공유 수용체 서브유닛 <strong>IL-4Ra</strong>를 쓰고, 대표 하류는 <strong>STAT6</strong>. 뉴런에선 주로 <strong>억제성(GABAergic) 쪽을 강화</strong>하는 방향.</p>
+          <h2>수용체 구성</h2>
+          <pre><code>IL-4  -&gt; (type I) IL-4Ra + gamma-c
+IL-4  -&gt; (type II) IL-4Ra + IL-13Ra1
+IL-13 -&gt; IL-4Ra + IL-13Ra1     -&gt; JAK -&gt; STAT6
+(IL-13Ra2 = decoy)</code></pre>
+          <h2>뉴런/CNS 근거</h2>
+          <ul>
+            <li><strong>T1</strong>: <a href="https://doi.org/10.1016/j.neuron.2021.10.022">Herz 2021</a> — GABAergic 뉴런 IL-4Ra cKO만으로 기억 손상(glutamatergic·microglia cKO는 아니) ; <a href="https://doi.org/10.1126/science.adi1025">Barron 2024</a> — interneuron IL-4Ra에 ILC2 유래 IL-13 작용 -&gt; 억제성 시냅스 up·사회성 (microglia cKO는 효과 없음, boundary 배제).</li>
+            <li><strong>reporter(T1–급)</strong>: <a href="https://doi.org/10.4049/jimmunol.1102150">Morrison 2012</a> — IL-13Ra1이 SNc/VTA <strong>dopaminergic 뉴런</strong>에 특이 발현, 산화스트레스 사멸 매개.</li>
+            <li><strong>NSC</strong>: <a href="https://doi.org/10.1016/j.celrep.2016.09.075">Bhattarai 2016</a> (zebrafish, IL-4/STAT6 증식), <a href="https://doi.org/10.1016/j.jneuroim.2008.03.003">da Silva 2008</a> (망막 progenitor) — progenitor-intrinsic. 대조: <a href="https://doi.org/10.1016/j.mcn.2005.10.006">Butovsky 2006</a>은 IL-4가 <strong>microglia</strong> 경유(boundary).</li>
+          </ul>
+          <h2>해석</h2>
+          <p>IL-4/IL-13은 IL-17(흥분성)과 반대쪽 — 억제 강화 쪽으로 E/I를 뮸. 같은 IL-4라도 뉴런직접(Herz/Barron) vs microglia경유(Butovsky)로 갈림.</p>
+          <p><strong>관련:</strong> JAK-STAT signaling · Excitatory vs inhibitory targeting · E/I balance · Direct vs boundary cases</p>
+        </section>
+        <section class="subpage">
+          <h2>IL-1 / IL-1R1 signaling</h2>
+          <blockquote class="lead-quote">💥 <strong>IL-1β</strong>는 이 corpus에서 <em>뉴런 직접 작용이 가장 강하게 입증된</em> cytokine 중 하나입니다.
+            <p>수용체 <strong>IL-1R1</strong>이 정의된 뉴런 집단(nociceptor · 해마 과립세포 · 등쪽솔기 세로토닌 뉴런 등) 위에 있고, <strong>뉴런 한정 제거·복원</strong>으로 통증·사회위축·인지가 그 수용체에 의존함이 입증됐습니다. </p>
+            <p>동시에 — 핵심 — 뉴런에서의 IL-1 신호는 면역세포와 <strong>다른(비정규) 경로</strong>를 씁니다. </p>
+            <p>→ Evidence tiers · Direct vs boundary cases</p>
+          </blockquote>
+          <h2>수용체·리간드 구성</h2>
+          <ul>
+            <li><strong>리간드:</strong> <strong>IL-1α · IL-1β</strong>(작용) / <strong>IL-1Ra</strong>(천연 길항제, 같은 수용체 경쟁). 미끼수용체 <strong>IL-1R2</strong>는 신호 없음.</li>
+            <li><strong>수용체:</strong> <strong>IL-1R1</strong> + 보조수용체 <strong>IL-1RAcP</strong> → 삼량체 형성이 신호전달 필수.</li>
+            <li><strong>뉴런 특이 반전:</strong> 뇌 특이 splice variant <strong>IL-1RAcPb</strong>가 정규 MyD88/NF-κB 신호를 <strong>차단</strong> → 뉴런은 IL-1을 면역세포와 다르게 읽음 (<a href="https://doi.org/10.1186/s12974-024-03287-1">Nemeth 2024</a>).</li>
+          </ul>
+          <h2>신호 — 두 갈래 (뉴런은 비정규 경로)</h2>
+          <pre><code>IL-1β → IL-1R1 + IL-1RAcP
+ ├─ [정규·전사]  MyD88 → IRAK1/4 → TRAF6 → NF-κB / MAPK     ← 주로 glia·내피·ependyma (뉴런에선 약함)
+ └─ [비정규·비전사·빠름]  Src-family kinase → GluN2B(NR2B) Tyr1472 인산화 → NMDA Ca²⁺↑   ← 뉴런</code></pre>
+          <ul>
+            <li><a href="https://doi.org/10.1523/JNEUROSCI.23-25-08692.2003"><strong>Viviani 2003</strong></a> — glia-free(96% 이상 뉴런) 해마 배양에서 IL-1β→IL-1R1→<strong>Src</strong>→NR2B(Tyr1472) 인산화 → NMDA 유발 Ca²⁺ 약 45%↑. MK801 민감(NMDA 채널 경유), washout 후 24분+ 지속 = 느린 tone. MyD88/NF-κB 전사 arm과 독립(PP2가 IL-1β 유도 IL-6 mRNA는 못 막음).</li>
+            <li><a href="https://doi.org/10.1186/s12974-024-03287-1"><strong>Nemeth 2024</strong></a> — i.c.v. IL-1β가 NF-κB를 <strong>비뉴런(ependyma·choroid plexus·내피)에서만</strong> 켜고 IL-1R1⁺ 뉴런에선 안 켬. 뉴런은 IL-1RAcPb로 정규 경로를 막아 급성 전사변화가 없고, 대신 1개월 복원이 시냅스·mRNA-binding 유전자를 서서히 조절 → 느린 Set-point modulation.</li>
+          </ul>
+          <h2>어느 뉴런이 IL-1R1을 갖나 (Nemeth 2024 atlas)</h2>
+          <ul>
+            <li><strong>주로 glutamatergic(Vglut2⁺)</strong>, 약 46개 핵: <strong>DG 과립세포(최강)</strong> · CA3 · <strong>등쪽솔기(세로토닌)</strong> · 체성감각·이상피질 · <strong>BLA</strong> · 시상. 감각중계(~50%)·정서조절(~26%) 회로 편향. 내피 Tie2-Cre 대조로 <em>뉴런성</em> 확인.</li>
+            <li><strong>말초:</strong> TRPV1⁺ DRG nociceptor의 약 10%(소직경, 절반 Sst⁺, NP3/PSNP6), 인간 DRG 보존 (<a href="https://doi.org/10.1084/jem.20191430">Mailhot 2020</a>). → Receptor anatomy</li>
+          </ul>
+          <h2>증거 (tier별)</h2>
+          <table>
+          <tr><th>논문</th><th>뉴런 / 영역</th><th>조작</th><th>결과 (readout)</th><th>Tier</th></tr>
+          <tr><td><a href="https://doi.org/10.1084/jem.20191430">Mailhot 2020</a> <em>JEM</em></td><td>TRPV1⁺ DRG nociceptor</td><td>Trpv1-Cre::Il1r1 cKO <strong>  • nociceptor 한정 복원</strong></td><td>기계통증 allodynia(EAE·관절염·OA) 소실/복원; in-vivo GCaMP6 Ca²⁺; <strong>통증이 질병중증도와 해리</strong></td><td><strong>T1</strong></td></tr>
+          <tr><td><a href="https://doi.org/10.1038/s41380-020-0788-3">DiSabato 2021</a> <em>Mol Psychiatry</em></td><td>해마 DG glutamatergic (Vglut2⁺)</td><td>global KO + 뉴런 제거 + <strong>뉴런 복원</strong>  • DG AAV-Cre</td><td>만성 사회패배 후 사회위축·작업기억 결함; 스트레스 ΔFosB 상승 (양방향 의존)</td><td><strong>T1</strong></td></tr>
+          <tr><td><a href="https://doi.org/10.1016/j.cell.2025.10.040">Yang 2026</a> <em>Cell</em></td><td>등쪽솔기(DRN) 세로토닌 (Sert-Cre)</td><td>Il1r1 cKO + 교차 chemo/opto (Gq 충분·Gi 구제)</td><td>질병 사회위축; fiber-photometry Ca²⁺ 지속상승; <strong>IL-1β 특이(IL-1α 아님)</strong></td><td><strong>T1</strong></td></tr>
+          <tr><td><a href="https://doi.org/10.1186/s12974-024-03287-1">Nemeth 2024</a> <em>J Neuroinflamm</em></td><td>brain-wide (Vglut2 복원)</td><td>Il1r1 reporter + 뉴런 한정 복원</td><td>nIL-1R1 atlas + <strong>비정규 신호(뉴런 NF-κB 없음, IL-1RAcPb)</strong></td><td><strong>T1</strong> (지도)</td></tr>
+          <tr><td><a href="https://doi.org/10.1523/JNEUROSCI.23-25-08692.2003">Viviani 2003</a> <em>J Neurosci</em></td><td>glia-free 해마 뉴런</td><td>약리 (IL-1Ra, PP2) — 유전 아님</td><td>IL-1R1→Src→NR2B→NMDA Ca²⁺↑ (기전 해상)</td><td>T2</td></tr>
+          <tr><td><a href="https://doi.org/10.1038/cddis.2015.151">Guadagno 2015</a> <em>Cell Death Dis</em></td><td>신경전구세포 (NPC)</td><td>rIL-1β + IL-1Ra (약리)</td><td>IL-1R1→p53/ROS→세포주기정지·apoptosis (<strong>전구세포 brake</strong>); 리간드는 microglia 유래</td><td>T2 / boundary</td></tr>
+          <tr><td><a href="https://doi.org/10.1016/j.neuropharm.2012.04.004">Vezzani 2013</a> <em>Neuropharm</em> (review)</td><td>—</td><td>—</td><td>IL-1R1/TLR 뉴런 발현; Src/NR2B 과흥분·seizure threshold↓·GABA 약화·AMPA trafficking</td><td>n/a</td></tr>
+          <tr><td><a href="https://doi.org/10.1016/j.nbd.2016.12.007">Iori 2017</a> <em>Neurobiol Dis</em></td><td>뉴런 + astrocyte (비분리)</td><td>miR-146a mimic / 약리 (비세포특이)</td><td>뇌전증 진행 억제, slice population-spike 과흥분↓ — 단 세포 locus 미분리</td><td>boundary</td></tr>
+          <tr><td><a href="https://doi.org/10.1016/j.expneurol.2017.04.004">Wigerblad 2017</a> <em>Exp Neurol</em></td><td>척수 dorsal horn 뉴런</td><td>염증 (TNF/IL-1β)</td><td>GluA1 / Ca-permeable AMPA 막 삽입 (통증 감작)</td><td>boundary</td></tr>
+          </table>
+          <h2>뉴런 기능 효과 (E/I · 과흥분)</h2>
+          <ul>
+            <li><strong>흥분↑:</strong> NMDA Ca²⁺↑(<a href="https://doi.org/10.1523/JNEUROSCI.23-25-08692.2003">Viviani</a>) · Ca-permeable AMPA 삽입(<a href="https://doi.org/10.1016/j.expneurol.2017.04.004">Wigerblad</a>) · seizure threshold↓·과흥분(<a href="https://doi.org/10.1016/j.neuropharm.2012.04.004">Vezzani</a>/<a href="https://doi.org/10.1016/j.nbd.2016.12.007">Iori</a>) → IL-1β는 <strong>흥분성 gain-setter</strong>.</li>
+            <li><strong>억제↓:</strong> IL-1β가 GABAergic 전달을 약화(Vezzani 종합).</li>
+            <li><strong>행동:</strong> 통증(Mailhot) · 질병행동/사회위축(Yang·DiSabato) · 작업기억(DiSabato) · 발달 전구세포 억제(Guadagno). → ephys 상세는 Electrophysiology readouts</li>
+          </ul>
+          <h2>IL-1α vs IL-1β — 같은 수용체, 다른 결과</h2>
+          <p><a href="https://doi.org/10.1016/j.cell.2025.10.040">Yang 2026</a>에서 IL-1α와 IL-1β는 IL-1R1을 공유하지만 결과가 갈립니다 — <strong>IL-1β만 사회성↓(withdrawal)</strong>, IL-1α는 hypoactivity. 리간드-특이 effector 선택성 / Set-point modulation 수수께끼.</p>
+          <h2>리뷰 포인트 (해석)</h2>
+          <blockquote class="lead-quote">🧭
+            <ul>
+              <li><strong>수용체는 직접, 리간드는 boundary:</strong> IL-1R1은 뉴런 위(직접)지만 IL-1β 공급원은 대개 microglia·침윤 면역세포(공급측 boundary). &quot;직접성&quot;은 <em>수용체 수준</em>에서 성립.</li>
+              <li><strong>비정규 신호가 핵심:</strong> 뉴런은 NF-κB를 잘 안 켜고(IL-1RAcPb) Src→NR2B 같은 비전사·빠른 경로 + 느린 set-point 조절 → <em>느린 신경조절자</em> 서사에 부합.</li>
+              <li><strong>말초↔중추 대칭:</strong> nociceptor(Mailhot) ↔ 중추 glutamatergic(DiSabato)·세로토닌(Yang) — 같은 IL-1R1, 같은 양방향 KO+복원 논리.</li>
+              <li><strong>IL-33과의 대비:</strong> 같은 IL-1 family·MyD88인데 IL-33은 수용체가 <em>microglia</em>에 있어 boundary → <strong>IL-1(직접) vs IL-33(경계)</strong> 은 이 리뷰의 교과서적 대비.</li>
+            </ul>
+          </blockquote>
+          <h2>IL-33 대조 — 같은 IL-1 family, 수용체는 microglia (scope 경계)</h2>
+          <p>IL-33도 <strong>IL-1 family</strong>(ST2/IL1RL1 + IL-1RAcP → MyD88 → NF-κB)지만, CNS에서 <strong>ST2는 microglia에</strong> 있고 뉴런·astrocyte는 공급원입니다. 그래서 IL-33의 시냅스·회로 효과는 <strong>direct neuromodulation이 아니라 glia 경유(boundary)</strong> — 이 리뷰에선 <em>direct neuromodulator 목록</em>이 아니라 <strong>scope를 정의하는 대조군</strong>으로 다룹니다.</p>
+          <table>
+          <tr><th>논문</th><th>IL-33 공급원</th><th>ST2 수용체</th><th>glia 경유 결과</th></tr>
+          <tr><td><a href="https://doi.org/10.1126/science.aal3589">Vainchtein 2018</a></td><td>astrocyte</td><td>microglia</td><td>발달기 과잉 흥분성 시냅스 섭식</td></tr>
+          <tr><td><a href="https://doi.org/10.1016/j.cell.2020.05.050">Nguyen 2020</a></td><td>뉴런 (DG/CA1)</td><td>microglia</td><td>ECM(Aggrecan) 섭식 → 스파인 가소성·원격 기억</td></tr>
+          <tr><td><a href="https://doi.org/10.1016/j.immuni.2021.12.001">He 2022</a></td><td>astrocyte</td><td>microglia</td><td>AKT·대사 → 포식; LTP·사회성 결함</td></tr>
+          </table>
+          <ul>
+            <li><strong>유일한 직접 예외:</strong> <a href="https://doi.org/10.7150/thno.69320">Wang 2022</a> — 말초 감각뉴런 ST2가 A-type K⁺ 억제 → 과흥분(통증). CNS 아님 → &quot;ST2 = 항상 glia&quot;의 예외 후보.</li>
+            <li><strong>교훈:</strong> IL-1R1(뉴런 = 직접) vs ST2(microglia = 경계) — <em>같은 수용체 family라도 어느 세포가 갖느냐로 직접성이 갈린다.</em> IL-1을 돋보이게 하는 대조. → 상세 <a href="/p/5aec0c43511182368e2001836018c247">IL-33 / ST2 (boundary cytokine)</a></li>
+          </ul>
+          <h2>열린 질문 (open questions · 리뷰에 넣을 gap)</h2>
+          <ol>
+            <li><strong>뉴런 IL-1R1 비정규 신호의 하류가 미해결.</strong> 뉴런은 NF-κB를 안 켜고 <strong>IL-1RAcPb</strong>를 쓰는데(<a href="https://doi.org/10.1186/s12974-024-03287-1">Nemeth 2024</a>), 그 다음 실제 effector(Src/NR2B 외에 전사·번역·trafficking 중 무엇)가 불모확.</li>
+            <li><strong>CNS 뉴런 ST2가 실재하나?</strong> IL-33 직접-뉴런 사례는 <strong>말초 감각뉴런뿐</strong>(<a href="https://doi.org/10.7150/thno.69320">Wang 2022</a>). 중추 뉴런 ST2의 기능적 발현은 미확인 — 있다면 IL-33도 일부 직접작용으로 재분류 가능.</li>
+            <li><strong>In vivo source–target 특이성.</strong> 어느 면역세포(microglia·침윤 monocyte·호중구)가 어느 IL-1R1⁺ 뉴런에 IL-1β를 국소 전달하는지 — 전달의 해부가 불명확(수용체는 직접이어도 상류 cascade는 면역계).</li>
+            <li><strong>인간 근거 부족.</strong> 직접작용 증거가 거의 mouse. 인간은 IL-1R1의 <strong>DRG 보존</strong> 정도만; 중추 nIL-1R1·행동 연결은 미검증.</li>
+            <li><strong>회로 수준 E/I 순효과 미해결.</strong> IL-1β가 흥분↑(NMDA·AMPA)과 억제↓(GABA)를 동시에 건드리는데, 특정 회로에서 <strong>net E/I</strong>가 어느 방향인지·맥락 의존성은 정량되지 않음.</li>
+          </ol>
+          <blockquote class="lead-quote">📝 이 gap들은 주로 IL-1 기준; <strong>#2는 IL-33 쪽</strong> 열린 질문이다(<a href="/p/5aec0c43511182368e2001836018c247">IL-33 / ST2</a> 참조).</blockquote>
+          <p><strong>관련:</strong> <a href="/p/5aec0c43511182368e2001836018c247">IL-33 / ST2 (boundary)</a> · NMDA, AMPA receptors · Neuron-specific conditional KO · <a href="/p/78fc0c435111830093d8817e99ebaa42">Cytokine receptor signaling pathways</a> · Set-point modulation · Receptor anatomy</p>
+        </section>
         <h3>🔵 IFN · TNF · Chemokine · 경계 사례</h3>
-
-
+        <section class="subpage">
+          <h2>Interferon signaling (CNS)</h2>
+          <p>인터페론은 두 계열: <strong>type II = IFN-g</strong> (면역/T세포), <strong>type I = IFN-a/b</strong> (항바이러스). 둘 다 JAK-STAT1.</p>
+          <h2>IFN-g (type II) -&gt; STAT1</h2>
+          <ul>
+            <li><strong>뉴런 직접 작용의 대표 T1</strong>: <a href="https://doi.org/10.1038/nature18626">Filiano 2016</a> — meningeal T세포 IFN-g가 피질 <strong>GABAergic 뉴런</strong>의 IFNGR1/STAT1에 작용 -&gt; tonic GABA up -&gt; E/I·사회성 (myeloid STAT1 제거는 효과 없음).</li>
+            <li><strong>progenitor에선 주로 억제/quiescence</strong>: NSC 증식 down·astrocyte 운명 (<a href="https://doi.org/10.1038/s41586-019-1362-5">Dulken 2019</a>, <a href="https://doi.org/10.1186/s41232-023-00263-9">Wang J 2023</a>, <a href="https://doi.org/10.1002/iid3.70287">Li 2025</a>) — 대부분 T세포/microglia 매개라 boundary/T2.</li>
+          </ul>
+          <h2>type I IFN (IFN-a/b) -&gt; IFNAR -&gt; STAT1/2</h2>
+          <ul>
+            <li>뉴런 IFNAR cKO가 항바이러스 방어에 필수 (<a href="https://doi.org/10.1128/JVI.00422-20">Hwang 2020</a>, CaMKII-Cre). NSC를 quiescence로 (<a href="https://doi.org/10.15252/emmm.202217307">Wang F 2023</a>).</li>
+            <li><strong>주의(경계)</strong>: <a href="https://doi.org/10.1016/j.cell.2024.02.020">Escoubas 2024</a> — 피질 발달에서 IFNAR은 <strong>microglia</strong>에 필요, 뉴런 Syn1-Cre 제거는 효과 없음 (깨끗한 음성대조). <a href="https://doi.org/10.1126/science.1252945">Baruch 2014</a> — 노화 choroid plexus IFNAR(niche).</li>
+          </ul>
+          <h2>해석</h2>
+          <p>IFN-g는 <strong>사회행동과 억제 tone</strong>의 뉴런-직접 채널(Filiano)이자, progenitor에선 증식 억제자. 같은 IFN이라도 세포·맥락에 따라 직접(뉴런) vs glia 매개가 갈림 → tier 명시 필요.</p>
+          <p><strong>관련:</strong> JAK-STAT signaling · Excitatory vs inhibitory targeting · Neural-progenitor cytokine signaling · Direct vs boundary cases</p>
+        </section>
+        <section class="subpage">
+          <h2>TNF / TNFR &amp; synaptic scaling</h2>
+          <p>TNF-alpha는 <strong>항상성 시냅스 스케일링(homeostatic synaptic scaling)</strong> 의 고전적 조절자 — 단, 우리 틀에선 대표적 <strong>boundary 경계 사례</strong>입니다(리간드 공급원이 glia).</p>
+          <h2>기전</h2>
+          <pre><code>(활동 저하) -&gt; glia가 TNF-alpha 분비 up
+   -&gt; 뉴런 TNFR1
+   -&gt; 표면 GluA1 AMPAR 삽입 up (PI3K 등)
+   -&gt; 시냅스 강도 전체 상향 (scaling up)</code></pre>
+          <p>TNFR1(주로 염증/스케일링) vs TNFR2 구분. 복합 I(NF-kB 생존) vs 복합 II(세포사/네크롭토시스)는 <a href="https://doi.org/10.1016/j.cyto.2016.08.035">Varfolomeev 2018</a> 참고.</p>
+          <h2>근거</h2>
+          <ul>
+            <li><a href="https://doi.org/10.1126/science.1067859">Beattie 2002</a> (Science): glia TNF가 표면 GluA1 up, 내인성 TNF 차단시 전달약화.</li>
+            <li><a href="https://doi.org/10.1038/nature04671">Stellwagen 2006</a> (Nature): scaling에 <strong>glia 유래 TNF가 필요·충분</strong> -&gt; 뉴런은 responder일 뿐 (boundary).</li>
+            <li><a href="https://doi.org/10.1016/j.neures.2015.02.005">Sugimura 2015</a>: 시각피질 critical period의 T-type Ca2+ LTP에 TNF 필요(global KO).</li>
+            <li><a href="https://doi.org/10.1016/j.expneurol.2017.04.004">Wigerblad 2017</a>: 염증이 척수 CP-AMPAR 삽입(GluA1 인산화 의존) — 상대적으로 직접적(T1 제안).</li>
+          </ul>
+          <h2>해석</h2>
+          <p>TNF→AMPAR trafficking은 &quot;cytokine이 시냅스 강도 다이얼을 돌린다&quot;는 가장 오래된 증거. 다만 거의 항상 <strong>리간드가 glia에서 오고</strong> 세포한정 수용체 KO가 없어 boundary/T2에 머문다.</p>
+          <p><strong>관련:</strong> NMDA, AMPA receptors · Set-point modulation · Direct vs boundary cases · Cytokine receptor signaling pathways</p>
+        </section>
+        <section class="subpage">
+          <h2>Chemokine neuromodulation</h2>
+          <p>Gi-coupled GPCR를 통해 신경세포에 작용해 시냅스·회로 특성을 조절하는 chemokine. 이 문서는 위키의 가장 선명한 Direct vs boundary cases 대비를 중심으로 구성: <strong>같은 NMDA 수용체 종점(NR2B/GluN2B)에 서로 다른 세포로 수렴하는 두 chemokine.</strong></p>
+          <h2>CXCL12 / CXCR4 — 직접 (뉴런 수용체)</h2>
+          <p><a href="https://doi.org/10.1038/cddis.2010.10">Nicolai 2010</a> (Tier 2): glia-free(&gt;95% 뉴런) 피질 배양에서 항상성 chemokine <strong>CXCL12</strong>가 뉴런 <strong>CXCR4</strong>에 작용해 NMDA 수용체 <strong>NR2B/GluN2B</strong> 서브유닛(단백·mRNA)을 선택적으로 하향조절(NR1·NR2A는 보존). 기전은 후성유전·<strong>HDAC 의존</strong>: CXCL12가 전역 H3 acetylation을 낮추고 NR2B promoter를 억제; TSA·butyrate가 차단 — JAK/STAT·Act1/MyD88과 다른 논리(<a href="/p/78fc0c435111830093d8817e99ebaa42">Cytokine receptor signaling pathways</a>). NR2B는 시냅스외(extrasynaptic) 풍부형이라 CXCL12가 시냅스외 NMDA Ca²⁺ 반응과 흥분독성 사멸은 둔화시키되 시냅스 NMDA는 보존. 생체에서 모체에 AMD3100 투여 시 새끼 피질 NR2B <em>상승</em> — 내인성 chemokine tone이 NR2B를 억제(Set-point modulation).</p>
+          <h2>Fractalkine / CX3CR1 — boundary (microglial 수용체)</h2>
+          <p><a href="https://doi.org/10.1126/science.1202529">Paolicelli 2011</a> (canonical boundary): <strong>CX3CL1</strong> 리간드는 뉴런이 만들지만, 수용체 <strong>CX3CR1</strong>은 건강한 뇌에서 <em>microglia에만</em> 발현. 따라서 fractalkine은 방향성 있는 <strong>뉴런→microglia</strong> 신호이며, 뉴런에 대한 모든 효과는 glia 매개. CX3CR1-KO는 <strong>시냅스 pruning·성숙</strong>을 지연시켜 미성숙 연결·ASD 인접 표현형 — 그러나 뉴런 chemokine 수용체가 아니라 microglia(pruning/adenosine·D-serine)를 통해. (NR2B→NR2A 전환 자체는 Hoshiko 2012 소관)</p>
+          <h2>핵심 대비</h2>
+          <p><strong>같은 종점, 다른 세포.</strong> CXCL12와 fractalkine 모두 NR2B/시냅스 NMDA를 조절하나, CXCL12는 뉴런 자체 수용체(직접), fractalkine은 microglia(boundary)를 통함. <em>종점 동일성이 작용 세포를 입증하지 않음</em> — 뉴런 한정 교란이 필요함을 가장 깔끔히 보여줌(Evidence tiers, Receptor anatomy).</p>
+          <h2>기타 맥락</h2>
+          <p>CXCL12–CXCR4는 GABAergic interneuron 전구체의 발달 이동 단서(<a href="https://doi.org/10.1038/s42003-025-08691-8">Tang 2025</a>), 혈관주위 감시 T 세포 고정(<a href="https://doi.org/10.1016/j.neuron.2025.10.036">Kipnis 2025</a>)으로도 작동 — 같은 리간드-수용체 쌍, 다른 세포. CCR5 memory-linking 등 다른 뉴런 chemokine 수용체는 추적할 직접 사례 후보.</p>
+          <p><strong>관련 문서:</strong> Direct vs boundary cases · Receptor anatomy · <a href="/p/78fc0c435111830093d8817e99ebaa42">Cytokine receptor signaling pathways</a></p>
+        </section>
+        <section class="subpage">
+          <h2>IL-33 / ST2 (boundary cytokine)</h2>
+          <blockquote class="lead-quote">🧩 IL-33은 시냅스·회로 리모델링에 실제로 중요하지만, 이 틀에선 <strong>전형적 boundary</strong>
+            <p>기능 수용체 <strong>ST2(IL1RL1)가 microglia에</strong> 있고 뉴런·astrocyte는 주로 <strong>공급원(source)</strong>이기 때문입니다. </p>
+            <p><a href="/p/1f4c0c435111833f93d3818b690835f6">IL-1</a>과 같은 family·MyD88를 쓰지만 <em>받는 세포가 다르다</em>는 점이 핵심. (단, 말초 감각뉴런 ST2 직접 예외 후보 존재.) → Direct vs boundary cases</p>
+          </blockquote>
+          <h2>수용체·리간드 구성</h2>
+          <ul>
+            <li><strong>리간드 IL-33:</strong> 핵 <strong>alarmin</strong> — 세포 손상·스트레스 시 방출되는 위험신호. <strong>뉴런·astrocyte가 분비</strong>.</li>
+            <li><strong>수용체 ST2 (IL1RL1)</strong> + 보조수용체 <strong>IL-1RAcP</strong> → MyD88 → IRAK → TRAF6 → NF-κB (IL-1 family 공유). <strong>sST2</strong>(soluble)는 미끼 길항제.</li>
+            <li><strong>뇌에서 ST2는 주로 microglia</strong> — smFISH상 <em>Il1rl1</em>이 microglia 배타적(<a href="https://doi.org/10.1016/j.immuni.2021.12.001">He 2022</a>). 따라서 뉴런/행동 효과는 대개 <strong>microglia 경유</strong>.</li>
+          </ul>
+          <h2>신호 구조</h2>
+          <pre><code>IL-33 (핵 alarmin, 방출) → ST2(IL1RL1) + IL-1RAcP → MyD88 → IRAK → TRAF6 → NF-κB
+                                                        └→ (microglia) AKT → 미토콘드리아 대사↑ → 시냅스 포식↑</code></pre>
+          <h2>증거 — 모두 microglia 경유 (boundary)</h2>
+          <table>
+          <tr><th>논문</th><th>IL-33 공급원</th><th>ST2 수용체</th><th>기전·결과</th></tr>
+          <tr><td><a href="https://doi.org/10.1126/science.aal3589">Vainchtein 2018</a> <em>Science</em></td><td>astrocyte</td><td>microglia</td><td>발달기 미세아교 <strong>과잉 흥분성 시냅스 섭식</strong> 촉진; 결핍 시 시냅스 과잉·회로 이상</td></tr>
+          <tr><td><a href="https://doi.org/10.1016/j.cell.2020.05.050">Nguyen 2020</a> <em>Cell</em></td><td>경험-특이적 해마 뉴런 (DG/CA1)</td><td>microglia</td><td>microglia가 주변 <strong>ECM(Aggrecan) 섭식</strong>(Marco/Gas7/protease) → 스파인 가소성·신생뉴런 통합·원격 공포기억 정밀. Syn1-Cre <em>Il33</em>  • Cx3cr1 <em>Il1rl1</em> cKO 둘 다 스파인·mEPSC 빈도↓; 노화 IL-33↓, 과발현 구제(ST2 의존)</td></tr>
+          <tr><td><a href="https://doi.org/10.1016/j.immuni.2021.12.001">He 2022</a> <em>Immunity</em></td><td>astrocyte</td><td>microglia</td><td>ST2→<strong>AKT→미토콘드리아 대사</strong>↑→시냅토솜 포식. <em>Il1rl1</em> KO시 시냅스 과잉·사회성·해마 <strong>LTP 결함</strong>·kainate seizure 취약</td></tr>
+          </table>
+          <h2>하나의 직접 예외 — 말초 감각뉴런 ST2</h2>
+          <blockquote class="lead-quote">⚡ <a href="https://doi.org/10.7150/thno.69320"><strong>Wang 2022</strong></a><strong> *Theranostics</strong><em> — IL-33/ST2가 감각뉴런의 A-type K⁺(Kv4) 전류를 억제 → nociceptor 과흥분 → 통증행동. 즉 </em>뉴런 ST2*가 직접 내재 흥분성을 올리는 후보(T2). CNS의 microglia-ST2 boundary와 정반대 방향 — &quot;ST2 = 항상 glia&quot;가 아님을 보임. (04 ephys 코퍼스 수록)</blockquote>
+          <h2>ILC2 / IL-33 축 (상류·경계)</h2>
+          <p>수막·맥락총의 <strong>ILC2(2형 선천림프구)</strong>가 IL-33을 받아 CNS 손상회복·인지에 기여(<a href="https://doi.org/10.1084/jem.20161982">Gadani 2017</a> · <a href="https://doi.org/10.1084/jem.20190915">Fung 2020</a>). <a href="https://doi.org/10.1126/science.adi1025">Barron 2024</a>에서는 ILC2→<strong>IL-13</strong>→interneuron <strong>IL-4Rα</strong>로 이어져 하류는 뉴런에 닿음. IL-33은 이 축의 <strong>상류 alarmin</strong>.</p>
+          <h2>리뷰 포인트 — IL-1과의 대비</h2>
+          <blockquote class="lead-quote">🧭
+            <ul>
+              <li><strong>같은 family, 다른 세포:</strong> IL-1(IL-1R1 = 뉴런 = 직접) ↔ IL-33(ST2 = microglia = 경계). MyD88 로직은 같은데 <strong>수용체 해부(receptor anatomy)</strong> 가 결과를 가름 — 이 리뷰 논지의 핵심 예시.</li>
+              <li><strong>&quot;시냅스를 바꿔도 뉴런 직접이 아니다&quot;:</strong> IL-33은 시냅스·ECM·기억을 실제로 바꾸지만 executor는 microglia. fractalkine·complement와 함께 boundary를 정의.</li>
+              <li><strong>단, 말초 예외(Wang 2022):</strong> 감각뉴런 ST2가 직접 과흥분 유도 → 뉴런 ST2 기능은 추적 가치.</li>
+              <li><strong>공급원 방향:</strong> 뉴런이 IL-33 <em>source</em>(Nguyen)라는 점도 특징 — 뉴런→microglia 방향 신호(fractalkine과 유사 구도).</li>
+            </ul>
+          </blockquote>
+          <p><strong>관련:</strong> <a href="/p/1f4c0c435111833f93d3818b690835f6">IL-1 / IL-1R1 signaling</a> · Direct vs boundary cases · Microglia &amp; synaptic pruning · Receptor anatomy · Evidence tiers</p>
+        </section>
         <h3>🗂 전체 경로 지도 &amp; 리뷰</h3>
-
-
+        <section class="subpage">
+          <h2>Cytokine receptor signaling pathways</h2>
+          <p>뉴런이 cytokine/chemokine 신호를 전달하는 세포내 경로의 참조 지도 — <em>수용체 결합 이후 무엇이 일어나는가</em>, 그리고 어느 뉴런이 어느 경로를 쓰는가. 경로의 다양성(전사·전사후·후성유전·번역정지)은 cytokine이 빠른 시냅스가 아니라 <strong>느린</strong> neuromodulatory 입력으로 작용할 수 있는 이유의 일부(Set-point modulation).</p>
+          <h2>경로와 뉴런 사용자</h2>
+          <table>
+          <tr><th>경로</th><th>리간드 → 수용체</th><th>뉴런 사용자</th><th>출처</th></tr>
+          <tr><td><strong>JAK–STAT1</strong></td><td>IFN-γ → IFNGR1/2</td><td>피질 GABAergic (Vgat+)</td><td><a href="https://doi.org/10.1038/nature18626">Filiano 2016</a></td></tr>
+          <tr><td><strong>JAK–STAT6</strong></td><td>IL-4/IL-13 → IL-13Rα1+IL-4Rα</td><td>중뇌 dopaminergic</td><td><a href="https://doi.org/10.3390/brainsci6020018">Mori 2016</a></td></tr>
+          <tr><td><strong>Act1 (SEFIR)</strong> → NF-κB/MAPK + mRNA 안정화</td><td>IL-17 → IL-17RA(+RB/RC/RE)</td><td>피질 excitatory</td><td>Herjan 2018, Huangfu 2023</td></tr>
+          <tr><td><strong>MyD88</strong></td><td>IL-1β → IL-1R1; IL-33 → ST2</td><td>TRPV1+ nociceptor; ILC2</td><td><a href="https://doi.org/10.1084/jem.20191430">Mailhot 2020</a>, <a href="https://doi.org/10.1084/jem.20161982">Gadani 2017</a></td></tr>
+          <tr><td><strong>gp130 / JAK–STAT3 trans-signaling</strong></td><td>IL-6/sIL-6R → gp130</td><td>Nav1.8+ nociceptor</td><td><a href="https://doi.org/10.1186/1744-8069-7-73">Quarta 2011</a>, <a href="https://doi.org/10.7150/ijbs.4989">Rose-John 2012</a></td></tr>
+          <tr><td><strong>Gi-GPCR → HDAC/후성유전</strong></td><td>CXCL12 → CXCR4</td><td>피질 뉴런 (NR2B 억제)</td><td><a href="https://doi.org/10.1038/cddis.2010.10">Nicolai 2010</a></td></tr>
+          <tr><td><strong>PERK → eIF2α-P (ISR)</strong></td><td>IL-17a (하류)</td><td>태아 피질 뉴런</td><td><a href="https://doi.org/10.1038/s41593-020-00762-9">Kalish 2021</a></td></tr>
+          <tr><td><strong>TNFR → AMPA trafficking</strong></td><td>TNF → TNFR</td><td>homeostatic synaptic scaling</td><td>(추적 축)</td></tr>
+          </table>
+          <h2>주목할 점</h2>
+          <ul>
+            <li><strong>Act1의 이중 출력</strong>(NF-κB 전사 + SEFIR 통한 직접 mRNA 안정화)이 <em>느린</em> neuromodulation의 핵심. → <a href="/p/b5fc0c4351118361a9bb816cf719bb33">IL-17 receptor signaling</a>.</li>
+            <li><a href="/p/a77c0c435111828ea1e601dcc0521a80"><strong>IL-6 trans-signaling</strong></a>은 수용체 배선 트릭: 뉴런은 gp130-high / IL-6R-low라 IL-6/sIL-6R 복합체로만 반응. → <a href="/p/a77c0c435111828ea1e601dcc0521a80">IL-6 trans-signaling</a>.</li>
+            <li><strong>CXCL12/CXCR4 후성유전 경로</strong>(HDAC1, NR2B promoter 억제)는 chromatin을 통해 전사에 도달 — JAK/STAT·Act1/MyD88과 전혀 다른 논리. → <a href="/p/304c0c43511183a1af8101e43e52261a">Chemokine neuromodulation</a>.</li>
+            <li>경로 소속이 흔히 <strong>표적 세포 클래스</strong>와 E/I 방향을 좌우 — STAT1/IFN-γ → inhibitory; Act1/IL-17 → excitatory. → Excitatory vs inhibitory targeting.</li>
+          </ul>
+          <p>같은 지도가 Direct vs boundary cases도 뒷받침: 많은 boundary 논문이 cytokine을 이 경로들의 <em>glial</em> 버전으로 보냄(예: Jeong 2021의 IL-13→myeloid iNOS/MPO).</p>
+          <p><strong>관련 문서:</strong> Receptor anatomy · Evidence tiers · Set-point modulation</p>
+        </section>
+        <section class="subpage">
+          <h2>IL-17 Biology Reviews</h2>
+          <p>각 리뷰는 서로 다른 시간대와 스케일에서 IL-17 생물학을 다루며, 뉴런-내재적 사이토카인 시그널링 thesis와의 거리가 각기 다르다. <strong>핵심 물음</strong>: 이 리뷰들이 그린 IL-17 생물학의 지형 위에서, 뉴런이 IL-17R을 직접 발현하고 신호를 받는다는 주장은 어디에 위치하는가?</p>
+          <hr>
+          <h2>1. 수용체·경로 scaffold — 뉴런 주장의 기준선</h2>
+          <p><strong>McGeachy MJ 2019</strong> (Immunity, PMID 30995505)과 <strong>Huangfu L 2023</strong> (Signal Transduct Target Ther, PMID 37816755)은 IL-17 패밀리의 두 개의 기준 리뷰로 한 쌍을 이룬다. 이 두 리뷰가 정립한 scaffold를 이해하지 않으면, 이후의 뉴런-직접 작용 주장들을 제대로 평가할 수 없다.</p>
+          <ul>
+            <li><strong>McGeachy 2019</strong> — IL-17A–F 여섯 리간드 전체와 IL-17RA~RE 수용체 체계를 정리하고, Act1–TRAF6–NF-κB를 canonical 경로로 확립. <strong>특히 중요한 점</strong>: NF-κB 독립적인 mRNA 안정화 경로(HuR, Arid5a)를 IL-17 신호의 두 번째 팔로 기술한다. 만약 뉴런이 IL-17R를 발현한다면, 이 mRNA 안정화 경로가 저농도 만성 노출에서 염증 프로그램을 촉발하지 않고도 뉴런 유전자 발현을 조율하는 기제일 수 있다. CNS 효과는 &quot;CNS-resident cells에 의한 뉴런 과흥분성&quot;으로만 기술 — <strong>glia와 뉴런을 구분하지 않는다</strong>.</li>
+            <li><strong>Huangfu 2023</strong> — 2023년 기준 최신 IL-17 패밀리 리뷰. IL-17RA가 비조혈조직 전반에 &quot;광범위하게 발현&quot;된다는 점을 명시하며, IL-17RC는 비혈액 상피·간엽 세포에 농축되어 있다고 기술. <strong>이것이 뉴런 주장의 필요조건</strong>: 수용체가 뇌에 있을 수 있는 선험적 이유를 제공한다. 그러나 리뷰 자체는 그 주장을 하지 않는다. 또한 &quot;수용체 분포는 아직 조사 중&quot;이라고 명시 — 이 gap이 정확히 뇌-전역 IL-17R 매핑 연구(Lee 2025)가 채워야 할 공간이다.</li>
+          </ul>
+          <blockquote class="lead-quote"><strong>Scaffold 요약</strong>: Act1 SEFIR 도메인 → TRAF6 K63-ubiquitination → NF-κB + ERK/p38/JNK MAPK, 그리고 HuR/Arid5a mRNA 안정화 팔. 뉴런이 IL-17R를 발현한다면 이 경로를 그대로 사용하거나 변형된 버전을 사용해야 한다 — Huangfu 2023이 이 benchmark를 제공한다.</blockquote>
+          <hr>
+          <h2>2. 진화적 보존 — 뉴런 발현이 &#x27;파생&#x27;이 아니라 &#x27;조상&#x27; 특성일 가능성</h2>
+          <p><strong>Chauhan P 2021</strong> (Cytokine, PMID 33581983)과 <strong>McGeachy 2019</strong>는 서로 다른 방향에서 진화 논증을 제공한다.</p>
+          <ul>
+            <li><strong>Chauhan 2021</strong> — 면역학 primer로 cytokine 수용체 전체 분류 체계를 정립. IL-17 유전자 기원이 <strong>선충(nematode)</strong>에 있고, 척추동물 CNS가 진화하기 이전부터 SEFIR 기반 신호 카세트가 존재했음을 지적. <strong>Thesis 관련성</strong>: 만약 IL-17R 신호 장치가 적응면역계보다 오래되었다면, 뉴런의 IL-17R 발현은 면역세포로부터의 최근 &#x27;공동-선택&#x27;이 아니라 조상형 기능을 보존한 결과일 수 있다.</li>
+            <li><strong>McGeachy 2019</strong> — IL-17 패밀리가 jawless fish, 연체동물, 성게에까지 존재한다는 점을 강조. <strong>논리</strong>: 이 정도로 고도로 보존된 신호 카세트라면, 뉴런이 IL-17R를 발현하는 것이 생물학적으로 그럴듯한(plausible) 이야기가 된다 — 기이한 예외가 아니라 패턴의 연장선.</li>
+          </ul>
+          <blockquote class="lead-quote"><strong>진화 논증 합성</strong>: IL-17 SEFIR 신호는 선충 → 척추동물 전 경로에 걸쳐 보존된 고대 기제다. 이것은 뇌에서의 IL-17R 발현이 진화적으로 불가능하지 않음을 시사하는 선험적 논거이지, 직접적 증거는 아니다. 직접 증거는 single-cell RNA-seq과 conditional knockout 실험에서 와야 한다 (2019년 당시 이 데이터는 존재하지 않았음 — McGeachy가 명시).</blockquote>
+          <hr>
+          <h2>3. 소스 세포의 upstream 조절 — RORγt 경로와 약리학적 toolkit</h2>
+          <p><strong>Huh JR 2012</strong> (Eur J Immunol, PMID 22949321)은 IL-17 생산 세포(Th17, ILC) 내부의 전사 스위치를 다루며, 뉴런 downstream 주장과는 거리가 멀다. 그러나 thesis에서 없어서는 안 될 <strong>upstream context</strong>를 제공한다.</p>
+          <ul>
+            <li><strong>Huh 2012</strong> — RORγt(Th17 마스터 전사인자)의 LBD를 표적으로 하는 소분자 억제제들(digoxin, SR2211, ursolic acid, ML 209)을 리뷰. RORγt는 IL-17A·IL-22 전사를 co-activator 결합을 통해 구동; 억제제는 helix H12를 구조적으로 붕괴시켜 co-activator 결합을 차단. <strong>Thesis 관련성 두 가지</strong>: (1) 이 억제제들이 MIA(모체 면역 활성화) 실험에서 IL-17의 인과 역할을 검증하는 약리학적 도구로 사용된다(digoxin, SR1001). (2) RORγ(뇌를 포함한 여러 조직에서 낮은 수준으로 발현되는 넓은 isoform)의 뇌 내 기능은 이 리뷰 당시 조사되지 않았다 — 이것은 CNS 세포에서 RORγ 경유 IL-17 경로 조절의 가능성을 열어두는 암묵적 gap이다.</li>
+            <li><strong>미묘한 포인트</strong>: Huh 2012는 E. lenta 장내세균이 digoxin의 RORγt 억제력을 감소시키도록 변형한다고 기술 — 장내 미생물이 cytokine tone의 set-point를 조정하는 기제. 이는 thesis의 면역-신경 set-point 조율 프레임과 연결된다.</li>
+          </ul>
+          <blockquote class="lead-quote"><strong>소스 세포 합성</strong>: 뉴런이 IL-17을 <em>받는</em> 세포라면, 누가 <em>보내는지</em>가 중요하다. Huh 2012는 Th17 세포와 ILC를 IL-17의 지배적 소스로 확립하고, 이들을 조작하는 약리학적 toolkit을 제공한다. MIA 실험에서 RORγt 억제가 행동 표현형을 역전시킨다면, 그것은 IL-17이 causal cytokine임을 지지하는 간접 증거다.</blockquote>
+          <hr>
+          <h2>4. 경계 사례 분석 — 이 리뷰들이 명시적으로 묻지 않은 질문</h2>
+          <p>네 편의 리뷰 모두 <strong>뉴런-내재적 IL-17 신호</strong> 문제를 직접 제기하지 않는다. 각 리뷰의 경계 위치:</p>
+          <table>
+          <tr><th>리뷰</th><th>CNS 관련 내용</th><th>뉴런 직접 작용에 대한 태도</th></tr>
+          <tr><td>Huh 2012</td><td>EAE에서 Th17이 CNS disease target에 작용 (implied)</td><td>뉴런 absent — 범위 밖</td></tr>
+          <tr><td>McGeachy 2019</td><td>뉴런 과흥분성, 자폐·우울증 행동</td><td>&quot;CNS-resident cells&quot;로 뭉뚱그림 — glia/뉴런 미분리</td></tr>
+          <tr><td>Chauhan 2021</td><td>CNS 전혀 없음</td><td>해당 없음</td></tr>
+          <tr><td>Huangfu 2023</td><td>EAE/MS — Th17 침윤, BBB 파괴</td><td>glia-forward, 뉴런 수용체 발현 언급 없음</td></tr>
+          </table>
+          <p><strong>McGeachy 2019의 핵심 boundary case</strong>: &quot;IL-17 activates CNS-resident cells, causing hyperexcitability of neurons&quot; — 이 문장은 glial 매개 간접 흥분과 직접 뉴런 수용체 결합을 구분하지 않는다. Siffrin et al. 2010을 인용하지만 메커니즘을 해결하지 않은 채 ambiguous하게 남긴다. <strong>이 문장은 neuron-intrinsic thesis의 증거로 인용할 수 없다</strong>.</p>
+          <hr>
+          <h2>What this means for the thesis</h2>
+          <p>이 네 편의 리뷰에서 thesis를 위해 추출할 수 있는 논리 구조:</p>
+          <ol>
+            <li><strong>IL-17R 발현이 뉴런에 있을 수 있는 선험적 이유</strong> (Chauhan 2021 + McGeachy 2019): SEFIR 신호 카세트는 선충 기원의 고대 기제이며, IL-17RA는 비조혈 조직 전반에 광범위하게 발현된다. 진화적 보존이 뉴런 발현을 plausible하게 만든다.</li>
+            <li><strong>신호 경로의 benchmark</strong> (McGeachy 2019 + Huangfu 2023): 뉴런이 IL-17R를 발현하면 Act1–TRAF6–NF-κB와 HuR/Arid5a mRNA 안정화 팔을 사용해야 한다. <strong>mRNA 안정화 팔은 특히 중요</strong>: 이것은 뉴런이 전면적 NF-κB 염증 반응 없이도 IL-17에 반응하는 세포내 기제를 제공한다 — homeostatic neuronal plasticity와 양립 가능한 신호 모드.</li>
+            <li><strong>소스 세포 조작 toolkit</strong> (Huh 2012): RORγt 억제제(digoxin, SR1001)로 IL-17 소스를 차단했을 때 행동 표현형이 바뀐다면, IL-17이 causal임을 지지. 이 실험적 논리는 뉴런-직접 작용 가설과 직접 연결되지 않지만, IL-17 인과성의 필요 전제를 확립한다.</li>
+            <li><strong>Field의 canonical blind spot</strong> (네 편 모두): 2012–2023년 사이 IL-17 리뷰들은 한결같이 CNS 효과를 glia/T세포 침윤으로 귀속시키고, 뉴런 수용체 발현에 대한 단일세포 데이터를 검토하지 않는다. 이 공백이 neuron-intrinsic thesis의 novelty claim을 정당화한다: <strong>기존 리뷰가 묻지 않은 질문을 최초로 체계적으로 묻는 것이 thesis의 기여다.</strong></li>
+          </ol>
+          <blockquote class="lead-quote"><strong>한 줄 요약</strong>: 이 리뷰들은 IL-17이 고대 기원의 광범위한 수용체 체계를 가진 사이토카인임을 확립하지만, 뉴런을 수신자로 검토한 적이 없다. Thesis는 이 canonical 공백을 채우는 작업이다.</blockquote>
+        </section>
         <p class="back"><a href="../notes.html">← 모든 노트</a></p>
       </article>
     </main>

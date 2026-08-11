@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NHPCA: Monkey Atlas · Gaeun Byeon</title>
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+  <header class="masthead">
+    <div class="masthead-inner">
+      <a class="brand" href="../index.html">Gaeun Byeon</a>
+      <nav>
+        <a href="../index.html">Home</a>
+        <a href="../publications.html">Publications</a>
+        <a href="../projects.html">Projects</a>
+        <a href="../seminars.html">Seminars</a>
+        <a href="../posters.html">Posters</a>
+        <a href="../papers.html">Papers</a>
+        <a href="../notes.html" class="active">Notes</a>
+        <a href="../skills.html">Skills</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-wrap">
+    <aside class="author">
+      <img class="avatar" src="../assets/img/profile.jpg" alt="Gaeun Byeon">
+      <div class="name">Gaeun Byeon</div>
+      <p class="bio">ML &amp; Computational Biology</p>
+      <p class="affil">M.S. Student,<br>Human Genomics Lab, Korea University</p>
+      <ul class="links">
+        <li><a href="mailto:gaeunbyeon1102@gmail.com">Email</a></li>
+        <li><a href="https://github.com/gaeunby1102">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/%EA%B0%80%EC%9D%80-%EB%B3%80-621113361/">LinkedIn</a></li>
+      </ul>
+    </aside>
+
+    <main class="content">
+      <article class="note">
+        <header class="note-header">
+          <h1>NHPCA: Monkey Atlas</h1>
+          <p class="note-meta"><time datetime="2026-08-02">2026.08.02</time></p>
+        </header>
+        <ul>
+          <li>NHPCA interactive annotation category에서 Tissue 별 Cell type markers 확인
+        </li>
+          <li>Supple Figure 8. → <strong>Selected markers for monkey cell cluster annotations</strong>
+          <p><a href="https://static-content.springer.com/esm/art:10.1038/s41586-022-04587-3/MediaObjects/41586_2022_4587_MOESM1_ESM.pdf">https://static-content.springer.com/esm/art:10.1038/s41586-022-04587-3/MediaObjects/41586_2022_4587_MOESM1_ESM.pdf</a></p>        </li>
+          <li>Supple Table 1e → <strong>Individual cluster markers 중 PBMC</strong></li>
+        </ul>
+        <figure><img src="../assets/img/notes/nhpca-monkey-atlas/img-1.png" alt="Supple. Fig 10" loading="lazy"><figcaption>Supple. Fig 10</figcaption></figure>
+        <p>In the kidney, <em>LGR5</em>+ cells were mostly enriched in the distal convoluted tubule (DCT) and, to a less extent, in the descending and ascending loop of Henle(Fig.3a)</p>
+        <p>In line with expectations, we also observed enrichment of immunological-related traits (‘lymphocyte count’, ‘monocyte count’ and traits related to immune disorders) in myeloid cells and B and T lymphocytes. </p>
+        <h2>Lymphocyte 림프구</h2>
+        <ul>
+          <li>장기 이식으로 Pig kidney를 Monkey에 이식했을 때 면역반응을 일으킬 때 Lymphocyte가 많이 나타날 수 있다.</li>
+          <li>분류 : 
+          <ul>
+            <li><strong>T cell</strong> → CD 4+ T, CD 8+ T, NKT
+            <ul>
+              <li>Naive T cell(미접촉 T 세포) : 말초에서 아직 항원을 만나지 못한 T 세포</li>
+              <li>helper T cell(보조 T 세포) : T세포 중 다른 백혈구들의 분화 및 활성화 조절 → 체액성 면역 촉진</li>
+              <li>Killer T cell(자연 살해 T세포) : Helper T cell 및 Killer T cell에 비해 적게 나타남</li>
+              <li>Memory T cell(기억 T세포) : 항원을 인지한 T cell이 생존하고 있다가 항원 재침입 시 빠르게 활성화되어 효과 T cell의 기능을 할 수 있음</li>
+              <li>Suppressor(Regulatory) T cell(조절 T세포): 면역 반응이 끝날 때까지 T세포의 세포 매개 면역을 차단?</li>
+            </ul>          </li>
+            <li><strong>B cell : </strong>Lymphocyte 중 항체를 생산하는 세포 → 항원에 대항해 항체를 만들어냄</li>
+            <li><strong>Plasma B cell :</strong> B cell이 항원 자극에 의해 활성화되어 분화된 세포</li>
+            <li><strong>NK(Natural Killer cell) </strong>: 선천 면역을 담당하여 바이러스 감염세포나 종양 세포를 공격</li>
+            <li><strong>Dendritic cell(수지상세포) </strong>
+            <p>: 항원을 인식하고 처리하여 T 세포에 제시하는 주요 항원제시세포(APC)로 기능</p>
+            <ul>
+              <li>pDC :  <strong>바이러스 감염에 대한 초기 면역 반응 → 타입 I 인터페론(IFN-α, IFN-β)을 생산</strong></li>
+              <li>cDC(DC) : <strong>항원 포획과 제시</strong></li>
+            </ul>          </li>
+            <li><strong>Monocytes </strong>: 혈액에 존재하는 큰 백혈구로, 세포 잔해, 병원체, 외부 물질을 포식하고 소화</li>
+            <li><strong>Macrophage</strong> : 조직에 존재하는 큰 백혈구로, 세포 잔해, 병원체, 외부 물질을 포식하고 소화</li>
+            <li><strong>Neutrophil</strong> : 백혈구의 일종으로, 감염과 싸우는 데 도움을 주며, 병원체를 섭취하여 제거</li>
+            <li><strong>NKT cells :</strong>T 세포와 NK 세포의 특징을 모두 가짐</li>
+          </ul>        </li>
+        </ul>
+        <table>
+        <tr><td>B cells</td><td>MS4A1,CD79B,CD74,LGMN,SPINT2,BANK1</td></tr>
+        <tr><td>Plasma B cell</td><td>JCHAIN,MZB1,TNFRSF17,SSR4</td></tr>
+        <tr><td>Natural Killer Cells</td><td>GZMK,NKG7,GNLY,CCL5</td></tr>
+        <tr><td>Natural Killer T Cells</td><td>KLRB1,GZMB,NKG7,CD3D,GZMK,GZMB</td></tr>
+        <tr><td>Dendritic cells(cDC)</td><td>PTPN22, CD247,IRF8</td></tr>
+        <tr><td>Monocytes</td><td>CST3,LYZ,MNDA,CTSS</td></tr>
+        <tr><td>Macrophages</td><td>MRC1,CD163,CPA3</td></tr>
+        <tr><td>Neutrophil</td><td>S100A09</td></tr>
+        </table>
+        <pre><code>immune.genes = list(
+    B.cells = c(&#x27;MS4A1&#x27;, &#x27;CD79B&#x27;, &#x27;CD74&#x27;, &#x27;LGMN&#x27;, &#x27;SPINT2&#x27;, &#x27;BANK1&#x27;),
+    Plasma.cell = c(&#x27;JCHAIN&#x27;, &#x27;MZB1&#x27;, &#x27;TNFRSF17&#x27;, &#x27;SSR4&#x27;),
+    NK.cells = c(&#x27;GZMK&#x27;, &#x27;NKG7&#x27;, &#x27;GNLY&#x27;, &#x27;CCL5&#x27;),
+    NKT.cells = c(&#x27;KLRB1&#x27;, &#x27;GZMB&#x27;, &#x27;NKG7&#x27;, &#x27;CD3D&#x27;, &#x27;GZMK&#x27;),
+    Dendritic.cells = c(&#x27;PTPN22&#x27;, &#x27;CD247&#x27;, &#x27;IRF8&#x27;),
+    Monocytes = c(&#x27;CST3&#x27;, &#x27;LYZ&#x27;, &#x27;MNDA&#x27;, &#x27;CTSS&#x27;),
+    Macro = c(&#x27;MRC1&#x27;, &#x27;CD163&#x27;, &#x27;CPA3&#x27;),
+    Neutrophil = c(&#x27;S100A9&#x27;, &#x27;SRM&#x27;)
+)</code></pre>
+        <details><summary><strong>original</strong></summary>
+          <pre><code>immune.genes = list(B.cells=c(&#x27;MS4A1&#x27;, &#x27;CD74&#x27;, &#x27;LGMN&#x27;, &#x27;SPINT2&#x27;),
+                    Plasma.cell=c(&#x27;JCHAIN&#x27;),
+                    NK.cells=c(&#x27;NKG7&#x27;, &#x27;KLRB&#x27;),
+                    NKT.cells=c(&#x27;CD3D&#x27;,  &#x27;GZMK&#x27;, &#x27;GZMB&#x27;),
+                    Dendritic.cells=c(&#x27;IRF8&#x27;),
+                    Monocytes=c(&#x27;LYZ&#x27;,&#x27;CTSS&#x27;),  
+										Macro=c(&#x27;CPA3&#x27;),
+                    Neutrophil=c(&#x27;S100A9&#x27;))
+FeaturePlot(sc.rna, features=paste0(m.suffix,unlist(immune.genes)))
+FeaturePlot(sc.rna, features=paste0(m.suffix,c(&#x27;CD74&#x27;,&#x27;LGMN&#x27;,&#x27;GZMB&#x27;)))</code></pre>
+        </details>
+        <p class="back"><a href="../notes.html">← 모든 노트</a></p>
+      </article>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <div class="follow">
+      <a href="https://github.com/gaeunby1102" aria-label="GitHub">GitHub</a>
+      <a href="mailto:gaeunbyeon1102@gmail.com" aria-label="Email">Email</a>
+      <a href="https://www.linkedin.com/in/%EA%B0%80%EC%9D%80-%EB%B3%80-621113361/" aria-label="LinkedIn">LinkedIn</a>
+    </div>
+    <p>© 2026 Gaeun Byeon</p>
+  </footer>
+
+  <script>
+  window.MathJax = {
+    tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] },
+    options: { skipHtmlTags: ['script','noscript','style','textarea','pre','code'] }
+  };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</body>
+</html>

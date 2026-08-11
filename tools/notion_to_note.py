@@ -141,6 +141,11 @@ def render_blocks(blocks, imgdir, relprefix, indent=8):
         elif t in ("column_list", "column"):
             ch = get_children(b["id"]) if b.get("has_children") else []
             html_out.append(render_blocks(ch, imgdir, relprefix, indent))
+        elif t == "child_page":
+            ctitle = o.get("title", "") or "Untitled"
+            ch = get_children(b["id"])
+            inner = render_blocks(ch, imgdir, relprefix, indent + 2)
+            html_out.append(f'{pad}<section class="subpage">\n{pad}  <h2>{esc(ctitle)}</h2>\n{inner}\n{pad}</section>')
         else:
             rt = o.get("rich_text")
             if rt:
