@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AWS DataLake · Gaeun Byeon</title>
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+  <header class="masthead">
+    <div class="masthead-inner">
+      <a class="brand" href="../index.html">Gaeun Byeon</a>
+      <nav>
+        <a href="../index.html">Home</a>
+        <a href="../publications.html">Publications</a>
+        <a href="../projects.html">Projects</a>
+        <a href="../seminars.html">Seminars</a>
+        <a href="../posters.html">Posters</a>
+        <a href="../papers.html">Papers</a>
+        <a href="../notes.html" class="active">Notes</a>
+        <a href="../skills.html">Skills</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-wrap">
+    <aside class="author">
+      <img class="avatar" src="../assets/img/profile.jpg" alt="Gaeun Byeon">
+      <div class="name">Gaeun Byeon</div>
+      <p class="bio">ML &amp; Computational Biology</p>
+      <p class="affil">M.S. Student,<br>Human Genomics Lab, Korea University</p>
+      <ul class="links">
+        <li><a href="mailto:gaeunbyeon1102@gmail.com">Email</a></li>
+        <li><a href="https://github.com/gaeunby1102">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/%EA%B0%80%EC%9D%80-%EB%B3%80-621113361/">LinkedIn</a></li>
+      </ul>
+    </aside>
+
+    <main class="content">
+      <article class="note">
+        <header class="note-header">
+          <h1>AWS DataLake</h1>
+          <p class="note-meta"><time datetime="2025-07-02">2025.07.02</time></p>
+        </header>
+        <ul>
+          <li>datalake를 통해 data ingest가 빨라진다. schema only를 사용해서
+          <ul>
+            <li>EAT 패턴 : 추출을 해서 로드를 하고 트랜스폼해서 바로 사용하기 때문에 빠른 ingest라고 표현한다 ( transform 단계를 많이 최소화, 정규화 같은 것들)</li>
+          </ul>        </li>
+        </ul>
+        <ul>
+          <li>Storage, Computing이 decoupled 되어있기 때문에 데이터를 독립적으로 조정할 수 있다.</li>
+          <li>Apache, 하둡 사용하는 듯</li>
+        </ul>
+        <ul>
+          <li>기존의 DB에서, 데이터 무결성이나 쿼리 처리 등을 위해서 굉장히 복잡하고 헤비한 베이스들이 있었는데, 이걸 DataLake로 해결을 한다.
+          <ul>
+            <li>처음에는 storage를 위한 용이었음.</li>
+            <li>“단일 플랫폼” ← 오픈 테이블</li>
+            <li>ACID transcaction, query support</li>
+          </ul>        </li>
+          <li>Iceberg
+          <ul>
+            <li>Spark, Hive를 같은 OTF에서 처리할 수 있다.</li>
+            <li>Iceberge 쿼리 엔진을 통해 SQL 처리 가능</li>
+          </ul>        </li>
+          <li>Catalog → Metadata → Data layer로 구성된다.
+          <ul>
+            <li>Catalog: 최신의 메타데이터를 포인팅하고 있음.</li>
+          </ul>        </li>
+        </ul>
+        <ul>
+          <li>히든 파티션, 파티션 transform
+          <ul>
+            <li>Split plan으로 data할 때 쿼리 재작성 없이 WHERE 등의 SQL 쿼리 처리 가능하다.</li>
+          </ul>        </li>
+          <li>Tagging, branching
+          <ul>
+            <li>tagging을 해서 expire를 막는거고</li>
+          </ul>        </li>
+        </ul>
+        <ul>
+          <li>S3
+          <ul>
+            <li>tableau form의(parqeut 가장 많음) 데이터 S3 저장이 늘어남에 따라</li>
+            <li>scale up이 필요했고, 유지 관리에 대한 코스트가 높앗다.</li>
+          </ul>        </li>
+          <li>S3 Table
+          <ul>
+            <li>Iceberg 형태의 OTF를 네이티브하게 저장한다.
+            <ul>
+              <li>따라서 ARN을 가진다 → 활용성이 높다</li>
+            </ul>          </li>
+          </ul>        </li>
+          <li>기존 DBMS와의 가장 큰 차이점은 무엇인가?
+          <ul>
+            <li>Storage/Computing layer가 DBMS에서는 동일한 반면에 Storage기능에서 Athena와 같은 컴퓨팅 엔진으로 쿼리접근하는게 가장 큰 차이다.</li>
+          </ul>        </li>
+        </ul>
+        <h2>실습</h2>
+        <ul>
+          <li><a href="https://catalog.us-east-1.prod.workshops.aws/workshops/61e4a7a9-5776-46d2-a671-497df9b22a13/ko-KR/2-prerequisites/create-table-bucket/">Create Table Bucket</a>
+          <ul>
+            <li>Table Bucket을 생성합니다.</li>
+          </ul>        </li>
+          <li><a href="https://catalog.us-east-1.prod.workshops.aws/workshops/61e4a7a9-5776-46d2-a671-497df9b22a13/ko-KR/2-prerequisites/create-namespace/">Create Namespace</a>
+          <ul>
+            <li>Namespace를 생성합니다.</li>
+          </ul>        </li>
+          <li><a href="https://catalog.us-east-1.prod.workshops.aws/workshops/61e4a7a9-5776-46d2-a671-497df9b22a13/ko-KR/2-prerequisites/setup-emr-workspace/">Setup EMR Workspace</a>
+          <ul>
+            <li>EMR Serverless 환경에서 구동되는 EMR workspace를 셋팅합니다. 이 환경을 통해 Pyspark 코드를 이용해 데이터들을 프로세싱 해볼 수 있습니다.</li>
+          </ul>        </li>
+        </ul>
+        <ul>
+          <li>pySpark
+          <ul>
+            <li>#으로 주석이 안된다? 오잉 → SQL 표준에서의 주석 방식을 사용해야한다~
+            <pre><code>%%sql
+-- Run</code></pre>
+            <p>이런식으로</p>          </li>
+            <li>%%로 sql 쿼리 처리가 가능하다 오호~</li>
+            <li><code>spark.sql</code> 로 긴 쿼리도 처리 가능하다~</li>
+          </ul>        </li>
+          <li>AWS account
+          <ul>
+            <li>4158XXXXXXXX</li>
+          </ul>        </li>
+        </ul>
+        <h2>Quick sight</h2>
+        <pre><code>~ $ aws quicksight list-users --aws-account-id 4158XXXXXXXX --namespace default --region ap-northeast-2
+{
+    &quot;UserList&quot;: [
+        {
+            &quot;Arn&quot;: &quot;arn:aws:quicksight:ap-northeast-2:4158XXXXXXXX:user/default/WSParticipantRole/Participant&quot;,
+            &quot;UserName&quot;: &quot;WSParticipantRole/Participant&quot;,
+            &quot;Email&quot;: &quot;gaeunbyeon1102@gmail.com&quot;,
+            &quot;Role&quot;: &quot;ADMIN&quot;,
+            &quot;IdentityType&quot;: &quot;IAM&quot;,
+            &quot;Active&quot;: true,
+            &quot;PrincipalId&quot;: &quot;federated/iam/AROAWBT7XFSEFGDQYMCZQ:Participant&quot;
+        }
+    ],
+    &quot;Status&quot;: 200,
+    &quot;RequestId&quot;: &quot;30173d57-83a5-4369-9fbf-f3dd892b9ccc&quot;
+}</code></pre>
+        <p><strong>SPICE</strong></p>
+        <h2>VCF</h2>
+        <ul>
+          <li>VCF 데이터의 경우에는 Glow 라이브러리와의 디펜던시로 인해, <strong>EMR Studio를 통해서 실습 (Athena는 사용불가)</strong></li>
+        </ul>
+        <p class="back"><a href="../notes.html">← 모든 노트</a></p>
+      </article>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <div class="follow">
+      <a href="https://github.com/gaeunby1102" aria-label="GitHub">GitHub</a>
+      <a href="mailto:gaeunbyeon1102@gmail.com" aria-label="Email">Email</a>
+      <a href="https://www.linkedin.com/in/%EA%B0%80%EC%9D%80-%EB%B3%80-621113361/" aria-label="LinkedIn">LinkedIn</a>
+    </div>
+    <p>© 2026 Gaeun Byeon</p>
+  </footer>
+
+  <script>
+  window.MathJax = {
+    tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] },
+    options: { skipHtmlTags: ['script','noscript','style','textarea','pre','code'] }
+  };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</body>
+</html>
