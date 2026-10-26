@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Generate papers.html (reading list) from the GEB Notion database export.
 Reads geb_papers.json (list of {title, 저널, 구분, 요약}) and writes papers.html.
+Prepends the reading-list additions in data/additional-papers.json.
 Re-run after updating the export.
 """
 import os, json, html, re
@@ -12,12 +13,15 @@ DATA = os.environ.get("GEB_JSON",
 OUT = os.path.join(SITE, "papers.html")
 
 papers = json.load(open(DATA, encoding="utf-8"))
+additional = json.load(open(os.path.join(SITE, "data", "additional-papers.json"), encoding="utf-8"))
+def _norm(t): return re.sub(r"\s+", " ", t or "").strip().lower()
+additional_titles = {_norm(p["title"]) for p in additional}
+papers = additional + [p for p in papers if _norm(p.get("title")) not in additional_titles]
 # order: papers with tags first, keep DB order otherwise
 tag_counts = Counter(t for p in papers for t in p.get("구분", []))
 TAGS = [t for t, _ in tag_counts.most_common()]
 
 # Papers with a detailed summary page (title -> url). Add entries here as you write summaries.
-def _norm(t): return re.sub(r"\s+", " ", t or "").strip().lower()
 SUMMARY_LINKS = {
     _norm("A genome-scale single-cell CRISPRi map of trans gene regulation across human pluripotent stem cell lines"): "notes/crispri-trans-map.html",
     _norm("Systematic Evaluation of Single-Cell Foundation Model Interpretability Reveals Attention Captures Co-Expression Rather Than Unique Regulatory Signal"): "notes/scfm-attention-grn.html",
@@ -38,6 +42,8 @@ for p in papers:
     link = SUMMARY_LINKS.get(_norm(raw_title))
     title_html = ('<a href="{}">{}</a> <span class="paper-badge">📄 summary</span>'.format(link, title or "(untitled)")
                   if link else (title or "(untitled)"))
+    if not link and p.get("url"):
+        title_html = '<a href="{}" target="_blank" rel="noopener">{}</a>'.format(esc(p["url"]), title)
     journal = esc(collapse(p.get("저널", "")))
     tags = p.get("구분", [])
     summary = esc(collapse(p.get("요약", "")))

@@ -19,3 +19,8 @@ python3 -m http.server 8000   # open http://localhost:8000
 - `build_home.py` — knowledge-graph data (`assets/js/notes-data.js`) + starred papers
 - `build_papers.py` — Papers reading list
 - `update_nav.py` — sync the top navigation across all pages
+
+Selected reading-list additions live in `data/additional-papers.json`; both
+builders keep them at the top. Optional `url` fields link titles to the papers.
+To rebuild Papers, supply the Notion export with
+`GEB_JSON=/path/to/geb_papers.json python3 tools/build_papers.py`.

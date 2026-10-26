@@ -1,0 +1,32 @@
+[
+  {
+    "title": "Demystifying Prediction Powered Inference",
+    "저널": "arXiv · 2026",
+    "구분": ["Prediction-powered inference"],
+    "starred_tag": "PPI"
+  },
+  {
+    "title": "Calibeating Prediction-Powered Inference",
+    "저널": "arXiv · 2026",
+    "구분": ["Prediction-powered inference"],
+    "starred_tag": "PPI"
+  },
+  {
+    "title": "Conformal prediction for network-assisted regression",
+    "저널": "JASA · 2025",
+    "구분": ["Graph conformal prediction"],
+    "starred_tag": "Graph conformal"
+  },
+  {
+    "title": "GraphLCP",
+    "저널": "arXiv · 2026",
+    "구분": ["Graph conformal prediction"],
+    "starred_tag": "Graph conformal"
+  },
+  {
+    "title": "Beyond reweighting",
+    "저널": "PNAS · 2025",
+    "구분": ["Transportability"],
+    "starred_tag": "Transportability"
+  }
+]

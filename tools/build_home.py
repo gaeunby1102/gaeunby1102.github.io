@@ -14,6 +14,31 @@ NOTES_HTML = os.path.join(SITE, "notes.html")
 INDEX_HTML = os.path.join(SITE, "index.html")
 NOTES_DATA_JS = os.path.join(SITE, "assets", "js", "notes-data.js")
 JSONL = os.path.expanduser("~/Dropbox/9aeun/.claude-shared/pdf-ingest-pending.jsonl")
+ADDITIONAL = os.path.join(SITE, "data", "additional-papers.json")
+
+def additional_papers():
+    with open(ADDITIONAL, encoding="utf-8") as f:
+        return json.load(f)
+
+def build_additional():
+    """Keep selected papers visible even when the Dropbox ingest log is offline."""
+    lis = []
+    for paper in additional_papers():
+        title = html.escape(paper["title"])
+        if paper.get("url"):
+            title = '<a href="{}" target="_blank" rel="noopener">{}</a>'.format(html.escape(paper["url"]), title)
+        tag = html.escape(paper["starred_tag"])
+        lis.append('        <li><span class="ptitle">{}</span><span class="ptag">{}</span></li>'.format(title, tag))
+    block = "<!--ADDITIONAL_START-->\n" + "\n".join(lis) + "\n        <!--ADDITIONAL_END-->"
+    with open(INDEX_HTML, encoding="utf-8") as f:
+        src = f.read()
+    if "<!--ADDITIONAL_START-->" in src:
+        src = re.sub(r'<!--ADDITIONAL_START-->.*?<!--ADDITIONAL_END-->', block, src, flags=re.S)
+    else:
+        src = src.replace("<!--STARRED_START-->", block + "\n        <!--STARRED_START-->", 1)
+    with open(INDEX_HTML, "w", encoding="utf-8") as f:
+        f.write(src)
+    print(f"selected papers: {len(lis)} items")
 
 # ---------- 1) notes-data.js from notes.html ----------
 def build_notes_data():
@@ -68,7 +93,8 @@ def build_starred(n=0):   # n=0 -> show all ingested papers (scrollable)
         except Exception:
             pass
     rows.sort(key=lambda r: r.get("ts", ""), reverse=True)
-    seen, picked = set(), []
+    seen = {p["title"].strip().lower() for p in additional_papers()}
+    picked = []
     for r in rows:
         title = (r.get("title") or clean_title(r.get("basename", ""))).strip()
         if not is_readable(title):
@@ -96,4 +122,5 @@ def build_starred(n=0):   # n=0 -> show all ingested papers (scrollable)
 
 if __name__ == "__main__":
     build_notes_data()
+    build_additional()
     build_starred()
