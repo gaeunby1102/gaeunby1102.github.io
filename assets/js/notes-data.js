@@ -40,6 +40,10 @@ window.NOTES_DATA = [
     "url": "notes.html",
     "notes": [
       {
+        "label": "예측값을 통계에 쓴다는 것",
+        "url": "notes/ppi-conformal-transportability.html"
+      },
+      {
         "label": "Concepts",
         "url": "notes/concepts.html"
       }
